@@ -1,0 +1,19 @@
+CREATE TABLE dbo.rcntd(
+  gkey VARCHAR(40) NOT NULL, /* gkey */
+  BDCCN  VARCHAR(30)  NOT NULL DEFAULT '' ,/*合約編號 */
+  BDDCX  MONEY NOT NULL ,/*折扣比率 */
+  BDQTY  MONEY NOT NULL ,/*銷售數量 */
+  BDRAT  MONEY NOT NULL ,/*版稅比率 */
+  BDRMK  NVARCHAR(100)  NOT NULL DEFAULT '' ,/*備　　註 */
+  mkey   VARCHAR(40)     NOT NULL, /*異動key */ 
+  trcls  VARCHAR(10) NOT NULL, /*異動旗標 */ 
+  trcrd  DATETIME    NOT NULL, /*建檔日期 */ 
+  trmod  DATETIME    NOT NULL, /*更正日期 */ 
+  trusr  NVARCHAR(40) NOT NULL  /*更正人員 */ 
+  ) ON [PRIMARY] 
+
+ALTER TABLE [dbo].[rcntd] WITH NOCHECK ADD 
+  CONSTRAINT [PK_rcntd] PRIMARY KEY  NONCLUSTERED 
+  (
+    [gkey]
+  )  ON [PRIMARY] 

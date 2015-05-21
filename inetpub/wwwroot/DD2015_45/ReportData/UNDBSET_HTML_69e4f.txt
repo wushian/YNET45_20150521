@@ -1,0 +1,192 @@
+<asp:Literal ID="li_AccMsg" runat="server"></asp:Literal>
+<input id="hh_GridGkey" type="hidden" name="hh_GridGkey" runat="server" />
+<input id="hh_GridCtrl" type="hidden" name="hh_GridCtrl" runat="server" />
+<input id="hh_ActKey" type="hidden" name="hh_ActGuidKey" runat="server" />
+<input id="hh_mkey" type="hidden" name="hh_mkey" runat="server" />
+<table>
+  <tr>
+    <td>
+      <asp:LinkButton ID="bt_CAN" runat="server" CausesValidation="False" CommandName="CANCEL" AccessKey="C" CssClass="LinkButton80" Text="C上一步" Width="80px" OnClick="bt_CAN_Click"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_SAV" runat="server" CausesValidation="False" CommandName="SAVE" AccessKey="S" CssClass="LinkButton80" Text="S完成" Width="80px" OnClick="bt_SAV_Click"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_02" runat="server" CausesValidation="False" CommandName="NEW" AccessKey="N" CssClass="LinkButton80" Text="N新增" Width="80px" OnClick="bt_02_Click" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_03" runat="server" CausesValidation="False" CommandName="INSERT" AccessKey="I" CssClass="LinkButton80" Text="I插入" Width="80px" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_04" runat="server" CausesValidation="False" CommandName="MODIFY" AccessKey="M" CssClass="LinkButton80" Text="M修改" Width="80px" OnClick="bt_04_Click" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_05" runat="server" CausesValidation="False" CommandName="DELETE" AccessKey="X" CssClass="LinkButton80" Text="X刪除" Width="80px" OnClick="bt_05_Click" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_06" runat="server" CausesValidation="False" CommandName="COPY" AccessKey="O" CssClass="LinkButton80" Text="O複製" Width="80px" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_07" runat="server" CausesValidation="False" CommandName="PRINT" AccessKey="P" CssClass="LinkButton80" Text="P列印" Width="80px"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_08" runat="server" CausesValidation="False" CommandName="SERCH" AccessKey="F" CssClass="LinkButton80" Text="F查詢" Width="80px"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_09" runat="server" CausesValidation="False" CommandName="TRANS" AccessKey="T" CssClass="LinkButton80" Text="T轉單" Width="80px"></asp:LinkButton>
+    <td>
+      <asp:LinkButton ID="bt_10" runat="server" CausesValidation="False" CommandName="EXCEL" AccessKey="E" CssClass="LinkButton80" Text="Excel" Width="80px"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_11" runat="server" CausesValidation="False" CommandName="MODALL" AccessKey="B" CssClass="LinkButton80" Text="L整批修改" Width="80px" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_QUT" runat="server" CausesValidation="False" CommandName="QUIT" AccessKey="Q" CssClass="LinkButton80" Text="Q離開" Width="80px" OnClick="bt_QUT_Click"></asp:LinkButton>
+    </td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td > 
+      <asp:Label id="lb_DBSET_DBVER" runat="server" Text="版本編號" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBVER" width="80px" runat="server" MaxLength="20"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBNUM" runat="server" Text="客戶編號" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBNUM" width="80px" runat="server" MaxLength="20"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBAPX" runat="server" Text="程式名稱" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBAPX" width="80px" runat="server" MaxLength="20"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_DBSET_DBITM" runat="server" Text="項　　次" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBITM" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBFLD" runat="server" Text="欄位名稱" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBFLD" width="80px" runat="server" MaxLength="20"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBTNA" runat="server" Text="繁體名稱" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBTNA" width="80px" runat="server" MaxLength="20"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBTYP" runat="server" Text="資料型態" ></asp:Label>
+      <asp:dropdownlist id="dr_DBSET_DBTYP" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_DBSET_DBTYP" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBLEN" runat="server" Text="資料長度" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBLEN" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_DBSET_DBENA" runat="server" Text="英文名稱" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBENA" width="80px" runat="server" MaxLength="20"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBCNA" runat="server" Text="簡體名稱" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBCNA" width="80px" runat="server" MaxLength="20"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBJIA" runat="server" Text="JoinAlias" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBJIA" width="80px" runat="server" MaxLength="1"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBJIN" runat="server" Text="JoinTable" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBJIN" width="80px" runat="server" MaxLength="20"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBJIF" runat="server" Text="ret field" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBJIF" width="80px" runat="server" MaxLength="100"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBJIK" runat="server" Text="Join Key" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBJIK" width="80px" runat="server" MaxLength="250"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_DBSET_DBROW" runat="server" Text="ROW 位置" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBROW" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBCOL" runat="server" Text="COL 位置" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBCOL" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBUCO" runat="server" Text="使用元件" ></asp:Label>
+      <asp:dropdownlist id="dr_DBSET_DBUCO" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_DBSET_DBUCO" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBWID" runat="server" Text="元件寬度" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBWID" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBUED" runat="server" Text="EDIT寬度" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBUED" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBUTB" runat="server" Text="參考Table" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBUTB" width="80px" runat="server" MaxLength="20"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBUHO" runat="server" Text="參考Class" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBUHO" width="80px" runat="server" MaxLength="20"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_DBSET_DBGRD" runat="server" Text="GridList" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBGRD" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBDEF" runat="server" Text="Default" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBDEF" width="80px" runat="server" MaxLength="250"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_DBSET_DBPRY" runat="server" Text="Pri  Key" ></asp:Label>
+      <asp:dropdownlist id="dr_DBSET_DBPRY" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_DBSET_DBPRY" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBINS" runat="server" Text="是否新增" ></asp:Label>
+      <asp:dropdownlist id="dr_DBSET_DBINS" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_DBSET_DBINS" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBMOD" runat="server" Text="是否更正" ></asp:Label>
+      <asp:dropdownlist id="dr_DBSET_DBMOD" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_DBSET_DBMOD" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBEMP" runat="server" Text="是否空白" ></asp:Label>
+      <asp:dropdownlist id="dr_DBSET_DBEMP" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_DBSET_DBEMP" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBSER" runat="server" Text="查詢鍵值" ></asp:Label>
+      <asp:dropdownlist id="dr_DBSET_DBSER" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_DBSET_DBSER" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_DBSET_DBSOR" runat="server" Text="排序鍵值" ></asp:Label>
+      <asp:dropdownlist id="dr_DBSET_DBSOR" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_DBSET_DBSOR" width="0px" Visible="false"  runat="server"/>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_DBSET_DBRMK" runat="server" Text="備註資料" ></asp:Label>
+      <asp:TextBox id="tx_DBSET_DBRMK" width="80px" runat="server" MaxLength="200"></asp:TextBox>
+    </td>
+  </tr>
+</table>
+<asp:Label ID="lb_ErrorMessage" runat="server" Text="" EnableViewState="false" Visible="false" CssClass="ErrorMessage"></asp:Label>

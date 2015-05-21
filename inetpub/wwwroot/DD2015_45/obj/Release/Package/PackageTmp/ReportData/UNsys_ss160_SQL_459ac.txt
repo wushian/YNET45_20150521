@@ -1,0 +1,25 @@
+CREATE TABLE dbo.sys_ss160(
+  gkey VARCHAR(40) NOT NULL, /* gkey */
+  buttonno  INT NOT NULL DEFAULT 0 ,/*按鈕編號 */
+  button  NVARCHAR(20)  NOT NULL DEFAULT 0 ,/*按鈕名稱 */
+  button_e  NVARCHAR(20)  NULL DEFAULT 0 ,/*英文 */
+  button_t  NVARCHAR(20)  NULL DEFAULT 0 ,/*繁體 */
+  button_c  NVARCHAR(20)  NULL DEFAULT 0 ,/*簡體 */
+  button_v  NVARCHAR(20)  NULL DEFAULT 0 ,/*越南 */
+  tip_e  NVARCHAR(100)  NULL DEFAULT 0 ,/*英文tip */
+  tip_t  NVARCHAR(100)  NULL DEFAULT 0 ,/*繁體tip */
+  tip_c  NVARCHAR(100)  NULL DEFAULT 0 ,/*簡體tip */
+  tip_v  NVARCHAR(100)  NULL DEFAULT 0 ,/*越南tip */
+  ss155gkey  VARCHAR(40)  NOT NULL DEFAULT '' ,/*ss155gkey */
+  mkey   VARCHAR(40)     NOT NULL, /*異動key */ 
+  trcls  VARCHAR(10) NOT NULL, /*異動旗標 */ 
+  trcrd  DATETIME    NOT NULL, /*建檔日期 */ 
+  trmod  DATETIME    NOT NULL, /*更正日期 */ 
+  trusr  NVARCHAR(40) NOT NULL  /*更正人員 */ 
+  ) ON [PRIMARY] 
+
+ALTER TABLE [dbo].[sys_ss160] WITH NOCHECK ADD 
+  CONSTRAINT [PK_sys_ss160] PRIMARY KEY  NONCLUSTERED 
+  (
+    [gkey]
+  )  ON [PRIMARY] 

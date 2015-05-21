@@ -1,0 +1,834 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.OleDb;
+using System.Data.Common;
+using YNet;
+
+    string st_object_func = "UNDBSET";
+    string st_ContentPlaceHolder="ctl00$ContentPlaceHolder1$";
+    //
+    string st_dd_apx = "UNDBSET";         //UNdcnews   與apx 相關
+    string st_dd_table = "DBSET";       //dcnews     與table 相關 
+    string st_ren_head = "";       //DC         與單號相關 
+    string st_ren_yymmtext = "";   //           與單號相關 
+    string st_ren_cls = "";        //ren        與單號cls相關 
+    string st_ren_cos = "";        //1          與單號cos相關 
+    int in_ren_len = 0;            //6          與單號流水號 
+    //
+    protected void Page_Load(object sender, EventArgs e)
+    {
+      li_Msg.Text = "";
+      li_AccMsg.Text = "";
+      //檢查權限&狀態
+      if (sFN.checkAccessFunc(UserGkey, st_object_func, 1, UserLoginGkey, ref li_AccMsg))
+      {
+        if (!IsPostBack)
+        {
+         
+        dr_DBSET_DBTYP= sFN.DropDownListFromTable(ref dr_DBSET_DBTYP, "", "key", "name", "", "order_key");
+        dr_DBSET_DBUCO= sFN.DropDownListFromTable(ref dr_DBSET_DBUCO, "", "key", "name", "", "order_key");
+        dr_DBSET_DBPRY= sFN.DropDownListFromTable(ref dr_DBSET_DBPRY, "", "key", "name", "", "order_key");
+        dr_DBSET_DBINS= sFN.DropDownListFromTable(ref dr_DBSET_DBINS, "", "key", "name", "", "order_key");
+        dr_DBSET_DBMOD= sFN.DropDownListFromTable(ref dr_DBSET_DBMOD, "", "key", "name", "", "order_key");
+        dr_DBSET_DBEMP= sFN.DropDownListFromTable(ref dr_DBSET_DBEMP, "", "key", "name", "", "order_key");
+        dr_DBSET_DBSER= sFN.DropDownListFromTable(ref dr_DBSET_DBSER, "", "key", "name", "", "order_key");
+        dr_DBSET_DBSOR= sFN.DropDownListFromTable(ref dr_DBSET_DBSOR, "", "key", "name", "", "order_key");
+
+          CmdQueryS.CommandText=" AND 1=1 ";
+          Session["fmDBSET_CmdQueryS"] = CmdQueryS;
+          Set_Control();
+          if (DAC.GetStringValue(Session["fmDBSET_gr_GridView_DBSET_GridGkey"]) != "")
+          {
+            gr_GridView_DBSET.PageIndex=DAC.GetInt16Value(Session["fmDBSET_gr_GridView_DBSET_PageIndex"]);
+            gr_GridView_DBSET.SelectedIndex=DAC.GetInt16Value(Session["fmDBSET_gr_GridView_DBSET_SelectedIndex"]);
+            hh_GridGkey.Value = DAC.GetStringValue(Session["fmDBSET_gr_GridView_DBSET_GridGkey"]);
+          }
+          //
+          BindNew(true);
+          SetSerMod();
+          Session["fmDBSET_gr_GridView_DBSET_PageIndex"] = gr_GridView_DBSET.PageIndex;
+          Session["fmDBSET_gr_GridView_DBSET_SelectedIndex"] = gr_GridView_DBSET.SelectedIndex;
+        }
+        else
+        {
+          if ((hh_GridCtrl.Value.ToString().ToLower() == "ins") || (hh_GridCtrl.Value.ToString().ToLower() == "mod"))
+          {
+            BindNew(false);
+          }
+          else
+          {
+            BindNew(true);
+          }
+        }
+      }
+    }
+
+    private void Set_Control()
+    {
+      FunctionName = sFN.SetFormTitle(st_object_func, PublicVariable.LangType);   //取Page Title
+      gr_GridView_DBSET.PageSize = int.Parse(sFN.Get_FormVariable(st_object_func, "pagesize"));  //GridView 取pagesize
+      this.Page.Title = FunctionName;
+      sFN.SetFormLables(this, PublicVariable.LangType,st_ContentPlaceHolder, ApVer,"UNDBSET","DBSET");
+    }
+
+    private void ClearText()
+    {
+     //
+      tx_DBSET_DBVER.Text ="";  //版本編號
+      tx_DBSET_DBNUM.Text ="";  //客戶編號
+      tx_DBSET_DBAPX.Text ="";  //程式名稱
+      tx_DBSET_DBITM.Text ="";  //項　　次
+      tx_DBSET_DBFLD.Text ="";  //欄位名稱
+      tx_DBSET_DBTNA.Text ="";  //繁體名稱
+      dr_DBSET_DBTYP.SelectedIndex = -1;  //資料型態
+      tx_DBSET_DBLEN.Text ="";  //資料長度
+      tx_DBSET_DBENA.Text ="";  //英文名稱
+      tx_DBSET_DBCNA.Text ="";  //簡體名稱
+      tx_DBSET_DBJIA.Text ="";  //JoinAlias
+      tx_DBSET_DBJIN.Text ="";  //JoinTable
+      tx_DBSET_DBJIF.Text ="";  //ret field
+      tx_DBSET_DBJIK.Text ="";  //Join Key
+      tx_DBSET_DBROW.Text ="";  //ROW 位置
+      tx_DBSET_DBCOL.Text ="";  //COL 位置
+      dr_DBSET_DBUCO.SelectedIndex = -1;  //使用元件
+      tx_DBSET_DBWID.Text ="";  //元件寬度
+      tx_DBSET_DBUED.Text ="";  //EDIT寬度
+      tx_DBSET_DBUTB.Text ="";  //參考Table
+      tx_DBSET_DBUHO.Text ="";  //參考Class
+      tx_DBSET_DBGRD.Text ="";  //GridList
+      tx_DBSET_DBDEF.Text ="";  //Default
+      dr_DBSET_DBPRY.SelectedIndex = -1;  //Pri  Key
+      dr_DBSET_DBINS.SelectedIndex = -1;  //是否新增
+      dr_DBSET_DBMOD.SelectedIndex = -1;  //是否更正
+      dr_DBSET_DBEMP.SelectedIndex = -1;  //是否空白
+      dr_DBSET_DBSER.SelectedIndex = -1;  //查詢鍵值
+      dr_DBSET_DBSOR.SelectedIndex = -1;  //排序鍵值
+      tx_DBSET_DBRMK.Text ="";  //備註資料
+      tx_DBSET_DBUFX.Text ="";  //DBUFX
+      tx_DBSET_DBTBL.Text ="";  //TABLE名
+      tx_DBSET_DBTYD.Text ="";  //資料型態
+      tx_DBSET_DBREK.Text ="";  //序號
+      tx_DBSET_DBREN.Text ="";  //B檔序號
+
+     //
+      hh_mkey.Value = "";
+    }
+    
+    private void SetSerMod()
+    {
+      //
+      //
+      clsGV.TextBox_Set(ref tx_DBSET_DBVER, false);   //版本編號
+      clsGV.TextBox_Set(ref tx_DBSET_DBNUM, false);   //客戶編號
+      clsGV.TextBox_Set(ref tx_DBSET_DBAPX, false);   //程式名稱
+      clsGV.TextBox_Set(ref tx_DBSET_DBITM, false);   //項　　次
+      clsGV.TextBox_Set(ref tx_DBSET_DBFLD, false);   //欄位名稱
+      clsGV.TextBox_Set(ref tx_DBSET_DBTNA, false);   //繁體名稱
+      clsGV.Drpdown_Set(ref dr_DBSET_DBTYP, ref tx_DBSET_DBTYP, false);   //資料型態
+      clsGV.TextBox_Set(ref tx_DBSET_DBLEN, false);   //資料長度
+      clsGV.TextBox_Set(ref tx_DBSET_DBENA, false);   //英文名稱
+      clsGV.TextBox_Set(ref tx_DBSET_DBCNA, false);   //簡體名稱
+      clsGV.TextBox_Set(ref tx_DBSET_DBJIA, false);   //JoinAlias
+      clsGV.TextBox_Set(ref tx_DBSET_DBJIN, false);   //JoinTable
+      clsGV.TextBox_Set(ref tx_DBSET_DBJIF, false);   //ret field
+      clsGV.TextBox_Set(ref tx_DBSET_DBJIK, false);   //Join Key
+      clsGV.TextBox_Set(ref tx_DBSET_DBROW, false);   //ROW 位置
+      clsGV.TextBox_Set(ref tx_DBSET_DBCOL, false);   //COL 位置
+      clsGV.Drpdown_Set(ref dr_DBSET_DBUCO, ref tx_DBSET_DBUCO, false);   //使用元件
+      clsGV.TextBox_Set(ref tx_DBSET_DBWID, false);   //元件寬度
+      clsGV.TextBox_Set(ref tx_DBSET_DBUED, false);   //EDIT寬度
+      clsGV.TextBox_Set(ref tx_DBSET_DBUTB, false);   //參考Table
+      clsGV.TextBox_Set(ref tx_DBSET_DBUHO, false);   //參考Class
+      clsGV.TextBox_Set(ref tx_DBSET_DBGRD, false);   //GridList
+      clsGV.TextBox_Set(ref tx_DBSET_DBDEF, false);   //Default
+      clsGV.Drpdown_Set(ref dr_DBSET_DBPRY, ref tx_DBSET_DBPRY, false);   //Pri  Key
+      clsGV.Drpdown_Set(ref dr_DBSET_DBINS, ref tx_DBSET_DBINS, false);   //是否新增
+      clsGV.Drpdown_Set(ref dr_DBSET_DBMOD, ref tx_DBSET_DBMOD, false);   //是否更正
+      clsGV.Drpdown_Set(ref dr_DBSET_DBEMP, ref tx_DBSET_DBEMP, false);   //是否空白
+      clsGV.Drpdown_Set(ref dr_DBSET_DBSER, ref tx_DBSET_DBSER, false);   //查詢鍵值
+      clsGV.Drpdown_Set(ref dr_DBSET_DBSOR, ref tx_DBSET_DBSOR, false);   //排序鍵值
+      clsGV.TextBox_Set(ref tx_DBSET_DBRMK, false);   //備註資料
+      clsGV.TextBox_Set(ref tx_DBSET_DBUFX, false);   //DBUFX
+      clsGV.TextBox_Set(ref tx_DBSET_DBTBL, false);   //TABLE名
+      clsGV.TextBox_Set(ref tx_DBSET_DBTYD, false);   //資料型態
+      clsGV.TextBox_Set(ref tx_DBSET_DBREK, false);   //序號
+      clsGV.TextBox_Set(ref tx_DBSET_DBREN, false);   //B檔序號
+      //
+      //
+      sFN.SetButtons(this, PublicVariable.LangType, st_object_func, UserGkey, st_ContentPlaceHolder , "ser");
+      sFN.SetLinkButton(this, "bt_SAV", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_save, false);
+      sFN.SetLinkButton(this, "bt_CAN", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_cancel, false);
+      sFN.SetLinkButton(this, "bt_QUT", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_quit, true);
+      //
+      gr_GridView_DBSET.Enabled = true;
+      //gr_GridView_DBSET.Columns[0].Visible=true;
+    }
+    
+    private void SetEditMod()
+    {
+      // 
+      clsGV.TextBox_Set(ref tx_DBSET_DBVER, true);  //版本編號
+      clsGV.TextBox_Set(ref tx_DBSET_DBNUM, true);  //客戶編號
+      clsGV.TextBox_Set(ref tx_DBSET_DBAPX, true);  //程式名稱
+      clsGV.TextBox_Set(ref tx_DBSET_DBITM, true);  //項　　次
+      clsGV.TextBox_Set(ref tx_DBSET_DBFLD, true);  //欄位名稱
+      clsGV.TextBox_Set(ref tx_DBSET_DBTNA, true);  //繁體名稱
+      clsGV.Drpdown_Set(ref dr_DBSET_DBTYP, ref tx_DBSET_DBTYP, true);   //資料型態
+      clsGV.TextBox_Set(ref tx_DBSET_DBLEN, true);  //資料長度
+      clsGV.TextBox_Set(ref tx_DBSET_DBENA, true);  //英文名稱
+      clsGV.TextBox_Set(ref tx_DBSET_DBCNA, true);  //簡體名稱
+      clsGV.TextBox_Set(ref tx_DBSET_DBJIA, true);  //JoinAlias
+      clsGV.TextBox_Set(ref tx_DBSET_DBJIN, true);  //JoinTable
+      clsGV.TextBox_Set(ref tx_DBSET_DBJIF, true);  //ret field
+      clsGV.TextBox_Set(ref tx_DBSET_DBJIK, true);  //Join Key
+      clsGV.TextBox_Set(ref tx_DBSET_DBROW, true);  //ROW 位置
+      clsGV.TextBox_Set(ref tx_DBSET_DBCOL, true);  //COL 位置
+      clsGV.Drpdown_Set(ref dr_DBSET_DBUCO, ref tx_DBSET_DBUCO, true);   //使用元件
+      clsGV.TextBox_Set(ref tx_DBSET_DBWID, true);  //元件寬度
+      clsGV.TextBox_Set(ref tx_DBSET_DBUED, true);  //EDIT寬度
+      clsGV.TextBox_Set(ref tx_DBSET_DBUTB, true);  //參考Table
+      clsGV.TextBox_Set(ref tx_DBSET_DBUHO, true);  //參考Class
+      clsGV.TextBox_Set(ref tx_DBSET_DBGRD, true);  //GridList
+      clsGV.TextBox_Set(ref tx_DBSET_DBDEF, true);  //Default
+      clsGV.Drpdown_Set(ref dr_DBSET_DBPRY, ref tx_DBSET_DBPRY, true);   //Pri  Key
+      clsGV.Drpdown_Set(ref dr_DBSET_DBINS, ref tx_DBSET_DBINS, true);   //是否新增
+      clsGV.Drpdown_Set(ref dr_DBSET_DBMOD, ref tx_DBSET_DBMOD, true);   //是否更正
+      clsGV.Drpdown_Set(ref dr_DBSET_DBEMP, ref tx_DBSET_DBEMP, true);   //是否空白
+      clsGV.Drpdown_Set(ref dr_DBSET_DBSER, ref tx_DBSET_DBSER, true);   //查詢鍵值
+      clsGV.Drpdown_Set(ref dr_DBSET_DBSOR, ref tx_DBSET_DBSOR, true);   //排序鍵值
+      clsGV.TextBox_Set(ref tx_DBSET_DBRMK, true);  //備註資料
+      clsGV.TextBox_Set(ref tx_DBSET_DBUFX, true);  //DBUFX
+      clsGV.TextBox_Set(ref tx_DBSET_DBTBL, true);  //TABLE名
+      clsGV.TextBox_Set(ref tx_DBSET_DBTYD, true);  //資料型態
+      clsGV.TextBox_Set(ref tx_DBSET_DBREK, true);  //序號
+      clsGV.TextBox_Set(ref tx_DBSET_DBREN, true);  //B檔序號
+      // 
+      sFN.SetButtons(this, PublicVariable.LangType, st_object_func, UserGkey, st_ContentPlaceHolder, "mod");
+      sFN.SetLinkButton(this, "bt_SAV", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_save, true);
+      sFN.SetLinkButton(this, "bt_CAN", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_cancel, true);
+      sFN.SetLinkButton(this, "bt_QUT", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_quit, false);
+      //
+      gr_GridView_DBSET.Enabled = false;
+      //gr_GridView_DBSET.Columns[0].Visible = false;
+    }
+    
+    private void SetEditModAll()
+    {
+      // 
+      clsGV.TextBox_Set(ref tx_DBSET_DBVER, true);  //版本編號
+      clsGV.TextBox_Set(ref tx_DBSET_DBNUM, true);  //客戶編號
+      clsGV.TextBox_Set(ref tx_DBSET_DBAPX, true);  //程式名稱
+      clsGV.TextBox_Set(ref tx_DBSET_DBITM, true);  //項　　次
+      clsGV.TextBox_Set(ref tx_DBSET_DBFLD, true);  //欄位名稱
+      clsGV.TextBox_Set(ref tx_DBSET_DBTNA, true);  //繁體名稱
+      clsGV.Drpdown_Set(ref dr_DBSET_DBTYP, ref tx_DBSET_DBTYP, true);   //資料型態
+      clsGV.TextBox_Set(ref tx_DBSET_DBLEN, true);  //資料長度
+      clsGV.TextBox_Set(ref tx_DBSET_DBENA, true);  //英文名稱
+      clsGV.TextBox_Set(ref tx_DBSET_DBCNA, true);  //簡體名稱
+      clsGV.TextBox_Set(ref tx_DBSET_DBJIA, true);  //JoinAlias
+      clsGV.TextBox_Set(ref tx_DBSET_DBJIN, true);  //JoinTable
+      clsGV.TextBox_Set(ref tx_DBSET_DBJIF, true);  //ret field
+      clsGV.TextBox_Set(ref tx_DBSET_DBJIK, true);  //Join Key
+      clsGV.TextBox_Set(ref tx_DBSET_DBROW, true);  //ROW 位置
+      clsGV.TextBox_Set(ref tx_DBSET_DBCOL, true);  //COL 位置
+      clsGV.Drpdown_Set(ref dr_DBSET_DBUCO, ref tx_DBSET_DBUCO, true);   //使用元件
+      clsGV.TextBox_Set(ref tx_DBSET_DBWID, true);  //元件寬度
+      clsGV.TextBox_Set(ref tx_DBSET_DBUED, true);  //EDIT寬度
+      clsGV.TextBox_Set(ref tx_DBSET_DBUTB, true);  //參考Table
+      clsGV.TextBox_Set(ref tx_DBSET_DBUHO, true);  //參考Class
+      clsGV.TextBox_Set(ref tx_DBSET_DBGRD, true);  //GridList
+      clsGV.TextBox_Set(ref tx_DBSET_DBDEF, true);  //Default
+      clsGV.Drpdown_Set(ref dr_DBSET_DBPRY, ref tx_DBSET_DBPRY, true);   //Pri  Key
+      clsGV.Drpdown_Set(ref dr_DBSET_DBINS, ref tx_DBSET_DBINS, true);   //是否新增
+      clsGV.Drpdown_Set(ref dr_DBSET_DBMOD, ref tx_DBSET_DBMOD, true);   //是否更正
+      clsGV.Drpdown_Set(ref dr_DBSET_DBEMP, ref tx_DBSET_DBEMP, true);   //是否空白
+      clsGV.Drpdown_Set(ref dr_DBSET_DBSER, ref tx_DBSET_DBSER, true);   //查詢鍵值
+      clsGV.Drpdown_Set(ref dr_DBSET_DBSOR, ref tx_DBSET_DBSOR, true);   //排序鍵值
+      clsGV.TextBox_Set(ref tx_DBSET_DBRMK, true);  //備註資料
+      clsGV.TextBox_Set(ref tx_DBSET_DBUFX, true);  //DBUFX
+      clsGV.TextBox_Set(ref tx_DBSET_DBTBL, true);  //TABLE名
+      clsGV.TextBox_Set(ref tx_DBSET_DBTYD, true);  //資料型態
+      clsGV.TextBox_Set(ref tx_DBSET_DBREK, true);  //序號
+      clsGV.TextBox_Set(ref tx_DBSET_DBREN, true);  //B檔序號
+      // 
+      sFN.SetButtons(this, PublicVariable.LangType, st_object_func, UserGkey, st_ContentPlaceHolder, "mod");
+      sFN.SetLinkButton(this, "bt_SAV", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_save, true);
+      sFN.SetLinkButton(this, "bt_CAN", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_cancel, true);
+      sFN.SetLinkButton(this, "bt_QUT", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_quit, false);
+      //
+      gr_GridView_DBSET.Enabled = true;
+      //gr_GridView_DBSET.Columns[0].Visible = false;
+    }
+    
+    private void BindText(DataRow CurRow)
+    {
+      //
+      //
+      tx_DBSET_DBVER.Text = DAC.GetStringValue(CurRow["DBSET_DBVER"]);  //版本編號
+      tx_DBSET_DBNUM.Text = DAC.GetStringValue(CurRow["DBSET_DBNUM"]);  //客戶編號
+      tx_DBSET_DBAPX.Text = DAC.GetStringValue(CurRow["DBSET_DBAPX"]);  //程式名稱
+      tx_DBSET_DBITM.Text = DAC.GetStringValue(CurRow["DBSET_DBITM"]);  //項　　次
+      tx_DBSET_DBFLD.Text = DAC.GetStringValue(CurRow["DBSET_DBFLD"]);  //欄位名稱
+      tx_DBSET_DBTNA.Text = DAC.GetStringValue(CurRow["DBSET_DBTNA"]);  //繁體名稱
+      dr_DBSET_DBTYP = sFN.SetDropDownList(ref dr_DBSET_DBTYP, DAC.GetStringValue(CurRow["DBSET_DBTYP"]));  //資料型態
+      tx_DBSET_DBLEN.Text = DAC.GetStringValue(CurRow["DBSET_DBLEN"]);  //資料長度
+      tx_DBSET_DBENA.Text = DAC.GetStringValue(CurRow["DBSET_DBENA"]);  //英文名稱
+      tx_DBSET_DBCNA.Text = DAC.GetStringValue(CurRow["DBSET_DBCNA"]);  //簡體名稱
+      tx_DBSET_DBJIA.Text = DAC.GetStringValue(CurRow["DBSET_DBJIA"]);  //JoinAlias
+      tx_DBSET_DBJIN.Text = DAC.GetStringValue(CurRow["DBSET_DBJIN"]);  //JoinTable
+      tx_DBSET_DBJIF.Text = DAC.GetStringValue(CurRow["DBSET_DBJIF"]);  //ret field
+      tx_DBSET_DBJIK.Text = DAC.GetStringValue(CurRow["DBSET_DBJIK"]);  //Join Key
+      tx_DBSET_DBROW.Text = DAC.GetStringValue(CurRow["DBSET_DBROW"]);  //ROW 位置
+      tx_DBSET_DBCOL.Text = DAC.GetStringValue(CurRow["DBSET_DBCOL"]);  //COL 位置
+      dr_DBSET_DBUCO = sFN.SetDropDownList(ref dr_DBSET_DBUCO, DAC.GetStringValue(CurRow["DBSET_DBUCO"]));  //使用元件
+      tx_DBSET_DBWID.Text = DAC.GetStringValue(CurRow["DBSET_DBWID"]);  //元件寬度
+      tx_DBSET_DBUED.Text = DAC.GetStringValue(CurRow["DBSET_DBUED"]);  //EDIT寬度
+      tx_DBSET_DBUTB.Text = DAC.GetStringValue(CurRow["DBSET_DBUTB"]);  //參考Table
+      tx_DBSET_DBUHO.Text = DAC.GetStringValue(CurRow["DBSET_DBUHO"]);  //參考Class
+      tx_DBSET_DBGRD.Text = DAC.GetStringValue(CurRow["DBSET_DBGRD"]);  //GridList
+      tx_DBSET_DBDEF.Text = DAC.GetStringValue(CurRow["DBSET_DBDEF"]);  //Default
+      dr_DBSET_DBPRY = sFN.SetDropDownList(ref dr_DBSET_DBPRY, DAC.GetStringValue(CurRow["DBSET_DBPRY"]));  //Pri  Key
+      dr_DBSET_DBINS = sFN.SetDropDownList(ref dr_DBSET_DBINS, DAC.GetStringValue(CurRow["DBSET_DBINS"]));  //是否新增
+      dr_DBSET_DBMOD = sFN.SetDropDownList(ref dr_DBSET_DBMOD, DAC.GetStringValue(CurRow["DBSET_DBMOD"]));  //是否更正
+      dr_DBSET_DBEMP = sFN.SetDropDownList(ref dr_DBSET_DBEMP, DAC.GetStringValue(CurRow["DBSET_DBEMP"]));  //是否空白
+      dr_DBSET_DBSER = sFN.SetDropDownList(ref dr_DBSET_DBSER, DAC.GetStringValue(CurRow["DBSET_DBSER"]));  //查詢鍵值
+      dr_DBSET_DBSOR = sFN.SetDropDownList(ref dr_DBSET_DBSOR, DAC.GetStringValue(CurRow["DBSET_DBSOR"]));  //排序鍵值
+      tx_DBSET_DBRMK.Text = DAC.GetStringValue(CurRow["DBSET_DBRMK"]);  //備註資料
+      tx_DBSET_DBUFX.Text = DAC.GetStringValue(CurRow["DBSET_DBUFX"]);  //DBUFX
+      tx_DBSET_DBTBL.Text = DAC.GetStringValue(CurRow["DBSET_DBTBL"]);  //TABLE名
+      tx_DBSET_DBTYD.Text = DAC.GetStringValue(CurRow["DBSET_DBTYD"]);  //資料型態
+      tx_DBSET_DBREK.Text = DAC.GetStringValue(CurRow["DBSET_DBREK"]);  //序號
+      tx_DBSET_DBREN.Text = DAC.GetStringValue(CurRow["DBSET_DBREN"]);  //B檔序號
+      //
+      //
+      hh_mkey.Value = DAC.GetStringValue(CurRow["DBSET_mkey"]);
+      //
+    }
+    
+    private void BindNew(bool bl_showdata)
+    {
+      string SelDataKey = "";
+      DataRow[] SelDataRow;
+      DataRow CurRow;
+      //
+      try
+      {
+        CmdQueryS = (OleDbCommand)Session["fmDBSET_CmdQueryS"];
+      }
+      catch
+      {
+        CmdQueryS.CommandText = "";
+      }
+      //
+      DataTable tb_DBSET = new DataTable();
+      DAC_DBSET DBSETDao = new DAC_DBSET(conn);
+      OleDbDataAdapter ad_DataDataAdapter;
+      string st_addselect = "";
+      string st_addjoin = "";
+      string st_addunion = "";
+      ad_DataDataAdapter = DBSETDao.GetDataAdapter(ApVer, "UNDBSET", "DBSET", st_addselect, false, st_addjoin, CmdQueryS, st_addunion, "order by xxx ");
+      ad_DataDataAdapter.Fill(tb_DBSET);
+      //
+      if (tb_DBSET.Rows.Count > 0)
+      {
+        bt_05.OnClientClick ="return btnDEL_c()";
+        bt_04.OnClientClick = "return btnMOD_c()";
+      }
+      else
+      {
+        bt_05.OnClientClick = "return btnDEL0_c()";
+        bt_04.OnClientClick = "return btnMOD0_c()";
+      }
+      gr_GridView_DBSET.DataSource = tb_DBSET;
+      //fmsn101_GV1_SelectedIndex
+      //fmsn101_GV1_PageIndex
+      gr_GridView_DBSET = clsGV.BindGridView(gr_GridView_DBSET, tb_DBSET, hh_GridCtrl, ref hh_GridGkey,"fmDBSET_gr_GridView_DBSET");
+      gr_GridView_DBSET.DataBind();
+      SelDataKey = "DBSET_gkey='"+hh_GridGkey.Value+"'";
+      SelDataRow = tb_DBSET.Select(SelDataKey);
+      //
+      if (bl_showdata)
+      {
+        if (SelDataRow.Length == 1)
+        {
+          CurRow = SelDataRow[0];
+          Session["fmDBSET_gr_GridView_DBSET_GridGkey"]=hh_GridGkey.Value;
+          BindText(CurRow);
+        }
+        else
+        {
+          hh_GridCtrl.Value = "init";
+          ClearText();
+        }
+      }
+      tb_DBSET.Dispose();
+      DBSETDao.Dispose();
+    }
+    
+    protected void gr_GridView_DBSET_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+      gr_GridView_DBSET.PageIndex = e.NewPageIndex;
+      Session["fmDBSET_gr_GridView_DBSET_PageIndex"] = gr_GridView_DBSET.PageIndex;
+      hh_GridGkey.Value = gr_GridView_DBSET.DataKeys[gr_GridView_DBSET.SelectedIndex].Value.ToString();
+    }
+    
+    protected void gr_GridView_DBSET_PageIndexChanged(object sender, EventArgs e)
+    {
+     if (gr_GridView_DBSET.Enabled)
+     {
+       hh_GridCtrl.Value = "ser";
+       BindNew(true);
+       SetSerMod();
+       Session["fmDBSET_gr_GridView_DBSET_PageIndex"] = gr_GridView_DBSET.PageIndex;
+       Session["fmDBSET_gr_GridView_DBSET_SelectedIndex"] = gr_GridView_DBSET.SelectedIndex;
+     }
+     else
+     {
+       li_Msg.Text = "<script> alert('" + StringTable.GetString("請先處理資料輸入") + "'); </script>";
+     }
+   }
+   
+    protected void gr_GridView_DBSET_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      BindNew(true);
+      Session["fmDBSET_gr_GridView_DBSET_PageIndex"] = gr_GridView_DBSET.PageIndex;
+      Session["fmDBSET_gr_GridView_DBSET_SelectedIndex"] = gr_GridView_DBSET.SelectedIndex;
+      hh_GridGkey.Value = gr_GridView_DBSET.DataKeys[gr_GridView_DBSET.SelectedIndex].Value.ToString();
+      SetSerMod();
+    }
+    
+    protected void bt_02_Click(object sender, EventArgs e)
+    {
+      actNEW();
+    }
+    
+    protected void actNEW()
+    {
+      if (sFN.checkAccessFunc(UserGkey, st_object_func, 2, UserLoginGkey, ref li_AccMsg))
+      {
+        hh_GridCtrl.Value = "ins";
+        Set_Control();
+        ClearText();
+        //定義guidkey
+        hh_ActKey.Value = DAC.get_guidkey();
+        BindNew(false);
+        SetEditMod();
+        li_Msg.Text = "<script> document.all('ContentPlaceHolder1_tx_xxxxxx').focus(); </script>";
+      }
+    }
+    
+    protected void bt_04_Click(object sender, EventArgs e)
+    {
+      actMOD();
+    }
+    
+    protected void actMOD()
+    {
+      if (sFN.checkAccessFunc(UserGkey, st_object_func, 4, UserLoginGkey, ref li_AccMsg))
+      {
+        hh_GridCtrl.Value ="mod";
+        Set_Control();
+        //取Act guidkey
+        hh_ActKey.Value = DAC.get_guidkey();
+        BindNew(true);
+        SetEditMod();
+      }
+    }
+    
+    protected void bt_11_Click(object sender, EventArgs e)
+    {
+      actMODALL();
+    }
+    
+    protected void actMODALL()
+    {
+      if (sFN.checkAccessFunc(UserGkey, st_object_func, 4, UserLoginGkey, ref li_AccMsg))
+      {
+        hh_GridCtrl.Value = "modall";
+        Set_Control();
+        //取Act guidkey
+        hh_ActKey.Value = DAC.get_guidkey();
+        BindNew(true);
+        SetEditModAll();
+      }
+    }
+    
+    protected void bt_QUT_Click(object sender, EventArgs e)
+    {
+      Response.Redirect("~/Master/"+ Page.Theme + "/MainForm.aspx");
+    }
+    
+    protected void bt_CAN_Click(object sender, EventArgs e)
+    {
+      actCAN();
+    }
+    
+    protected void actCAN()
+    {
+      hh_GridCtrl.Value = "ser";
+      Set_Control();
+      ClearText();
+      BindNew(true);
+      SetSerMod();
+    }
+    protected void bt_05_Click(object sender, EventArgs e)
+    {
+      actDEL();
+    }
+    
+    protected void actDEL()
+    {
+      if (sFN.checkAccessFunc(UserGkey, st_object_func, 5, UserLoginGkey, ref li_AccMsg))
+      {
+        bool bl_delok = false;
+        Set_Control();
+        hh_ActKey.Value = DAC.get_guidkey();
+        //
+        DAC_DBSET DBSETDao = new DAC_DBSET(conn);
+        string st_addselect = "";
+        string st_addjoin = "";
+        string st_addunion = "";
+        string st_SelDataKey = "DBSET_gkey='" + hh_GridGkey.Value + "' and DBSET_mkey='"+hh_mkey.Value+"' ";
+        DataTable tb_DBSET = new DataTable();
+        DbDataAdapter da_ADP = DBSETDao.GetDataAdapter(ApVer, "UNDBSET", "DBSET", st_addselect, false, st_addjoin, CmdQueryS, st_addunion, "");
+        da_ADP.Fill(tb_DBSET);
+        DataRow[] DelRow = tb_DBSET.Select(st_SelDataKey);
+        if (DelRow.Length == 1)
+        {
+          conn.Open();
+          OleDbTransaction thistran = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+          da_ADP.DeleteCommand.Transaction = thistran;
+          try
+          {
+            DBSETDao.Insertbalog(conn, thistran,"DBSET",hh_ActKey.Value, hh_GridGkey.Value);
+            DBSETDao.Insertbtlog(conn, thistran,"DBSET", DAC.GetStringValue(DelRow[0]["DBSET_gkey"]), "D", UserName, DAC.GetStringValue(DelRow[0]["DBSET_gkey"]));
+            DelRow[0].Delete();
+            da_ADP.Update(tb_DBSET);
+            thistran.Commit();
+            bl_delok = true;
+          }
+          catch (Exception e)
+          {
+            thistran.Rollback();
+            bl_delok = false;
+            lb_ErrorMessage.Visible = true;
+            lb_ErrorMessage.Text = e.Message;
+          }
+          finally
+          {
+            thistran.Dispose();
+            DBSETDao.Dispose();
+            tb_DBSET.Dispose();
+            da_ADP.Dispose();
+            conn.Close();
+          }
+        }
+        else
+        {
+          bl_delok = false;
+          lb_ErrorMessage.Visible = true;
+          lb_ErrorMessage.Text = StringTable.GetString("資料已變更,請重新選取!");
+        }
+        tb_DBSET.Clear();
+        //
+        if (bl_delok)
+        {
+          gr_GridView_DBSET = clsGV.SetGridCursor("del", gr_GridView_DBSET, -2);
+          BindNew(true);
+          SetSerMod();
+        }
+        //bl_delok
+      }
+    }
+    
+    protected void bt_SAV_Click(object sender, EventArgs e)
+    {
+      actSAV();
+    }
+    
+    protected void actSAV()
+    {
+      string st_ckerrmsg = "";
+      string st_dberrmsg = "";
+      string st_tempgkey = "";
+      bool bl_insok = false, bl_updateok = false;
+      //
+      Set_Control();
+      if (ServerEditCheck(ref st_ckerrmsg))
+      {
+        DAC_DBSET DBSETDao = new DAC_DBSET(conn);
+        if (hh_GridCtrl.Value.ToLower() == "modall")
+        {
+          if (UpdateDataAll(hh_ActKey.Value, ref st_dberrmsg))
+          {
+            SetSerMod();
+            hh_GridCtrl.Value = "rekey";
+            BindNew(true);
+            hh_GridCtrl.Value = "ser";
+          }
+          else
+          {
+            lb_ErrorMessage.Visible = true;
+            lb_ErrorMessage.Text = st_dberrmsg;
+          }
+        }  //
+        else
+        {
+          string st_addselect = "";
+          string st_addjoin = "";
+          string st_addunion = "";
+          string st_SelDataKey = "DBSET_gkey='"+hh_GridGkey.Value+"'";
+          if (hh_GridCtrl.Value.ToLower() == "ins")
+          {
+            //自動編號
+            //DateTime dt_idat=Convert.ToDateTime(tx_riza_RIDAT.Text);
+            //st_ren_yymmtext =sFN.strzeroi(dt_idat.Year,4)+sFN.strzeroi(dt_idat.Month,2);
+            //st_ren_cls=st_ren_yymmtext;
+            //tx_riza_RIREN.Text = rizaDao.GetRenW(conn, st_dd_apx, st_ren_cls, st_ren_cos, st_ren_head, st_ren_yymmtext, in_ren_len, false);
+            //conn.Close();
+            
+            //檢查重複
+            if (DBSETDao.IsExists("DBSET", "_Primary_key_", Primary_key.Text, ""))
+            {
+              bl_insok = false;
+              st_dberrmsg = StringTable.GetString(Primary_key.Text + ",已存在.");
+              
+             // DBSETDao.UpDateRenW(st_dd_apx, st_ren_cls, st_ren_cos, tx_riza_RIREN.Text);
+             // st_dberrmsg = StringTable.GetString(tx_riza_RIREN.Text + ",已重新取號.");
+             // //tx_riza_RIREN.Text = DBSETDao.GetRenW(conn, st_dd_apx, st_ren_cls, st_ren_cos, st_ren_head, st_ren_yymmtext, in_ren_len, false);             // tx_riza_RIREN.Text ="";
+             // conn.Close();
+             
+            }
+            else
+            {
+              DataTable tb_DBSET_ins = new DataTable();
+              DbDataAdapter da_ADP_ins = DBSETDao.GetDataAdapter(ApVer, "UNDBSET", "DBSET", st_addselect, false, st_addjoin, CmdQueryS_DBSET, st_addunion, "");
+              da_ADP_ins.Fill(tb_DBSET_ins);
+              conn.Open();
+              OleDbTransaction thistran = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+              da_ADP_ins.InsertCommand.Transaction = thistran;
+              try
+              {
+                DataRow ins_row = tb_DBSET_ins.NewRow();
+                st_tempgkey = DAC.get_guidkey();
+                ins_row["DBSET_gkey"] = st_tempgkey;       // 
+                ins_row["DBSET_mkey"] = DAC.get_guidkey(); //
+                ins_row["DBSET_DBVER"] =tx_DBSET_DBVER.Text.Trim();       // 版本編號
+                ins_row["DBSET_DBNUM"] =tx_DBSET_DBNUM.Text.Trim();       // 客戶編號
+                ins_row["DBSET_DBAPX"] =tx_DBSET_DBAPX.Text.Trim();       // 程式名稱
+                ins_row["DBSET_DBITM"] =tx_DBSET_DBITM.Text.Trim();       // 項　　次
+                ins_row["DBSET_DBFLD"] =tx_DBSET_DBFLD.Text.Trim();       // 欄位名稱
+                ins_row["DBSET_DBTNA"] =tx_DBSET_DBTNA.Text.Trim();       // 繁體名稱
+                ins_row["DBSET_DBTYP"] =dr_DBSET_DBTYP.SelectedValue;       // 資料型態
+                ins_row["DBSET_DBLEN"] =tx_DBSET_DBLEN.Text.Trim();       // 資料長度
+                ins_row["DBSET_DBENA"] =tx_DBSET_DBENA.Text.Trim();       // 英文名稱
+                ins_row["DBSET_DBCNA"] =tx_DBSET_DBCNA.Text.Trim();       // 簡體名稱
+                ins_row["DBSET_DBJIA"] =tx_DBSET_DBJIA.Text.Trim();       // JoinAlias
+                ins_row["DBSET_DBJIN"] =tx_DBSET_DBJIN.Text.Trim();       // JoinTable
+                ins_row["DBSET_DBJIF"] =tx_DBSET_DBJIF.Text.Trim();       // ret field
+                ins_row["DBSET_DBJIK"] =tx_DBSET_DBJIK.Text.Trim();       // Join Key
+                ins_row["DBSET_DBROW"] =tx_DBSET_DBROW.Text.Trim();       // ROW 位置
+                ins_row["DBSET_DBCOL"] =tx_DBSET_DBCOL.Text.Trim();       // COL 位置
+                ins_row["DBSET_DBUCO"] =dr_DBSET_DBUCO.SelectedValue;       // 使用元件
+                ins_row["DBSET_DBWID"] =tx_DBSET_DBWID.Text.Trim();       // 元件寬度
+                ins_row["DBSET_DBUED"] =tx_DBSET_DBUED.Text.Trim();       // EDIT寬度
+                ins_row["DBSET_DBUTB"] =tx_DBSET_DBUTB.Text.Trim();       // 參考Table
+                ins_row["DBSET_DBUHO"] =tx_DBSET_DBUHO.Text.Trim();       // 參考Class
+                ins_row["DBSET_DBGRD"] =tx_DBSET_DBGRD.Text.Trim();       // GridList
+                ins_row["DBSET_DBDEF"] =tx_DBSET_DBDEF.Text.Trim();       // Default
+                ins_row["DBSET_DBPRY"] =dr_DBSET_DBPRY.SelectedValue;       // Pri  Key
+                ins_row["DBSET_DBINS"] =dr_DBSET_DBINS.SelectedValue;       // 是否新增
+                ins_row["DBSET_DBMOD"] =dr_DBSET_DBMOD.SelectedValue;       // 是否更正
+                ins_row["DBSET_DBEMP"] =dr_DBSET_DBEMP.SelectedValue;       // 是否空白
+                ins_row["DBSET_DBSER"] =dr_DBSET_DBSER.SelectedValue;       // 查詢鍵值
+                ins_row["DBSET_DBSOR"] =dr_DBSET_DBSOR.SelectedValue;       // 排序鍵值
+                ins_row["DBSET_DBUFX"] =tx_DBSET_DBUFX.Text.Trim();       // DBUFX
+                ins_row["DBSET_DBTBL"] =tx_DBSET_DBTBL.Text.Trim();       // TABLE名
+                ins_row["DBSET_DBTYD"] =tx_DBSET_DBTYD.Text.Trim();       // 資料型態
+                ins_row["DBSET_DBREN"] =tx_DBSET_DBREN.Text.Trim();       // B檔序號
+                
+                ins_row["DBSET_trusr"] = UserGkey;  //
+                tb_DBSET_ins.Rows.Add(ins_row);
+                //
+                //
+                da_ADP_ins.Update(tb_DBSET_ins);
+                // DBSETDao.UpDateRenW(conn, thistran, st_dd_apx, st_ren_cls, st_ren_cos, tx_riza_RIREN.Text.Trim());
+                DBSETDao.Insertbalog(conn, thistran, "DBSET", hh_ActKey.Value, hh_GridGkey.Value);
+                DBSETDao.Insertbtlog(conn, thistran, "DBSET", DAC.GetStringValue(ins_row["DBSET_gkey"]), "I", UserName, DAC.GetStringValue(ins_row["DBSET_gkey"]));
+                thistran.Commit();
+                bl_insok = true;
+              }
+              catch (Exception e)
+              {
+                thistran.Rollback();
+                bl_insok = false;
+                st_dberrmsg = e.Message;
+              }
+              finally
+              {
+                thistran.Dispose();
+                DBSETDao.Dispose();
+                tb_DBSET_ins.Dispose();
+                da_ADP_ins.Dispose();
+                conn.Close();
+              }
+            }
+            if (bl_insok)
+            {
+              hh_GridGkey.Value = st_tempgkey;
+              hh_GridCtrl.Value = "rekey";
+              BindNew(true);
+              hh_GridCtrl.Value = "ser";
+              SetSerMod();
+            }
+            else
+            {
+              lb_ErrorMessage.Text = st_dberrmsg;
+              lb_ErrorMessage.Visible = true;
+            } //bl_insok
+          }  //ins
+          else if (hh_GridCtrl.Value.ToLower() == "mod")
+          {
+            if (DBSETDao.IsExists("DBSET", "_Primary_key_", Primary_key.Text, "gkey<>'"+hh_GridGkey.Value+"'"))
+            {
+              bl_updateok = false;
+              st_dberrmsg = StringTable.GetString(Primary_key.Text+",已存在.");
+            }
+            else
+            {
+              DataTable tb_DBSET_mod = new DataTable();
+              DbDataAdapter da_ADP_mod = DBSETDao.GetDataAdapter(ApVer, "UNDBSET", "DBSET", st_addselect, false, st_addjoin, CmdQueryS_DBSET, st_addunion, "");
+              da_ADP_mod.Fill(tb_DBSET_mod);
+              st_SelDataKey = "DBSET_gkey='" + hh_GridGkey.Value + "' and DBSET_mkey='"+hh_mkey.Value+"' ";
+              DataRow[] mod_rows = tb_DBSET_mod.Select(st_SelDataKey);
+              DataRow mod_row;
+              if (mod_rows.Length != 1)
+              {
+                bl_updateok = false;
+                st_dberrmsg = StringTable.GetString("資料已變更,請重新選取!");
+              }
+              else
+              {
+                conn.Open();
+                OleDbTransaction thistran = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                da_ADP_mod.UpdateCommand.Transaction = thistran;
+                try
+                {
+                  mod_row = mod_rows[0];
+                  mod_row.BeginEdit();
+                  
+                  mod_row["DBSET_DBVER"] =tx_DBSET_DBVER.Text.Trim();       // 版本編號
+                  mod_row["DBSET_DBNUM"] =tx_DBSET_DBNUM.Text.Trim();       // 客戶編號
+                  mod_row["DBSET_DBAPX"] =tx_DBSET_DBAPX.Text.Trim();       // 程式名稱
+                  mod_row["DBSET_DBITM"] =tx_DBSET_DBITM.Text.Trim();       // 項　　次
+                  mod_row["DBSET_DBFLD"] =tx_DBSET_DBFLD.Text.Trim();       // 欄位名稱
+                  mod_row["DBSET_DBTNA"] =tx_DBSET_DBTNA.Text.Trim();       // 繁體名稱
+                  mod_row["DBSET_DBTYP"] =dr_DBSET_DBTYP.SelectedValue;       // 資料型態
+                  mod_row["DBSET_DBLEN"] =tx_DBSET_DBLEN.Text.Trim();       // 資料長度
+                  mod_row["DBSET_DBENA"] =tx_DBSET_DBENA.Text.Trim();       // 英文名稱
+                  mod_row["DBSET_DBCNA"] =tx_DBSET_DBCNA.Text.Trim();       // 簡體名稱
+                  mod_row["DBSET_DBJIA"] =tx_DBSET_DBJIA.Text.Trim();       // JoinAlias
+                  mod_row["DBSET_DBJIN"] =tx_DBSET_DBJIN.Text.Trim();       // JoinTable
+                  mod_row["DBSET_DBJIF"] =tx_DBSET_DBJIF.Text.Trim();       // ret field
+                  mod_row["DBSET_DBJIK"] =tx_DBSET_DBJIK.Text.Trim();       // Join Key
+                  mod_row["DBSET_DBROW"] =tx_DBSET_DBROW.Text.Trim();       // ROW 位置
+                  mod_row["DBSET_DBCOL"] =tx_DBSET_DBCOL.Text.Trim();       // COL 位置
+                  mod_row["DBSET_DBUCO"] =dr_DBSET_DBUCO.SelectedValue;       // 使用元件
+                  mod_row["DBSET_DBWID"] =tx_DBSET_DBWID.Text.Trim();       // 元件寬度
+                  mod_row["DBSET_DBUED"] =tx_DBSET_DBUED.Text.Trim();       // EDIT寬度
+                  mod_row["DBSET_DBUTB"] =tx_DBSET_DBUTB.Text.Trim();       // 參考Table
+                  mod_row["DBSET_DBUHO"] =tx_DBSET_DBUHO.Text.Trim();       // 參考Class
+                  mod_row["DBSET_DBGRD"] =tx_DBSET_DBGRD.Text.Trim();       // GridList
+                  mod_row["DBSET_DBDEF"] =tx_DBSET_DBDEF.Text.Trim();       // Default
+                  mod_row["DBSET_DBPRY"] =dr_DBSET_DBPRY.SelectedValue;       // Pri  Key
+                  mod_row["DBSET_DBINS"] =dr_DBSET_DBINS.SelectedValue;       // 是否新增
+                  mod_row["DBSET_DBMOD"] =dr_DBSET_DBMOD.SelectedValue;       // 是否更正
+                  mod_row["DBSET_DBEMP"] =dr_DBSET_DBEMP.SelectedValue;       // 是否空白
+                  mod_row["DBSET_DBSER"] =dr_DBSET_DBSER.SelectedValue;       // 查詢鍵值
+                  mod_row["DBSET_DBSOR"] =dr_DBSET_DBSOR.SelectedValue;       // 排序鍵值
+                  mod_row["DBSET_DBRMK"] =tx_DBSET_DBRMK.Text.Trim();       // 備註資料
+                  mod_row["DBSET_DBUFX"] =tx_DBSET_DBUFX.Text.Trim();       // DBUFX
+                  mod_row["DBSET_DBTBL"] =tx_DBSET_DBTBL.Text.Trim();       // TABLE名
+                  mod_row["DBSET_DBTYD"] =tx_DBSET_DBTYD.Text.Trim();       // 資料型態
+                  mod_row["DBSET_DBREN"] =tx_DBSET_DBREN.Text.Trim();       // B檔序號
+                  
+                  mod_row["DBSET_mkey"] = DAC.get_guidkey();        //
+                  mod_row["DBSET_trusr"] =UserGkey;  //
+                  mod_row.EndEdit();
+                  da_ADP_mod.Update(tb_DBSET_mod);
+                  DBSETDao.Insertbalog(conn, thistran, "DBSET", hh_ActKey.Value, hh_GridGkey.Value);
+                  DBSETDao.Insertbtlog(conn, thistran, "DBSET", DAC.GetStringValue(mod_row["DBSET_gkey"]), "M", UserName, DAC.GetStringValue(mod_row["DBSET_gkey"]));
+                  thistran.Commit();
+                  bl_updateok = true;
+                }
+                catch (Exception e)
+                {
+                  thistran.Rollback();
+                  bl_updateok = false;
+                  st_dberrmsg = e.Message;
+                }
+                finally
+                {
+                  thistran.Dispose();
+                  DBSETDao.Dispose();
+                  tb_DBSET_mod.Dispose();
+                  da_ADP_mod.Dispose();
+                  conn.Close();
+                }
+              } //mod_rows.Length=1
+            } //IsExists
+            if (bl_updateok)
+            {
+              //hh_GridCtrl.Value = "rekey";
+              BindNew(true);
+              hh_GridCtrl.Value = "ser";
+              SetSerMod();
+            }
+            else
+            {
+              lb_ErrorMessage.Text = st_dberrmsg;
+              lb_ErrorMessage.Visible = true;
+            } //bl_updateok
+          }   //mod
+        }  //ins & mod
+        DBSETDao.Dispose();
+      }
+      else
+      {
+        lb_ErrorMessage.Visible = true;
+        lb_ErrorMessage.Text = st_ckerrmsg;
+      }
+    }
+    
+    private bool ServerEditCheck(ref string sMsg)
+    {
+      bool ret;
+      ret = true;
+      sMsg = "";
+      clsDataCheck DataCheck = new clsDataCheck();
+      
+      ret = DataCheck.cIsStrEmptyChk(ret, tx_DBSET_DBVER.Text, lb_DBSET_DBVER.Text, ref sMsg);  //版本編號
+      ret = DataCheck.cIsStrEmptyChk(ret, tx_DBSET_DBNUM.Text, lb_DBSET_DBNUM.Text, ref sMsg);  //客戶編號
+      ret = DataCheck.cIsStrEmptyChk(ret, tx_DBSET_DBAPX.Text, lb_DBSET_DBAPX.Text, ref sMsg);  //程式名稱
+      ret = DataCheck.cIsStrIntChk(ret, tx_DBSET_DBITM.Text, lb_DBSET_DBITM.Text, ref sMsg); //項　　次
+      ret = DataCheck.cIsStrEmptyChk(ret, tx_DBSET_DBFLD.Text, lb_DBSET_DBFLD.Text, ref sMsg);  //欄位名稱
+      ret = DataCheck.cIsStrEmptyChk(ret, tx_DBSET_DBTNA.Text, lb_DBSET_DBTNA.Text, ref sMsg);  //繁體名稱
+      ret = DataCheck.cIsStrIntChk(ret, tx_DBSET_DBLEN.Text, lb_DBSET_DBLEN.Text, ref sMsg); //資料長度
+      ret = DataCheck.cIsStrEmptyChk(ret, tx_DBSET_DBJIA.Text, lb_DBSET_DBJIA.Text, ref sMsg);  //JoinAlias
+      ret = DataCheck.cIsStrIntChk(ret, tx_DBSET_DBROW.Text, lb_DBSET_DBROW.Text, ref sMsg); //ROW 位置
+      ret = DataCheck.cIsStrIntChk(ret, tx_DBSET_DBCOL.Text, lb_DBSET_DBCOL.Text, ref sMsg); //COL 位置
+      ret = DataCheck.cIsStrIntChk(ret, tx_DBSET_DBWID.Text, lb_DBSET_DBWID.Text, ref sMsg); //元件寬度
+      ret = DataCheck.cIsStrIntChk(ret, tx_DBSET_DBUED.Text, lb_DBSET_DBUED.Text, ref sMsg); //EDIT寬度
+      ret = DataCheck.cIsStrIntChk(ret, tx_DBSET_DBGRD.Text, lb_DBSET_DBGRD.Text, ref sMsg); //GridList
+      ret = DataCheck.cIsStrEmptyChk(ret, tx_DBSET_DBTBL.Text, lb_DBSET_DBTBL.Text, ref sMsg);  //TABLE名
+      ret = DataCheck.cIsStrIntChk(ret, tx_DBSET_DBREK.Text, lb_DBSET_DBREK.Text, ref sMsg); //序號
+      DataCheck.Dispose();
+      return ret;
+    }
+    

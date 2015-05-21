@@ -1,0 +1,110 @@
+<asp:GridView ID="gr_GridView_sapf" runat="server" AutoGenerateColumns="False" DataKeyNames="sapf_gkey" EnableModelValidation="True" AllowPaging="false" OnRowDataBound="gr_GridView_sapf_RowDataBound">
+  <Columns>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%# DD2012.PublicVariable.st_choose %></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:ImageButton CommandName="Select" ImageUrl='<%# hh_GridGkey.Value==DataBinder.Eval(Container.DataItem,"sapf_gkey").ToString() ? "~\images\GridCheck.gif":"~\images\GridUnCheck.gif" %>' runat="server" ID="Imagebutton1" />
+        <input id="tx_sapf_gkey02" type="hidden" name="tx_sapf_gkey02" value='<%# DataBinder.Eval(Container.DataItem,"sapf_gkey").ToString() %>' runat="server" />
+        <input id="tx_sapf_mkey02" type="hidden" name="tx_sapf_mkey02" value='<%# DataBinder.Eval(Container.DataItem,"sapf_mkey").ToString() %>' runat="server" />
+      </ItemTemplate>
+    </asp:TemplateField>
+  </Columns>
+</asp:GridView>
+<asp:Literal ID="li_Msg" runat="server"></asp:Literal>
+
+
+protected void gr_GridView_sapf_RowDataBound(object sender, GridViewRowEventArgs e)
+{
+  string st_datavalue = ""; 
+  if (e.Row.RowIndex >= 0) 
+  {
+    DataRowView rowView = (DataRowView)e.Row.DataItem;
+  }
+}
+
+
+protected bool UpdateDataAll(string st_ActKey, ref string st_errmsg)
+{
+  bool bl_updateok = false;
+  bool bl_Mod = false;
+  //
+  string st_ctrl = "", st_ctrlname = "";
+  string st_sapf_gkey="", st_sapf_mkey="",;
+  DataRow mod_row;
+  DataRow[] sel_rows;
+  //
+  st_ctrl = st_ContentPlaceHolder +"gr_GridView_sapf$ctl"; 
+  CmdQueryS.CommandText = " and a.gkey='"+hh_qkey.Value+"'";
+  DataTable tb_sapf = new DataTable();
+  DAC_sapf sapfDao = new DAC_sapf(conn);
+  string st_addselect="";
+  string st_addjoin="";
+  string st_addunion="";
+  DbDataAdapter da_ADP =sapfDao.GetDataAdapter(ApVer, "UNsapf", "sapf", st_addselect, false, st_addjoin, CmdQueryS, st_addunion, "");
+  da_ADP.Fill(tb_sapf);
+  //
+  OleDbTransaction thistran;
+  conn.Open();
+  thistran = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+  da_ADP.UpdateCommand.Transaction = thistran;
+  da_ADP.DeleteCommand.Transaction = thistran;
+  da_ADP.InsertCommand.Transaction = thistran;
+  try
+  {
+    for (int in_g = 0; in_g <= gr_GridView_sapf.Rows.Count + 4; in_g++)
+    {
+      //gkey
+      st_ctrlname = st_ctrl +DAC.GetGridViewRowId(in_g)+"$tx_sapf_gkey02";
+      if (FindControl(st_ctrlname) != null)
+      {
+        //gkey
+        st_ctrlname = st_ctrl +DAC.GetGridViewRowId(in_g)+"$tx_sapf_gkey02";
+        st_sapf_gkey = ((HtmlInputHidden)FindControl(st_ctrlname)).Value.Trim();
+        //mkey
+        st_ctrlname = st_ctrl +DAC.GetGridViewRowId(in_g)+"$tx_sapf_mkey02";
+        st_sapf_mkey = ((HtmlInputHidden)FindControl(st_ctrlname)).Value.Trim();
+        //
+        bl_Mod = true;
+      }
+      else
+      {
+        bl_Mod = false;
+      }
+      //
+      if (bl_Mod) 
+      {
+        sel_rows = tb_sapf.Select("sapf_gkey='"+st_sapf_gkey+"'");
+        if (sel_rows.Length == 1) 
+        {
+          mod_row = sel_rows[0];
+          if (
+          )
+          {
+            mod_row.EndEdit();
+            st_ActKey=DAC.get_guidkey();  //
+          }
+        }  //sel_rows.Length == 1
+      }  //bl_Mod
+    }  //for
+    da_ADP.Update(tb_sapf);
+    thistran.Commit();
+    bl_updateok=true;
+  }  //try
+
+  catch (Exception e)
+  {
+    thistran.Rollback();
+    bl_updateok = false;
+    st_errmsg += e.Message;
+  }
+  finally
+  {
+    thistran.Dispose();
+    sapfDao.Dispose();
+    tb_sapf.Dispose();
+    da_ADP.Dispose();
+  }
+  return bl_updateok;
+}

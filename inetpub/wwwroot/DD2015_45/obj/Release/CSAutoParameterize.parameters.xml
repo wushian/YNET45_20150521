@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="YNET-Web.config Connection String" description="YNET 應用程式在 web.config 中用來存取資料庫的連接字串。" defaultValue="Provider=SQLOLEDB;Data Source=172.17.1.6;Initial Catalog=YNET_DD; User Id=WEBUSER;Password=play2003;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="R:\\YNET45_20150521\\YNET45_20150521\\inetpub\\wwwroot\\DD2015_45\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='YNET']/@connectionString" />
+  </parameter>
+  <parameter name="Debug-Web.config Connection String" description="Debug 應用程式在 web.config 中用來存取資料庫的連接字串。" defaultValue="Provider=SQLOLEDB;Data Source=SHAN-NB\SQL2005;Initial Catalog=WW030051; User Id=WEBUSER;Password=play2003;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="R:\\YNET45_20150521\\YNET45_20150521\\inetpub\\wwwroot\\DD2015_45\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Debug']/@connectionString" />
+  </parameter>
+  <parameter name="MSSQL-Web.config Connection String" description="MSSQL 應用程式在 web.config 中用來存取資料庫的連接字串。" defaultValue="Data Source=SHAN-NB\SQL2008;Initial Catalog=footwear;Integrated Security=False;User ID=WEBUSER;Password=play2003" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="R:\\YNET45_20150521\\YNET45_20150521\\inetpub\\wwwroot\\DD2015_45\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MSSQL']/@connectionString" />
+  </parameter>
+</parameters>

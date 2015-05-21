@@ -1,0 +1,17 @@
+CREATE TABLE dbo.tableyyy(
+  gkey VARCHAR(40) NOT NULL, /* gkey */
+  YT01  NVARCHAR(20)  NOT NULL DEFAULT '' ,/*YT01NAME */
+  YT0D  DATETIME NOT NULL DEFAULT  ,/*YT0DNAME */
+  YT0N  REAL NOT NULL DEFAULT 0 ,/*YT0NNAME */
+  mkey   VARCHAR(40)     NOT NULL, /*異動key */ 
+  trcls  VARCHAR(10) NOT NULL, /*異動旗標 */ 
+  trcrd  DATETIME    NOT NULL, /*建檔日期 */ 
+  trmod  DATETIME    NOT NULL, /*更正日期 */ 
+  trusr  NVARCHAR(40) NOT NULL  /*更正人員 */ 
+  ) ON [PRIMARY] 
+
+ALTER TABLE [dbo].[tableyyy] WITH NOCHECK ADD 
+  CONSTRAINT [PK_tableyyy] PRIMARY KEY  NONCLUSTERED 
+  (
+    [gkey]
+  )  ON [PRIMARY] 

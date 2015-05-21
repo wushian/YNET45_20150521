@@ -1,0 +1,179 @@
+﻿<%--
+預設面板範本。下列面板僅提供做為範例的用途。
+
+1. 具名控制面板。SkinId 應為唯一定義，因為在相同主題中，一個控制項型別不能具有重複的 SkinId。
+
+<asp:GridView runat="server" SkinId="gridviewSkin" BackColor="White" >
+   <AlternatingRowStyle BackColor="Blue" />
+</asp:GridView>
+
+2. 預設面板。SkinId 未定義。在相同主題中，每個控制項型別只能有一個預設控制面板。
+
+<asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
+--%>
+
+<asp:GridView runat="server" SkinId="gridviewSkinNoAlter"
+  BackColor="White" 
+  BorderColor="#999999" 
+  BorderStyle="Solid"
+  BorderWidth="1px" 
+  CellPadding="3" 
+  EnableModelValidation="True" 
+  ForeColor="Black"
+  GridLines="Vertical">
+  <AlternatingRowStyle 
+    BackColor="#CCCCCC" />
+  <FooterStyle 
+    BackColor="#CCCCCC" />
+  <HeaderStyle 
+    BackColor="#368700" 
+    Font-Bold="True" 
+    ForeColor="White" />
+  <PagerStyle 
+    BackColor="#368700" 
+    Font-Bold="True" 
+    ForeColor="White"
+    HorizontalAlign="Center" />
+  <SelectedRowStyle  />
+  <EditRowStyle 
+    BackColor="#128700" 
+    ForeColor="White" />
+  <RowStyle
+   Height="24px" />
+</asp:GridView>
+
+<asp:GridView runat="server" SkinId="gridviewSkinAlter"
+  BackColor="White" 
+  BorderColor="#999999" 
+  BorderStyle="Solid"
+  BorderWidth="1px" 
+  CellPadding="3" 
+  EnableModelValidation="True" 
+  ForeColor="Black"
+  GridLines="Vertical">
+  <AlternatingRowStyle 
+    BackColor="#DCCCCC" />
+  <FooterStyle 
+    BackColor="#CCCCCC" />
+  <HeaderStyle 
+    BackColor="#368700" 
+    Font-Bold="True" 
+    ForeColor="White" />
+  <PagerStyle 
+    BackColor="#368700" 
+    Font-Bold="True" 
+    ForeColor="White"
+    HorizontalAlign="Center" />
+  <SelectedRowStyle 
+    BackColor="#62A0AC" 
+    ForeColor="White" />
+  <EditRowStyle 
+    BackColor="#128700" 
+    ForeColor="White" />
+  <RowStyle
+   Height="24px" />
+</asp:GridView>
+
+<asp:GridView runat="server"
+  BackColor="White" 
+  BorderColor="#999999" 
+  BorderStyle="Solid"
+  BorderWidth="1px" 
+  CellPadding="3" 
+  EnableModelValidation="True" 
+  ForeColor="Black"
+  GridLines="Vertical">
+  <AlternatingRowStyle 
+    BackColor="#CCCCCC" />
+  <FooterStyle 
+    BackColor="#CCCCCC" />
+  <HeaderStyle 
+    BackColor="#368700" 
+    Font-Bold="True" 
+    ForeColor="White" />
+  <PagerStyle 
+    BackColor="#368700" 
+    Font-Bold="True" 
+    ForeColor="White"
+    HorizontalAlign="Center" />
+  <SelectedRowStyle 
+    BackColor="#128700" 
+    ForeColor="White" />
+  <EditRowStyle 
+    BackColor="#128700" 
+    ForeColor="White" />
+  <RowStyle
+   Height="24px" />
+</asp:GridView>
+
+<asp:TreeView 
+  runat="server">
+  <HoverNodeStyle 
+    Font-Underline="False" 
+    ForeColor="#FFFFFF"
+    BackColor="#808080" />
+  <NodeStyle 
+    Font-Names="Arial" 
+    Font-Size="11pt" 
+    ForeColor="Black" 
+    HorizontalPadding="0px" 
+    NodeSpacing="0px" 
+    VerticalPadding="0px" 
+    Height="22px" />
+  <ParentNodeStyle 
+    Font-Bold="False" />
+  <SelectedNodeStyle 
+    Font-Underline="False" 
+    ForeColor="#FFFFFF"
+    BackColor="#000000" 
+    HorizontalPadding="0px" 
+    VerticalPadding="0px" />
+</asp:TreeView>
+
+<asp:Menu runat="server" SkinId="Menu2012" Orientation="Horizontal"
+  Font-Names="Arial" DynamicHorizontalOffset="2"
+  ForeColor="White" Font-Overline="False" 
+  StaticEnableDefaultPopOutImage="False"
+  StaticItemFormatString="&amp;nbsp;{0}&amp;nbsp;&amp;nbsp;"
+  DynamicItemFormatString="&amp;nbsp;{0}&amp;nbsp;&amp;nbsp;"
+  StaticSubMenuIndent="0px">
+  <StaticMenuItemStyle ForeColor="White" HorizontalPadding="1px"
+    Height="25px" CssClass="menu" />
+  <StaticHoverStyle BackColor="Gray" ForeColor="White" />
+  <StaticSelectedStyle BackColor="Black" ForeColor="White" />
+  <DynamicMenuItemStyle HorizontalPadding="10px" Height="27px" BackColor="#368700" ForeColor="White" CssClass="menu" />
+  <DynamicHoverStyle BackColor="Gray" Height="27px" ForeColor="White" />
+  <DynamicSelectedStyle BackColor="Black" Height="27px" ForeColor="White" />
+</asp:Menu>
+
+<asp:Menu runat="server" Orientation="Horizontal"
+  Font-Names="Arial" DynamicHorizontalOffset="2"
+  ForeColor="White" Font-Overline="False" 
+  StaticEnableDefaultPopOutImage="False"
+  StaticItemFormatString="&amp;nbsp;&amp;nbsp;{0}&amp;nbsp;&amp;nbsp;"
+  DynamicItemFormatString="&amp;nbsp;&amp;nbsp;{0}&amp;nbsp;&amp;nbsp;"
+  StaticSubMenuIndent="0px">
+  <StaticMenuItemStyle ForeColor="White" HorizontalPadding="5px"
+    Height="35px" CssClass="menu" />
+  <StaticHoverStyle BackColor="Gray" ForeColor="White" />
+  <StaticSelectedStyle BackColor="Black" ForeColor="White" />
+  <DynamicMenuItemStyle HorizontalPadding="10px" Height="37px" BackColor="#368700" ForeColor="White" CssClass="menu" />
+  <DynamicHoverStyle BackColor="Gray" Height="37px" ForeColor="White" />
+  <DynamicSelectedStyle BackColor="Black" Height="37px" ForeColor="White" />
+</asp:Menu>
+
+<asp:Calendar runat="server" BackColor="White" BorderColor="#404040"
+  ForeColor="#FF5900" ShowGridLines="True">
+  <DayHeaderStyle BackColor="#FFD7BA" ForeColor="Black"
+    Font-Bold="False" />
+  <DayStyle ForeColor="Black" />
+  <NextPrevStyle ForeColor="#CCCCFF" />
+  <OtherMonthDayStyle ForeColor="#999999" />
+  <SelectedDayStyle BackColor="#368700" Font-Bold="True" ForeColor="White" />
+  <SelectorStyle BackColor="#99CCCC" ForeColor="#000000" />
+  <TitleStyle BackColor="#368700" BorderColor="#404040" Font-Bold="True" ForeColor="#FFFFFF" />
+  <TodayDayStyle ForeColor="Black" />
+  <WeekendDayStyle BackColor="#FF99CC" />
+</asp:Calendar>
+
+

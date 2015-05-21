@@ -1,0 +1,366 @@
+<asp:Literal ID="li_AccMsg" runat="server"></asp:Literal>
+<input id="hh_GridGkey" type="hidden" name="hh_GridGkey" runat="server" />
+<input id="hh_GridCtrl" type="hidden" name="hh_GridCtrl" runat="server" />
+<input id="hh_ActKey" type="hidden" name="hh_ActGuidKey" runat="server" />
+<input id="hh_mkey" type="hidden" name="hh_mkey" runat="server" />
+<table>
+  <tr>
+    <td>
+      <asp:LinkButton ID="bt_CAN" runat="server" CausesValidation="False" CommandName="CANCEL" AccessKey="C" CssClass="LinkButton80" Text="C上一步" Width="80px" OnClick="bt_CAN_Click"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_SAV" runat="server" CausesValidation="False" CommandName="SAVE" AccessKey="S" CssClass="LinkButton80" Text="S完成" Width="80px" OnClick="bt_SAV_Click"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_02" runat="server" CausesValidation="False" CommandName="NEW" AccessKey="N" CssClass="LinkButton80" Text="N新增" Width="80px" OnClick="bt_02_Click" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_03" runat="server" CausesValidation="False" CommandName="INSERT" AccessKey="I" CssClass="LinkButton80" Text="I插入" Width="80px" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_04" runat="server" CausesValidation="False" CommandName="MODIFY" AccessKey="M" CssClass="LinkButton80" Text="M修改" Width="80px" OnClick="bt_04_Click" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_05" runat="server" CausesValidation="False" CommandName="DELETE" AccessKey="X" CssClass="LinkButton80" Text="X刪除" Width="80px" OnClick="bt_05_Click" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_06" runat="server" CausesValidation="False" CommandName="COPY" AccessKey="O" CssClass="LinkButton80" Text="O複製" Width="80px" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_07" runat="server" CausesValidation="False" CommandName="PRINT" AccessKey="P" CssClass="LinkButton80" Text="P列印" Width="80px"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_08" runat="server" CausesValidation="False" CommandName="SERCH" AccessKey="F" CssClass="LinkButton80" Text="F查詢" Width="80px"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_09" runat="server" CausesValidation="False" CommandName="TRANS" AccessKey="T" CssClass="LinkButton80" Text="T轉單" Width="80px"></asp:LinkButton>
+    <td>
+      <asp:LinkButton ID="bt_10" runat="server" CausesValidation="False" CommandName="EXCEL" AccessKey="E" CssClass="LinkButton80" Text="Excel" Width="80px"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_11" runat="server" CausesValidation="False" CommandName="MODALL" AccessKey="B" CssClass="LinkButton80" Text="L整批修改" Width="80px" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_QUT" runat="server" CausesValidation="False" CommandName="QUIT" AccessKey="Q" CssClass="LinkButton80" Text="Q離開" Width="80px" OnClick="bt_QUT_Click"></asp:LinkButton>
+    </td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td > 
+      <asp:Label id="lb_bpud_BPNUM" runat="server" Text="商品編號" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPNUM" width="80px" runat="server" MaxLength="30"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPNUB" runat="server" Text="條碼編號" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPNUB" width="80px" runat="server" MaxLength="30"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPLAB" runat="server" Text="品牌名稱" ></asp:Label>
+      <asp:dropdownlist id="dr_bpud_BPLAB" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_bpud_BPLAB" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPYES" runat="server" Text="年度季節" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPYES" width="80px" runat="server" MaxLength="20"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_bpud_BPTNA" runat="server" Text="中文名稱" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPTNA" width="80px" runat="server" MaxLength="100"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPCNA" runat="server" Text="簡體名稱" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPCNA" width="80px" runat="server" MaxLength="100"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPENA" runat="server" Text="英文名稱" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPENA" width="80px" runat="server" MaxLength="100"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPCLA" runat="server" Text="規　　格" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPCLA" width="80px" runat="server" MaxLength="100"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_bpud_BPDP1" runat="server" Text="分類一" ></asp:Label>
+      <asp:dropdownlist id="dr_bpud_BPDP1" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_bpud_BPDP1" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPDP2" runat="server" Text="分類二" ></asp:Label>
+      <asp:dropdownlist id="dr_bpud_BPDP2" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_bpud_BPDP2" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPDP3" runat="server" Text="分類三" ></asp:Label>
+      <asp:dropdownlist id="dr_bpud_BPDP3" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_bpud_BPDP3" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPDP4" runat="server" Text="分類四" ></asp:Label>
+      <asp:dropdownlist id="dr_bpud_BPDP4" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_bpud_BPDP4" width="0px" Visible="false"  runat="server"/>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_bpud_BPDX1" runat="server" Text="多分類一" ></asp:Label>
+      <asp:dropdownlist id="dr_bpud_BPDX1" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_bpud_BPDX1" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPDX2" runat="server" Text="多分類二" ></asp:Label>
+      <asp:dropdownlist id="dr_bpud_BPDX2" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_bpud_BPDX2" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPDX3" runat="server" Text="多分類三" ></asp:Label>
+      <asp:dropdownlist id="dr_bpud_BPDX3" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_bpud_BPDX3" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPDX4" runat="server" Text="多分類四" ></asp:Label>
+      <asp:dropdownlist id="dr_bpud_BPDX4" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_bpud_BPDX4" width="0px" Visible="false"  runat="server"/>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_bpud_BPMDC" runat="server" Text="產　　地" ></asp:Label>
+      <asp:dropdownlist id="dr_bpud_BPMDC" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_bpud_BPMDC" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPUNI" runat="server" Text="單位" ></asp:Label>
+      <asp:dropdownlist id="dr_bpud_BPUNI" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_bpud_BPUNI" width="0px" Visible="false"  runat="server"/>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_bpud_BPCUS" runat="server" Text="供應商一" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPCUS" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bdlr_BPCUS" runat="server" Text="供應商一" ></asp:Label>
+      <asp:TextBox id="tx_bdlr_BPCUS" width="80px" runat="server" MaxLength="20"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPOD1" runat="server" Text="採購日一" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPOD1" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPCU2" runat="server" Text="供應商二" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPCU2" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bdlr_BPCU2" runat="server" Text="供應商二" ></asp:Label>
+      <asp:TextBox id="tx_bdlr_BPCU2" width="80px" runat="server" MaxLength="20"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPOD2" runat="server" Text="採購日二" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPOD2" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPDSN" runat="server" Text="設計人員" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPDSN" width="80px" runat="server" MaxLength="200"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPSSN" runat="server" Text="企劃人員" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPSSN" width="80px" runat="server" MaxLength="200"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_bpud_BPNCR" runat="server" Text="款式編號" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPNCR" width="80px" runat="server" MaxLength="30"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPCLR" runat="server" Text="顏色代號" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPCLR" width="80px" runat="server" MaxLength="20"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPCLN" runat="server" Text="顏色名稱" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPCLN" width="80px" runat="server" MaxLength="40"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPSIZ" runat="server" Text="尺寸名稱" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPSIZ" width="80px" runat="server" MaxLength="20"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_bpud_BPDE1" runat="server" Text="售價含稅" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPDE1" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPDE2" runat="server" Text="會員含稅" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPDE2" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPDT1" runat="server" Text="上架日期" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPDT1" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPETQ" runat="server" Text="下架日期" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPETQ" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_bpud_BPFLG" runat="server" Text="功能旗標" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPFLG" width="80px" runat="server" MaxLength="20"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPRMK" runat="server" Text="備註說明" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPRMK" width="80px" runat="server" MaxLength="100"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_bpud_BPNPC" runat="server" Text="標準進價" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPNPC" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPSPC" runat="server" Text="最近進價" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPSPC" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPVPC" runat="server" Text="平均進價" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPVPC" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPGPC" runat="server" Text="參考進價" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPGPC" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_bpud_BPDE3" runat="server" Text="批發Ｃ價" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPDE3" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPDE4" runat="server" Text="批發Ｄ價" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPDE4" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPDE5" runat="server" Text="批發Ｅ價" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPDE5" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_bpud_BPDT3" runat="server" Text="進貨日期" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPDT3" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPDT4" runat="server" Text="銷貨日期" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPDT4" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPDT5" runat="server" Text="盤點日期" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPDT5" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_bpud_BPMND" runat="server" Text="外幣進價" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPMND" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPMNR" runat="server" Text="外幣倍數" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPMNR" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPMNY" runat="server" Text="外幣幣別" ></asp:Label>
+      <asp:dropdownlist id="dr_bpud_BPMNY" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_bpud_BPMNY" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPCUQ" runat="server" Text="經濟採量" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPCUQ" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_bpud_BPUN1" runat="server" Text="進貨單位" ></asp:Label>
+      <asp:dropdownlist id="dr_bpud_BPUN1" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_bpud_BPUN1" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPUN3" runat="server" Text="銷貨單位" ></asp:Label>
+      <asp:dropdownlist id="dr_bpud_BPUN3" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_bpud_BPUN3" width="0px" Visible="false"  runat="server"/>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_bpud_BPQTM" runat="server" Text="調撥數量" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPQTM" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPQTH" runat="server" Text="最高量" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPQTH" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPQTL" runat="server" Text="最低量" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPQTL" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPQTS" runat="server" Text="安全量" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPQTS" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPDT2" runat="server" Text="修改日期" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPDT2" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_bpud_BPET1" runat="server" Text="停進貨日" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPET1" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPETM" runat="server" Text="停調貨日" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPETM" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPET3" runat="server" Text="停銷貨日" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPET3" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_bpud_BPDSC" runat="server" Text="繁體成份說明" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPDSC" width="80px" runat="server" MaxLength="2000"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPWSH" runat="server" Text="繁體使用說明" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPWSH" width="80px" runat="server" MaxLength="2000"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_bpud_BPDSCC" runat="server" Text="簡體成份說明" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPDSCC" width="80px" runat="server" MaxLength="2000"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPWSHC" runat="server" Text="簡體使用說明" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPWSHC" width="80px" runat="server" MaxLength="2000"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_bpud_BPDSCE" runat="server" Text="英文成份說明" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPDSCE" width="80px" runat="server" MaxLength="2000"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_BPWSHE" runat="server" Text="英文使用說明" ></asp:Label>
+      <asp:TextBox id="tx_bpud_BPWSHE" width="80px" runat="server" MaxLength="2000"></asp:TextBox>
+    </td>
+  </tr>
+</table>
+<asp:Label ID="lb_ErrorMessage" runat="server" Text="" EnableViewState="false" Visible="false" CssClass="ErrorMessage"></asp:Label>

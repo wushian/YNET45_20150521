@@ -1,0 +1,28 @@
+CREATE TABLE dbo.sn101(
+  gkey VARCHAR(40) NOT NULL, /* gkey */
+  mkind  CHAR(2)  NULL DEFAULT '' ,/*材料分類 */
+  mkname  NVARCHAR(30)  NULL DEFAULT '' ,/*分類名稱 */
+  punit  VARCHAR(10)  NOT NULL DEFAULT '' ,/*計價單位 */
+  qunit  VARCHAR(10)  NOT NULL DEFAULT '' ,/*計量單位 */
+  utexchr  MONEY NOT NULL DEFAULT  ,/*換算率 */
+  msize  CHAR(1)  NOT NULL DEFAULT '' ,/*訂購SIZE */
+  mstype  CHAR(1)  NOT NULL DEFAULT '' ,/*尺碼換算 */
+  process  CHAR(2)  NOT NULL DEFAULT '' ,/*製程 */
+  mloss  MONEY NOT NULL DEFAULT  ,/*Loss率% */
+  mchk  CHAR(1)  NOT NULL DEFAULT '' ,/*檢驗 */
+  ctype  CHAR(1)  NOT NULL DEFAULT '' ,/*計算方式 */
+  mflag  CHAR(1)  NOT NULL DEFAULT '' ,/*加工標記 */
+  ss101gkey1  NVARCHAR(40)  NOT NULL DEFAULT '' ,/*建檔人 */
+  mdate  DATETIME NOT NULL DEFAULT  ,/*建檔日期 */
+  mkey   VARCHAR(40)     NOT NULL, /*異動key */ 
+  trcls  VARCHAR(10) NOT NULL, /*異動旗標 */ 
+  trcrd  DATETIME    NOT NULL, /*建檔日期 */ 
+  trmod  DATETIME    NOT NULL, /*更正日期 */ 
+  trusr  NVARCHAR(40) NOT NULL  /*更正人員 */ 
+  ) ON [PRIMARY] 
+
+ALTER TABLE [dbo].[sn101] WITH NOCHECK ADD 
+  CONSTRAINT [PK_sn101] PRIMARY KEY  NONCLUSTERED 
+  (
+    [gkey]
+  )  ON [PRIMARY] 

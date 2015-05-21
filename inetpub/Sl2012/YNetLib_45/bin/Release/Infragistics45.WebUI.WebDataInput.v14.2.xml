@@ -1,0 +1,521 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Infragistics45.WebUI.WebDataInput.v14.2</name>
+    </assembly>
+    <members>
+        <member name="F:AssemblyRef.AssemblyVersionString">
+            <summary>
+            Name of string resources used by the designer.
+            </summary>
+        </member>
+        <member name="T:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners">
+            <summary>
+            Collection of properties that define appearance of button with rounded corners.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners.CheckedImageUrlID">
+            <summary></summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners.CheckedHoverImageUrlID">
+            <summary></summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners.CheckedFocusImageUrlID">
+            <summary></summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners.CheckedPressedImageUrlID">
+            <summary></summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners.CheckedDisabledImageUrlID">
+            <summary></summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners.owner">
+            <summary>
+            Owner control.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners.numberOfImages">
+            <summary>
+            Number of images.
+            </summary>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners.GetProp(System.String)">
+            <summary>
+            Get a string property using its ViewState ID.
+            </summary>
+            <param name="id">ID of property</param>
+            <returns>Value of property</returns>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners.SetProp(System.String,System.String)">
+            <summary>
+            Set string property value using its ViewState ID.
+            </summary>
+            <param name="id">ID of property</param>
+            <param name="val">Value of property</param>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners.ToString">
+            <summary>String formatted for visual designer.</summary>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners.Reset">
+            <summary>
+            Reset all properties to thier defaults.
+            </summary>
+        </member>
+        <member name="P:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners.RenderingType">
+            <summary>
+            Type of rendering logic that is used to create rounded corners around button.
+            </summary>
+            <remarks>
+            	<p class="note">Warnings:<ul>
+            			<li>If FileImages is used (which is automatically enabled with all defaults), when Internet Explorer 6 may fail to load, background images and buttons becomes transparent.  That problem can not be fixed by WebImageButton.</li>
+            			<li>If BordersByTableCells is used and a particular browser fails to create a TD-html-element with the size of 1x1 pixels, then borders of button can be distorted and have increased width.</li>
+            		</ul></p>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners.MaxWidth">
+            <summary>
+            Maximum allowed width of the control.
+            </summary>
+            <remarks>
+            That property has effect only if ImageFiles is used and the Width of control in set in %.
+            It prevents breaking background image on separate parts when width of control becomes too large.
+            </remarks>
+        </member>
+        <member name="P:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners.MaxHeight">
+            <summary>
+            Maximum allowed height of the control.
+            </summary>
+            <remarks>
+            That property has effect only if ImageFiles is used and Height of control in set in %.
+            It prevents breaking background image on separate parts when height of control becomes too large.
+            </remarks>
+        </member>
+        <member name="P:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners.WidthOfRightEdge">
+            <summary>
+            Width of the rectangle on the right side of a control that is used to render the right edge of a background image.
+            </summary>
+            <remarks>
+            The larger the radius of the edges of a background image, the larger the value of that property should be.<br></br>
+            That area can not contain text or image, so it is similar to the right-padding.<br></br>
+            If this property is set to 0, then the width of control is defined by the value of the MaxWidth property.
+            </remarks>
+        </member>
+        <member name="P:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners.HeightOfBottomEdge">
+            <summary>
+            Height of a rectangle on the bottom side of a control that is used to render the bottom edge of a background image.
+            </summary>
+            <remarks>
+            The larger the radius of the edges of a background image, the larger the value of this property should be.<br></br>
+            That area can not contain text or an image, so, it is similar to the bottom-padding.<br></br>
+            If this property is set to 0, then the height of the control is defined by the value of the MaxHeight property.
+            </remarks>
+        </member>
+        <member name="P:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners.ImageUrl">
+            <summary>
+            Url for the background image that is used for the control in the normal state.
+            </summary>
+            <remarks>This property has effect only when the RenderingType is set to the FileImages (background images are used).</remarks>
+        </member>
+        <member name="P:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners.HoverImageUrl">
+            <summary>
+            Url for the background image that is used when the mouse is moved over a control.
+            </summary>
+            <remarks>
+            That property has effect only when RenderingType is set to the FileImages and ImageUrl is set.
+            </remarks>
+        </member>
+        <member name="P:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners.FocusImageUrl">
+            <summary>
+            Url for the background image that is used when a control has input focus and the mouse is outside of the bounds of the control.
+            </summary>
+            <remarks>This property has effect only when RenderingType is set to the FileImages and ImageUrl is set.</remarks>
+        </member>
+        <member name="P:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners.PressedImageUrl">
+            <summary>
+            Url for the background image that is used when control is in a pressed state (set by mouse or by action key).
+            </summary>
+            <remarks>
+            That property has effect only when RenderingType is set to the FileImages and ImageUrl is set.
+            </remarks>
+        </member>
+        <member name="P:Infragistics.WebUI.WebDataInput.ButtonRoundedCorners.DisabledImageUrl">
+            <summary>
+            Url for the background image that is used for a disabled control.
+            </summary>
+            <remarks>
+            That property has effect only when RenderingType is set to the FileImages and ImageUrl is set.
+            </remarks>
+        </member>
+        <member name="T:Infragistics.WebUI.WebDataInput.InvalidValueType">
+            <summary>
+            Type of error that is raised when invalid-value event was fired.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.InvalidValueType.Invalid">
+            <summary>
+            Invalid string which could not be converted to a valid value.
+            <p class="body">In case of WebNumericEdit it is fired when the following strings were entered: "<tt>.</tt>", "<tt>-.</tt>", "<tt>-</tt>".</p>
+            	<p class="body">In the case of WebDateTimeEdit, the last good date value was used as the new value.</p>
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.InvalidValueType.MinMaxLimit">
+            <summary>
+            Entered value was beyond minimum or maximum limits.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.InvalidValueType.FieldValue">
+            <summary>
+            Wrong values of fields, missing field value, etc.<br></br>
+            In the case of WebNumericEdit it is fired when the empty string was entered and a null value was not allowed.  In the case of WebDateTimeEdit it is fired when some date fields had invalid values, but a new-suggested value was constructed.
+            </summary>
+        </member>
+        <member name="T:Infragistics.WebUI.WebDataInput.ButtonRoundedCornersType">
+            <summary>
+            Type of rendering logic that is used to create rounded corners around button.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonRoundedCornersType.Auto">
+            <summary>
+            If the background colors and border related properties are not set and the UseBrowserDefaults is true, then FileImages with predefined image-files become enabled for WindowsXP and Macintosh user-machines.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonRoundedCornersType.Disabled">
+            <summary>
+            Rounded corners are disabled.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonRoundedCornersType.FileImages">
+            <summary>
+            Background images are used to create a rounded appearance.
+            </summary>
+            <remarks>
+            	<p class="note">Warning: The InternetExplorer6 may fail to load background images and button becomes transparent. That problem can not be fixed by WebImageButton.</p>
+            </remarks>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonRoundedCornersType.BordersByTableCells">
+            <summary>
+            Rounded corners are created using cells of a table.  The border and background related properties are used to build rounded borders.
+            </summary>
+            <remarks><p class="note">Warning: Some browsers may fail to create a TD-html-element with the size of 1x1 pixels.  If it happens, then borders of a button can be distorted and have increased width.</p></remarks>
+        </member>
+        <member name="T:Infragistics.WebUI.WebDataInput.ButtonStylePreset">
+            <summary>
+            WebButtonBase preset of styles.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonStylePreset.NotSet">
+            <summary>
+            No change in appearance.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonStylePreset.Default">
+            <summary>
+            Default appearance.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonStylePreset.Windows2000">
+            <summary>
+            Microsoft Windows 2000 appearance.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonStylePreset.WindowsXPBlue">
+            <summary>
+            Microsoft Windows XP appearance.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonStylePreset.Netscape">
+            <summary>
+            Netscape appearance and behavior.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonStylePreset.Mac">
+            <summary>
+            Appearance similar to a button in Macintosh.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonStylePreset.Focus3DBorders">
+            <summary>
+            Opaque background, thick 3D borders with an extra black border when the button has focus.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonStylePreset.Thin3DBorders">
+            <summary>
+            Opaque background, standard thin 3D borders of buttons.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonStylePreset.Office2003ToolbarButton">
+            <summary>
+            Appearance that resembles a toolbar button in Office2003: transparent in the normal state, orange background and flat borders in all other states of the button.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonStylePreset.VisualStudioToolbarButton">
+            <summary>
+            Appearance that resembles a toolbar button in VisualStudio: transparent in the normal state, bluish background and flat borders in all other states of the button.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonStylePreset.VisualStudioPopUpToolbarButton">
+            <summary>
+            Appearance that resembles a toolbar button in VisualStudio: transparent in the normal state, bluish background and flat borders in all other states of the button.  Text and image are shifted on a mouse move and press.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonStylePreset.PopUp3DBorders">
+            <summary>
+            Opaque background, no borders in the normal state and pop-up borders in all other states of the button.
+            </summary>
+        </member>
+        <member name="T:Infragistics.WebUI.WebDataInput.ButtonPostBackAction">
+            <summary>
+            Type of browser the HTML should be created for.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonPostBackAction.MouseClick">
+            <summary>
+            Post back was triggered by the mouse click.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonPostBackAction.SpaceKey">
+            <summary>
+            Post back was triggered by the Space key press.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonPostBackAction.EnterKey">
+            <summary>
+            Post back was triggered by the Enter key press.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonPostBackAction.AccessKey">
+            <summary>
+            Post back was triggered by the Access key.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.WebDataInput.ButtonPostBackAction.Custom">
+            <summary>
+            Post back was triggered by the customer while processing the ClientSideEvents.
+            </summary>
+        </member>
+        <member name="T:Infragistics.WebUI.WebDataInput.RenderUpLevelImageButton">
+            <summary>
+            Summary description for RenderUpLevelImageButton.
+            </summary>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.RenderUpLevelImageButton.#ctor(Infragistics.WebUI.WebControls.Buttons.WebButtonBase)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="owner">Owner of this renderer</param>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.RenderUpLevelImageButton.VisitObjects(System.Web.UI.HtmlTextWriter)">
+            <summary></summary>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.RenderUpLevelImageButton.WriteScriptRoundedTable(System.Text.StringBuilder,Infragistics.WebUI.WebControls.Buttons.ButtonAppearance,Infragistics.WebUI.Shared.Style,System.Int32)">
+            <summary>
+            Write data for script related to rounded corners built by TDs for a particular appearance.
+            </summary>
+            <param name="str">Output string</param>
+            <param name="app">ButtonAppearance</param>
+            <param name="i">Index of that appearance (0-9)</param>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.RenderUpLevelImageButton.WriteRoundedInnerBorder(System.Text.StringBuilder)">
+            <summary>
+            Write border for rounded corners built by TDs for the current appearance.
+            </summary>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.RenderUpLevelImageButton.WriteRoundedTableStart(System.Text.StringBuilder)">
+            <summary>
+            Write the first part of the table that creates rounded corners.  It may draw 2 TRs with 5 TD and TR with 2 TDs that comes before the main TD.
+            </summary>
+            <param name="str"></param>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.RenderUpLevelImageButton.WriteRoundedTableEnd(System.Text.StringBuilder)">
+            <summary>
+            Write the last part of a table that creates rounded corners.  It may draw 2 TRs straight after the main TD and 2 TRs with 5 TDs.
+            </summary>
+            <param name="str"></param>
+        </member>
+        <member name="T:Infragistics.WebUI.WebDataInput.ClickHandler">
+            <summary>Handler for the button click event.</summary>
+        </member>
+        <member name="T:Infragistics.WebUI.WebDataInput.CommandHandler">
+            <summary>Handler for the command event.</summary>
+        </member>
+        <member name="T:Infragistics.WebUI.WebDataInput.ButtonEventArgs">
+            <summary>ButtonEventArgs object is used to notify listener about the click event.</summary>
+        </member>
+        <member name="P:Infragistics.WebUI.WebDataInput.ButtonEventArgs.Action">
+            <summary>New date.</summary>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.LocalizedCategoryAttribute.GetLocalizedString(System.String)">
+            <summary>
+            Returns the localized category name.
+            </summary>
+            <param name="value">Name of the category to retreive</param>
+            <returns>The localized string value</returns>
+        </member>
+        <member name="T:Infragistics.WebUI.WebDataInput.WebImageButton">
+            <summary>
+            Control that renders text editor with optional buttons.
+            </summary>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.WebImageButton.#ctor">
+            <summary>
+            Creates a WebImageButton control.
+            </summary>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.WebImageButton.ShouldSerializeRoundedCorners">
+            <summary>
+            Check if RoundedCorners has data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.WebImageButton.ResetRoundedCorners">
+            <summary>
+            Clears the RoundedCorners.
+            </summary>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.WebImageButton.CreateRenderer(System.Boolean)">
+            <summary>Create renderer.</summary>
+            <returns>Returns renderer for particular browser.</returns>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.WebImageButton.IsValidationEnabled">
+            <summary>
+            Whether validation (trigger MS validators) should be rendered.
+            </summary>
+            <returns>True when CausesValidation is enabled.</returns>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.WebImageButton.GetValidationGroup">
+            <summary>
+            Returns the ValidationGroup of the button
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.WebImageButton.GetPostBackUrl">
+            <summary>
+            Returns the PostBackUrl of the button
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.WebImageButton.GetCausesValidation">
+            <summary>
+            Returns the CausesValidation of the button
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.WebImageButton.OnPreRender(System.EventArgs)">
+            <summary></summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.WebImageButton.OnClick(System.Int32)">
+            <summary>
+            Method that is called when a button was clicked.
+            </summary>
+            <param name="action">Type of client event that triggered post back.</param>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.WebImageButton.DoPreset(Infragistics.WebUI.Shared.Style)">
+            <summary>
+            Configure run-time style-properties according to the current browser.
+            </summary>
+            <param name="s">Control style</param>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.WebImageButton.DoPreset(Infragistics.WebUI.WebDataInput.ButtonStylePreset,Infragistics.WebUI.Shared.Style)">
+            <summary>
+            Configure properties according to a preset.
+            </summary>
+            <param name="preset"></param>
+            <param name="s"></param>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.WebImageButton.GetRoundedImage">
+            <summary>
+            Get the name of an image url for an init rounded corners image.
+            </summary>
+            <returns>Image for enabled or disabled state</returns>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.WebImageButton.GetRoundedImageAt(System.Int32)">
+            <summary>
+            Get the name of an image url for an init rounded corners image.
+            </summary>
+            <param name="state">State of button</param>
+            <returns>Image for enabled or disabled state</returns>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.WebImageButton.GetRoundedWidthHeight(System.Boolean,System.Boolean)">
+            <summary>
+            Get normal or maximum width or height for RoundedImage.
+            </summary>
+            <param name="width">True: get width, false: get height</param>
+            <param name="max">True: get maximum value, false: get normal value</param>
+            <returns></returns>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.WebImageButton.IsRoundedTable">
+            <summary>
+            Whether rounded corners rendered by TDs should be used.
+            </summary>
+            <returns>True if enabled.</returns>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.WebImageButton.ResetAppearances">
+            <summary>
+            Reset all objects that define the appearance of a control.
+            </summary>
+        </member>
+        <member name="M:Infragistics.WebUI.WebDataInput.WebImageButton.GetEmbeddedImage(System.Text.StringBuilder)">
+            <summary>
+            Get an embedded image.
+            </summary>
+        </member>
+        <member name="E:Infragistics.WebUI.WebDataInput.WebImageButton.Click">
+            <summary>
+            Event that is fired when the button was clicked.  This event handler does not trigger automatic postback if AutoSubmit is false.
+            </summary>
+        </member>
+        <member name="E:Infragistics.WebUI.WebDataInput.WebImageButton.Command">
+            <summary>
+            Event that is fired when the button was clicked.  This event handler does not trigger automatic postback if AutoSubmit is false.
+            </summary>
+        </member>
+        <member name="P:Infragistics.WebUI.WebDataInput.WebImageButton.CommandName">
+            <summary>The command associated with the button.</summary>
+        </member>
+        <member name="P:Infragistics.WebUI.WebDataInput.WebImageButton.CommandArgument">
+            <summary>The command arguments associated with the button.</summary>
+        </member>
+        <member name="P:Infragistics.WebUI.WebDataInput.WebImageButton.CausesValidation">
+            <summary>Whether the button causes validation to fire.</summary>
+        </member>
+        <member name="P:Infragistics.WebUI.WebDataInput.WebImageButton.RoundedCorners">
+            <summary>
+            Collection of properties that are used to enable painting of rounded corners defined by background images.
+            </summary>
+            <remarks>
+            	<p class="note">Warnings:<ul>
+            			<li>If FileImages is used (which is automatically enabled with all defaults), then the InternetExplorer6 may fail to load background images and then button becomes transparent.  That problem can not be fixed by the WebImageButton.</li>
+            			<li>If BordersByTableCells is used and a particular browser fails to create a TD-html-element with the size of 1x1 pixels, then borders of the button can be distorted and have increased width.</li>
+            		</ul></p>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.WebUI.WebDataInput.WebImageButton.StylePreset">
+            <summary>
+            Configure appearance related properties using predefined values.
+            </summary>
+            <remarks>
+            <p class="note">Note: The value of this property is not written to the ViewState and, therefore, it is not persistant between sessions.
+            However, that property modifies many other (appearance related) properties, which are persistant between sessions if the ViewState is enabled.
+            It means that if this property is set at run time, then it will result in significant increase of the size of the hidden-view-state-field which is passed to the client.</p>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.WebUI.WebDataInput.WebImageButton.PostBackUrl">
+             <summary>
+             Gets or sets the URL of the page to post to from the current page when the
+                 WebImageButton control is clicked.
+            
+             Returns:
+                 The URL of the Web page to post to from the current page when the WebImageButton
+                 control is clicked. The default value is an empty string (""), which causes
+                 the page to post back to itself.
+             </summary>
+        </member>
+        <member name="P:Infragistics.WebUI.WebDataInput.WebImageButton.ValidationGroup">
+            <summary>
+            Gets or sets the group of controls for which the button control causes validation when 
+            it posts back to the server.
+            </summary>
+        </member>
+    </members>
+</doc>

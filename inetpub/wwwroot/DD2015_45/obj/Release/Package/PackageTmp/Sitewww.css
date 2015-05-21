@@ -1,0 +1,222 @@
+﻿@import url("reset.css");
+
+p
+{
+    font-family: "微軟正黑體", Helvetica, Arial, sans-serif;
+}
+
+#WRAPPER
+{
+    background-color: #FFF;
+    margin: 0px;
+    padding: 0px;
+    width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 1px 3px 15px #666;
+}
+/*==上方區==*/
+#TOP1
+{
+    background-color: #f0b7a1; /* Old browsers */
+    background: -moz-linear-gradient(top, #f0b7a1 0%, #8c3310 50%, #752201 51%, #bf6e4e 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f0b7a1), color-stop(50%,#8c3310), color-stop(51%,#752201), color-stop(100%,#bf6e4e)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #f0b7a1 0%,#8c3310 50%,#752201 51%,#bf6e4e 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #f0b7a1 0%,#8c3310 50%,#752201 51%,#bf6e4e 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #f0b7a1 0%,#8c3310 50%,#752201 51%,#bf6e4e 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #f0b7a1 0%,#8c3310 50%,#752201 51%,#bf6e4e 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0b7a1', endColorstr='#bf6e4e',GradientType=0 ); /* IE6-9 */
+    height:30px; 
+}
+
+    #TOP1 h5
+    {
+        font-size: 14px;
+        color: #FFF;
+        padding: 5px;
+        text-align: left;
+    }
+
+
+    #TOP1 h6
+    {
+        font-size: 14px;
+        color: #FFF;
+        padding: 5px;
+        text-align: left;
+    }
+
+        #TOP1 h6 a
+        {
+            font-size: 14px;
+            color: #FFF;
+            padding: 5px;
+            text-align: left;
+            text-decoration: none;
+        }
+
+            #TOP1 h6 a:hover
+            {
+                color: #FFCC33;
+            }
+
+#TOP2
+{
+    background-color: background  #e2e2e2; /* Old browsers */
+    background: -moz-linear-gradient(top, #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e2e2e2), color-stop(50%,#dbdbdb), color-stop(51%,#d1d1d1), color-stop(100%,#fefefe)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=0 ); /* IE6-9 */
+    height:33px;
+    width: 1200px;
+}
+
+#BANNER h1
+{
+    display: block;
+    height: 50px;
+    width: 1200px;
+    background-image: url(images/topbanner.jpg);
+    text-indent: -9999px;
+}
+/*==內容區==*/
+#CONTENT
+{
+    width: 1200px;
+    overflow: hidden;
+    background-color: #FFF;
+}
+
+#LEFT
+{
+    width: 200px;
+    height: 550px;
+    background-color: #FFF;
+    margin: 10px;
+    float: left;
+}
+
+#DETAIL
+{
+    display: block;
+    width: 1200px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#RIGHT_DOWN
+{
+    display: block;
+    width: 1200px;
+    background-color: #FFF;
+    margin: 10px 0 0 10px;
+    float: left;
+    overflow: hidden;
+    padding:5px;
+    padding-top: 4px;
+    padding-bottom: 3px;
+}
+
+#RIGHT_DOWN td
+{
+    padding:5px;
+}
+
+.btn_fm
+{
+    -moz-box-shadow: inset 0px 1px 0px 0px #97c4fe;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #97c4fe;
+    box-shadow: inset 0px 1px 0px 0px #97c4fe;
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #3d94f6), color-stop(1, #1e62d0) );
+    background: -moz-linear-gradient( center top, #3d94f6 5%, #1e62d0 100% );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d94f6', endColorstr='#1e62d0');
+    background-color: #3d94f6;
+    -webkit-border-top-left-radius: 7px;
+    -moz-border-radius-topleft: 7px;
+    border-top-left-radius: 7px;
+    -webkit-border-top-right-radius: 7px;
+    -moz-border-radius-topright: 7px;
+    border-top-right-radius: 7px;
+    -webkit-border-bottom-right-radius: 7px;
+    -moz-border-radius-bottomright: 7px;
+    border-bottom-right-radius: 7px;
+    -webkit-border-bottom-left-radius: 7px;
+    -moz-border-radius-bottomleft: 7px;
+    border-bottom-left-radius: 7px;
+    text-indent: 0px;
+    display: inline-block;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: normal;
+    height: 28px;
+    line-height: 28px;
+    width: 95px;
+    text-decoration: none;
+    text-align: center;
+    text-shadow: 1px 1px 0px #1570cd;
+}
+
+    .btn_fm:hover
+    {
+        background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #1e62d0), color-stop(1, #3d94f6) );
+        background: -moz-linear-gradient( center top, #1e62d0 5%, #3d94f6 100% );
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e62d0', endColorstr='#3d94f6');
+        background-color: #1e62d0;
+        color: #FF0;
+    }
+
+.btn_fm2
+{
+    font-size: 12px;
+}
+
+
+h6
+{
+    font-size: 14px;
+    color: #333;
+    font-family: "微軟正黑體", Helvetica, Arial, sans-serif;
+}
+
+/*==下方區==*/
+
+#FOOTERM
+{
+    clear: both;
+    width: 1200px;
+    height: 40px;
+    margin-top: 10px;
+    border-bottom: solid 1px #333333;
+    padding-top: 10px;
+}
+
+    #FOOTERM h2
+    {
+        clear: both;
+        display: block;
+        width: 1200px;
+        height: 40px;
+        background-color: background  #f0b7a1; /* Old browsers */
+        background: -moz-linear-gradient(top, #f0b7a1 0%, #8c3310 50%, #752201 51%, #bf6e4e 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f0b7a1), color-stop(50%,#8c3310), color-stop(51%,#752201), color-stop(100%,#bf6e4e)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #f0b7a1 0%,#8c3310 50%,#752201 51%,#bf6e4e 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #f0b7a1 0%,#8c3310 50%,#752201 51%,#bf6e4e 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #f0b7a1 0%,#8c3310 50%,#752201 51%,#bf6e4e 100%); /* IE10+ */
+        background: linear-gradient(to bottom, #f0b7a1 0%,#8c3310 50%,#752201 51%,#bf6e4e 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0b7a1', endColorstr='#bf6e4e',GradientType=0 ); /* IE6-9 */
+        margin: 0 auto;
+        text-align: center;
+        color: #FFF;
+        font-size: 10px;
+        line-height: 40px;
+        font-weight: lighter;
+        font-family: "微軟正黑體";
+        padding-bottom: 5px;
+    }
+

@@ -1,0 +1,155 @@
+<asp:GridView ID="gr_GridView_sn101" runat="server" AutoGenerateColumns="False" DataKeyNames="sn101_gkey" EnableModelValidation="True" AllowPaging="false" OnRowDataBound="gr_GridView_sn101_RowDataBound">
+  <Columns>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%# DD2012.PublicVariable.st_choose %></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:ImageButton CommandName="Select" ImageUrl='<%# hh_GridGkey.Value==DataBinder.Eval(Container.DataItem,"sn101_gkey").ToString() ? "~\images\GridCheck.gif":"~\images\GridUnCheck.gif" %>' runat="server" ID="Imagebutton1" />
+        <input id="tx_sn101_gkey02" type="hidden" name="tx_sn101_gkey02" value='<%# DataBinder.Eval(Container.DataItem,"sn101_gkey").ToString() %>' runat="server" />
+        <input id="tx_sn101_mkey02" type="hidden" name="tx_sn101_mkey02" value='<%# DataBinder.Eval(Container.DataItem,"sn101_mkey").ToString() %>' runat="server" />
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_sn101_mkind.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_sn101_mkind02" runat="server" MaxLength="2" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"sn101_mkind").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_sn101_mkname.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_sn101_mkname02" runat="server" MaxLength="30" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"sn101_mkname").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+  </Columns>
+</asp:GridView>
+<asp:Literal ID="li_Msg" runat="server"></asp:Literal>
+
+
+protected void gr_GridView_sn101_RowDataBound(object sender, GridViewRowEventArgs e)
+{
+  string st_datavalue = ""; 
+  if (e.Row.RowIndex >= 0) 
+  {
+    DataRowView rowView = (DataRowView)e.Row.DataItem;
+    //材料分類
+    if (e.Row.FindControl("tx_sn101_mkind02") != null)
+    {
+      TextBox tx_sn101_mkind02 = e.Row.FindControl("tx_sn101_mkind02") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["sn101_mkind"]).Trim();
+      tx_sn101_mkind02.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_sn101_mkind02, true);} else {clsGV.TextBox_Set(ref tx_sn101_mkind02, false);}
+    }
+    //分類名稱
+    if (e.Row.FindControl("tx_sn101_mkname02") != null)
+    {
+      TextBox tx_sn101_mkname02 = e.Row.FindControl("tx_sn101_mkname02") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["sn101_mkname"]).Trim();
+      tx_sn101_mkname02.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_sn101_mkname02, true);} else {clsGV.TextBox_Set(ref tx_sn101_mkname02, false);}
+    }
+  }
+}
+
+
+protected bool UpdateDataAll(string st_ActKey, ref string st_errmsg)
+{
+  bool bl_updateok = false;
+  bool bl_Mod = false;
+  //
+  string st_ctrl = "", st_ctrlname = "";
+  string st_sn101_gkey="", st_sn101_mkey="",st_sn101_mkind="",st_sn101_mkname="";
+  DataRow mod_row;
+  DataRow[] sel_rows;
+  //
+  st_ctrl = st_ContentPlaceHolder +"gr_GridView_sn101$ctl"; 
+  CmdQueryS.CommandText = " and a.gkey='"+hh_qkey.Value+"'";
+  DataTable tb_sn101 = new DataTable();
+  DAC_sn101 sn101Dao = new DAC_sn101(conn);
+  string st_addselect="";
+  string st_addjoin="";
+  string st_addunion="";
+  DbDataAdapter da_ADP =sn101Dao.GetDataAdapter(ApVer, "UNsn101", "sn101", st_addselect, false, st_addjoin, CmdQueryS, st_addunion, "");
+  da_ADP.Fill(tb_sn101);
+  //
+  OleDbTransaction thistran;
+  conn.Open();
+  thistran = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+  da_ADP.UpdateCommand.Transaction = thistran;
+  da_ADP.DeleteCommand.Transaction = thistran;
+  da_ADP.InsertCommand.Transaction = thistran;
+  try
+  {
+    for (int in_g = 0; in_g <= gr_GridView_sn101.Rows.Count + 4; in_g++)
+    {
+      //gkey
+      st_ctrlname = st_ctrl +DAC.GetGridViewRowId(in_g)+"$tx_sn101_gkey02";
+      if (FindControl(st_ctrlname) != null)
+      {
+        //gkey
+        st_ctrlname = st_ctrl +DAC.GetGridViewRowId(in_g)+"$tx_sn101_gkey02";
+        st_sn101_gkey = ((HtmlInputHidden)FindControl(st_ctrlname)).Value.Trim();
+        //mkey
+        st_ctrlname = st_ctrl +DAC.GetGridViewRowId(in_g)+"$tx_sn101_mkey02";
+        st_sn101_mkey = ((HtmlInputHidden)FindControl(st_ctrlname)).Value.Trim();
+        //材料分類
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_sn101_mkind02";
+        st_sn101_mkind= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //分類名稱
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_sn101_mkname02";
+        st_sn101_mkname= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //
+        bl_Mod = true;
+      }
+      else
+      {
+        bl_Mod = false;
+      }
+      //
+      if (bl_Mod) 
+      {
+        sel_rows = tb_sn101.Select("sn101_gkey='"+st_sn101_gkey+"'");
+        if (sel_rows.Length == 1) 
+        {
+          mod_row = sel_rows[0];
+          if (
+               (DAC.GetStringValue(mod_row["sn101_mkind"]) != st_sn101_mkind) 
+            || (DAC.GetStringValue(mod_row["sn101_mkname"]) != st_sn101_mkname) 
+          )
+          {
+           sn101Dao.Insertbalog(conn, thistran, "sn101", st_ActKey, st_sn101_gkey);
+           sn101Dao.Insertbtlog(conn, thistran, "sn101", DAC.GetStringValue(mod_row["sn101_gkey"]), "M",UserGkey, DAC.GetStringValue(mod_row["sn101_gkey"]) + " " + DAC.GetStringValue(mod_row["sn101_gkey"]) +" " + DAC.GetStringValue(mod_row["sn101_gkey"]));
+            mod_row.BeginEdit();
+            mod_row["sn101_mkind"] = st_sn101_mkind;      //材料分類
+            mod_row["sn101_mkname"] = st_sn101_mkname;      //分類名稱
+            mod_row.EndEdit();
+            st_ActKey=DAC.get_guidkey();  //
+          }
+        }  //sel_rows.Length == 1
+      }  //bl_Mod
+    }  //for
+    da_ADP.Update(tb_sn101);
+    thistran.Commit();
+    bl_updateok=true;
+  }  //try
+
+  catch (Exception e)
+  {
+    thistran.Rollback();
+    bl_updateok = false;
+    st_errmsg += e.Message;
+  }
+  finally
+  {
+    thistran.Dispose();
+    sn101Dao.Dispose();
+    tb_sn101.Dispose();
+    da_ADP.Dispose();
+  }
+  return bl_updateok;
+}

@@ -1,0 +1,473 @@
+﻿body
+{
+    font-family: Arial;
+    font-size: 11pt;
+}
+
+.button
+{
+    font-family: Arial;
+    font-size: 11pt;
+}
+
+table
+{
+    font-family: Arial;
+    font-size: 11pt;
+}
+
+th
+{
+    font-family: Arial;
+    font-size: 11pt;
+    font-weight: bold;
+    background-color: #368700;
+    color: White;
+    padding: 3px;
+}
+
+tr.tableEvenRow
+{
+    background-color: #CCCCCC;
+    height: 28px;
+    vertical-align: middle;
+}
+
+tr.tableOddRow
+{
+    background-color: #FFFFFF;
+    height: 28px;
+    vertical-align: middle;
+}
+
+.timeText
+{
+    font-family: Arial;
+    font-size: 11pt;
+    color: Black;
+}
+
+.labelCell
+{
+    text-align: right;
+}
+
+.displayCell
+{
+    background-color: #FFD7BA;
+}
+
+.inputCell
+{
+    background-color: White;
+}
+
+input
+{
+    font-family: Arial;
+    font-size: 11pt;
+}
+
+select
+{
+    font-family: Arial;
+    font-size: 11pt;
+}
+
+.inputFull
+{
+    width: 100%;
+    font-size: 11pt;
+}
+
+.inputFullBlock
+{
+    width: 100%;
+    height: 100%;
+    font-size: 11pt;
+}
+
+a.tabButton
+{
+    font-size: 11pt;
+    text-decoration: none;
+    text-align: center;
+    padding-top: 8px;
+    display: table-cell;
+    vertical-align: top;
+    width: 179px;
+    height: 27px;
+    background-image: Url("Img/Tab1.png");
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    color: Black;
+}
+
+a.tabButtonSelected
+{
+    font-size: 11pt;
+    text-decoration: none;
+    text-align: center;
+    padding-top: 8px;
+    display: table-cell;
+    vertical-align: top;
+    width: 179px;
+    height: 27px;
+    background-image: Url("Img/Tab1.png");
+    background-repeat: no-repeat;
+    background-position: 0 -27;
+    color: White;
+}
+
+.functionTitle
+{
+    font-size: 14pt;
+    font-weight: bolder;
+    color: #245858;
+    padding-top: 6px;
+    padding-bottom: 3px;
+}
+
+.marqueeText
+{
+    font-size: 11pt;
+    font-weight: bolder;
+    color: Red;
+}
+
+.groupHeaderCell
+{
+    text-align: center;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: black;
+}
+
+a.Button120
+{
+    display: table-cell;
+    width: 120px;
+    height: 27px;
+    border: 0;
+    margin: 0;
+    font-size: 11pt;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: top;
+    padding-top: 4px;
+    background-image: Url("Img/Button120.png");
+    background-repeat: no-repeat;
+    background-position: 0 -27;
+    color: White;
+    #padding-top: 6px;
+}
+
+    a.Button120:hover
+    {
+        background-image: Url("Img/Button120.png");
+        background-position: 0 0;
+        background-repeat: no-repeat;
+    }
+
+a.Button100
+{
+    display: table-cell;
+    width: 100px;
+    height: 27px;
+    border: 0;
+    margin: 0;
+    font-size: 11pt;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: top;
+    padding-top: 4px;
+    background-image: Url("Img/Button100.png");
+    background-repeat: no-repeat;
+    background-position: 0 -27;
+    color: White;
+    #padding-top: 6px;
+}
+
+    a.Button100:hover
+    {
+        background-image: Url("Img/Button100.png");
+        background-position: 0 0;
+        background-repeat: no-repeat;
+    }
+
+a.Button80
+{
+    display: table-cell;
+    width: 80px;
+    height: 23px;
+    border: 0;
+    margin: 0;
+    font-size: 11pt;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: top;
+    padding-top: 4px;
+    background-image: Url("Img/Button80.png");
+    background-repeat: no-repeat;
+    background-position: 0 -27px;
+    color: White;
+    #padding-top: 6px;
+}
+
+    a.Button80:hover
+    {
+        background-image: Url("Img/Button80.png");
+        background-position: 0 0;
+        background-repeat: no-repeat;
+    }
+
+a.Button60
+{
+    display: table-cell;
+    width: 60px;
+    height: 27px;
+    border: 0;
+    margin: 0;
+    font-size: 11pt;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: top;
+    padding-top: 4px;
+    background-image: Url("Img/Button60.png");
+    background-repeat: no-repeat;
+    background-position: 0 -27;
+    color: White;
+    #padding-top: 6px;
+}
+
+    a.Button60:hover
+    {
+        background-image: Url("Img/Button60.png");
+        background-position: 0 0;
+        background-repeat: no-repeat;
+    }
+
+a.Button40
+{
+    display: table-cell;
+    width: 40px;
+    height: 27px;
+    border: 0;
+    margin: 0;
+    font-size: 11pt;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: top;
+    padding-top: 4px;
+    background-image: Url("Img/Button40.png");
+    background-repeat: no-repeat;
+    background-position: 0 -27;
+    color: White;
+    #padding-top: 6px;
+}
+
+    a.Button40:hover
+    {
+        background-image: Url("Img/Button40.png");
+        background-position: 0 0;
+        background-repeat: no-repeat;
+    }
+
+a.Button28
+{
+    display: table-cell;
+    width: 28px;
+    height: 27px;
+    border: 0;
+    margin: 0;
+    font-size: 11pt;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: top;
+    padding-top: 4px;
+    background-image: Url("Img/Button28.png");
+    background-repeat: no-repeat;
+    background-position: 0 -27;
+    color: White;
+    #padding-top: 6px;
+}
+
+    a.Button28:hover
+    {
+        background-image: Url("Img/Button28.png");
+        background-position: 0 0;
+        background-repeat: no-repeat;
+    }
+
+.FunctionName
+{
+    color: #5A8700;
+    font-size: 11pt;
+    font-weight: bold;
+}
+
+.ErrorMessage
+{
+    color: red;
+    font-size: 11pt;
+    font-weight: bold;
+}
+
+.TimeTableCell
+{
+    height: 80px;
+    width: 105px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.TimeLabel
+{
+    width: 100%;
+    height: 18px;
+    background-color: #FFA0FF;
+    color: Black;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.CourseLabel
+{
+    width: 100%;
+    height: 18px;
+    background-color: #ffe4b5;
+    color: Black;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.TeacherLabel
+{
+    width: 100%;
+    height: 18px;
+    background-color: #7FFFFF;
+    color: Black;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.EquipmentLabel
+{
+    width: 100%;
+    height: 18px;
+    background-color: #7FFF7F;
+    color: Black;
+    text-align: center;
+    vertical-align: middle;
+}
+
+a.LogoutButton
+{
+    height: 32px;
+    width: 32px;
+    background-image: Url("Img/logout.png");
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+
+span.overlimit
+{
+    color: red;
+}
+
+span.electionlimit
+{
+    color: green;
+}
+
+span.elected
+{
+    color: blue;
+}
+
+span.canceled
+{
+    color: red;
+}
+
+a.menu
+{
+    display: table-cell;
+    width: 100%;
+    height: 36px;
+    vertical-align: middle;
+    #padding-top: 8px;
+}
+
+    a.menu:hover
+    {
+        background-color: Gray;
+    }
+
+a.election
+{
+    color: Blue;
+    font-weight: bold;
+}
+
+a.cancelelection
+{
+    color: Blue;
+    font-weight: bold;
+}
+
+.pagerText
+{
+    color: White;
+    font-weight: bold;
+}
+
+td.menuleft
+{
+    width: 10px;
+    height: 37px;
+    background-image: url(Img/MenuLeft.jpg);
+    background-repeat: no-repeat;
+}
+
+td.menucenter
+{
+    height: 37px;
+    background-image: url(Img/MenuCenter.jpg);
+    background-repeat: repeat-x;
+    vertical-align: central;
+}
+
+td.menuright
+{
+    width: 10px;
+    height: 37px;
+    background-image: url(Img/MenuRight.jpg);
+    background-repeat: no-repeat;
+}
+
+a.LinkButton80
+{
+    border-style: none;
+    border-color: inherit;
+    border-width: 0;
+    display: table-cell;
+    width: 80px;
+    margin: 0;
+    font-size: 11pt;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: top;
+    padding-top: 4px;
+    background-image: url('Img/Button80.png');
+    background-repeat: no-repeat;
+    background-position: 0 -27px;
+    color: White;
+}
+
+    a.LinkButton80:hover
+    {
+        background-image: Url("Img/Button80.png");
+        background-position: 0px 0px;
+        background-repeat: no-repeat;
+    }

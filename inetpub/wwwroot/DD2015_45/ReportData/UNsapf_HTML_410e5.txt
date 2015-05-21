@@ -1,0 +1,201 @@
+<asp:Literal ID="li_AccMsg" runat="server"></asp:Literal>
+<input id="hh_GridGkey" type="hidden" name="hh_GridGkey" runat="server" />
+<input id="hh_GridCtrl" type="hidden" name="hh_GridCtrl" runat="server" />
+<input id="hh_ActKey" type="hidden" name="hh_ActGuidKey" runat="server" />
+<input id="hh_mkey" type="hidden" name="hh_mkey" runat="server" />
+<table>
+  <tr>
+    <td>
+      <asp:LinkButton ID="bt_CAN" runat="server" CausesValidation="False" CommandName="CANCEL" AccessKey="C" CssClass="LinkButton80" Text="C上一步" Width="80px" OnClick="bt_CAN_Click"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_SAV" runat="server" CausesValidation="False" CommandName="SAVE" AccessKey="S" CssClass="LinkButton80" Text="S完成" Width="80px" OnClick="bt_SAV_Click"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_02" runat="server" CausesValidation="False" CommandName="NEW" AccessKey="N" CssClass="LinkButton80" Text="N新增" Width="80px" OnClick="bt_02_Click" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_03" runat="server" CausesValidation="False" CommandName="INSERT" AccessKey="I" CssClass="LinkButton80" Text="I插入" Width="80px" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_04" runat="server" CausesValidation="False" CommandName="MODIFY" AccessKey="M" CssClass="LinkButton80" Text="M修改" Width="80px" OnClick="bt_04_Click" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_05" runat="server" CausesValidation="False" CommandName="DELETE" AccessKey="X" CssClass="LinkButton80" Text="X刪除" Width="80px" OnClick="bt_05_Click" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_06" runat="server" CausesValidation="False" CommandName="COPY" AccessKey="O" CssClass="LinkButton80" Text="O複製" Width="80px" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_07" runat="server" CausesValidation="False" CommandName="PRINT" AccessKey="P" CssClass="LinkButton80" Text="P列印" Width="80px"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_08" runat="server" CausesValidation="False" CommandName="SERCH" AccessKey="F" CssClass="LinkButton80" Text="F查詢" Width="80px"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_09" runat="server" CausesValidation="False" CommandName="TRANS" AccessKey="T" CssClass="LinkButton80" Text="T轉單" Width="80px"></asp:LinkButton>
+    <td>
+      <asp:LinkButton ID="bt_10" runat="server" CausesValidation="False" CommandName="EXCEL" AccessKey="E" CssClass="LinkButton80" Text="Excel" Width="80px"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_11" runat="server" CausesValidation="False" CommandName="MODALL" AccessKey="B" CssClass="LinkButton80" Text="L整批修改" Width="80px" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_QUT" runat="server" CausesValidation="False" CommandName="QUIT" AccessKey="Q" CssClass="LinkButton80" Text="Q離開" Width="80px" OnClick="bt_QUT_Click"></asp:LinkButton>
+    </td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td > 
+      <asp:Label id="lb_sapf_RAREN" runat="server" Text="應付單號" ></asp:Label>
+      <asp:TextBox id="tx_sapf_RAREN" width="80px" runat="server" MaxLength="40"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_sapf_RADAT" runat="server" Text="日　　期" ></asp:Label>
+      <ig:WebDateTimeEditor id="tx_sapf_RADAT" Width="90px" StyleSetName="Appletini" StyleSetPath="../../../ig_res" runat="server"></ig:WebDateTimeEditor>
+    </td>
+    <td > 
+      <asp:Label id="lb_sapf_RACLS" runat="server" Text="異動類別" ></asp:Label>
+      <asp:dropdownlist id="dr_sapf_RACLS" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_sapf_RACLS" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_sapf_RAMEN" runat="server" Text="開單人員" ></asp:Label>
+      <asp:TextBox id="tx_sapf_RAMEN" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_es101_RAMEN" runat="server" Text="開單人名" ></asp:Label>
+      <asp:TextBox id="tx_es101_RAMEN" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_sapf_RANUM" runat="server" Text="廠商編號" ></asp:Label>
+      <asp:TextBox id="tx_sapf_RANUM" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bdlr_RANUM" runat="server" Text="廠商名稱" ></asp:Label>
+      <asp:TextBox id="tx_bdlr_RANUM" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_sapf_RACIN" runat="server" Text="統一編號" ></asp:Label>
+      <asp:TextBox id="tx_sapf_RACIN" width="80px" runat="server" MaxLength="20"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_sapf_RACS1" runat="server" Text="憑證類別" ></asp:Label>
+      <asp:dropdownlist id="dr_sapf_RACS1" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_sapf_RACS1" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_sapf_RACS2" runat="server" Text="稅率類別" ></asp:Label>
+      <asp:dropdownlist id="dr_sapf_RACS2" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_sapf_RACS2" width="0px" Visible="false"  runat="server"/>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_sapf_RAINV" runat="server" Text="發票號碼" ></asp:Label>
+      <asp:TextBox id="tx_sapf_RAINV" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_sapf_RAIND" runat="server" Text="發票日期" ></asp:Label>
+      <ig:WebDateTimeEditor id="tx_sapf_RAIND" Width="90px" StyleSetName="Appletini" StyleSetPath="../../../ig_res" runat="server"></ig:WebDateTimeEditor>
+    </td>
+    <td > 
+      <asp:Label id="lb_sapf_RACS3" runat="server" Text="進項類別" ></asp:Label>
+      <asp:dropdownlist id="dr_sapf_RACS3" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_sapf_RACS3" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_sapf_RACS4" runat="server" Text="進貨科目" ></asp:Label>
+      <asp:dropdownlist id="dr_sapf_RACS4" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_sapf_RACS4" width="0px" Visible="false"  runat="server"/>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_sapf_RAMNY" runat="server" Text="幣　　別" ></asp:Label>
+      <asp:dropdownlist id="dr_sapf_RAMNY" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_sapf_RAMNY" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_sapf_RARAT" runat="server" Text="匯　　率" ></asp:Label>
+      <ig:WebNumericEditor id="tx_sapf_RARAT" width="120px" runat="server" MinDecimalPlaces="2" StyleSetName="Appletini" StyleSetPath="../../../ig_res"></ig:WebNumericEditor>
+    </td>
+    <td > 
+      <asp:Label id="lb_sapf_RAEDT" runat="server" Text="帳款日期" ></asp:Label>
+      <ig:WebDateTimeEditor id="tx_sapf_RAEDT" Width="90px" StyleSetName="Appletini" StyleSetPath="../../../ig_res" runat="server"></ig:WebDateTimeEditor>
+    </td>
+    <td > 
+      <asp:Label id="lb_sapf_RAEDD" runat="server" Text="到期日期" ></asp:Label>
+      <ig:WebDateTimeEditor id="tx_sapf_RAEDD" Width="90px" StyleSetName="Appletini" StyleSetPath="../../../ig_res" runat="server"></ig:WebDateTimeEditor>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_sapf_RAMX1" runat="server" Text="外幣未稅" ></asp:Label>
+      <ig:WebNumericEditor id="tx_sapf_RAMX1" width="120px" runat="server" MinDecimalPlaces="2" StyleSetName="Appletini" StyleSetPath="../../../ig_res"></ig:WebNumericEditor>
+    </td>
+    <td > 
+      <asp:Label id="lb_sapf_RAMX2" runat="server" Text="外幣稅額" ></asp:Label>
+      <ig:WebNumericEditor id="tx_sapf_RAMX2" width="120px" runat="server" MinDecimalPlaces="2" StyleSetName="Appletini" StyleSetPath="../../../ig_res"></ig:WebNumericEditor>
+    </td>
+    <td > 
+      <asp:Label id="lb_sapf_RAMX3" runat="server" Text="外幣含稅" ></asp:Label>
+      <ig:WebNumericEditor id="tx_sapf_RAMX3" width="120px" runat="server" MinDecimalPlaces="2" StyleSetName="Appletini" StyleSetPath="../../../ig_res"></ig:WebNumericEditor>
+    </td>
+    <td > 
+      <asp:Label id="lb_sapf_RARMN" runat="server" Text="運費金額" ></asp:Label>
+      <ig:WebNumericEditor id="tx_sapf_RARMN" width="120px" runat="server" MinDecimalPlaces="2" StyleSetName="Appletini" StyleSetPath="../../../ig_res"></ig:WebNumericEditor>
+    </td>
+    <td > 
+      <asp:Label id="lb_sapf_RATPD" runat="server" Text="預付金額" ></asp:Label>
+      <ig:WebNumericEditor id="tx_sapf_RATPD" width="120px" runat="server" MinDecimalPlaces="2" StyleSetName="Appletini" StyleSetPath="../../../ig_res"></ig:WebNumericEditor>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_sapf_RAMT1" runat="server" Text="未稅金額" ></asp:Label>
+      <ig:WebNumericEditor id="tx_sapf_RAMT1" width="120px" runat="server" MinDecimalPlaces="2" StyleSetName="Appletini" StyleSetPath="../../../ig_res"></ig:WebNumericEditor>
+    </td>
+    <td > 
+      <asp:Label id="lb_sapf_RAMT2" runat="server" Text="稅　　額" ></asp:Label>
+      <ig:WebNumericEditor id="tx_sapf_RAMT2" width="120px" runat="server" MinDecimalPlaces="2" StyleSetName="Appletini" StyleSetPath="../../../ig_res"></ig:WebNumericEditor>
+    </td>
+    <td > 
+      <asp:Label id="lb_sapf_RAMT3" runat="server" Text="含稅金額" ></asp:Label>
+      <ig:WebNumericEditor id="tx_sapf_RAMT3" width="120px" runat="server" MinDecimalPlaces="2" StyleSetName="Appletini" StyleSetPath="../../../ig_res"></ig:WebNumericEditor>
+    </td>
+    <td > 
+      <asp:Label id="lb_sapf_RAPTN" runat="server" Text="商品編號" ></asp:Label>
+      <asp:TextBox id="tx_sapf_RAPTN" width="80px" runat="server" MaxLength="30"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_bpud_RAPTN" runat="server" Text="商品名稱" ></asp:Label>
+      <asp:TextBox id="tx_bpud_RAPTN" width="80px" runat="server" MaxLength="30"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_sapf_RACOS" runat="server" Text="單據類別" ></asp:Label>
+      <asp:dropdownlist id="dr_sapf_RACOS" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_sapf_RACOS" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_sapf_RARE1" runat="server" Text="進貨單號" ></asp:Label>
+      <asp:TextBox id="tx_sapf_RARE1" width="80px" runat="server" MaxLength="30"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_sapf_RARE2" runat="server" Text="銷貨單號" ></asp:Label>
+      <asp:TextBox id="tx_sapf_RARE2" width="80px" runat="server" MaxLength="30"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_sapf_RARMK" runat="server" Text="備　　註" ></asp:Label>
+      <asp:TextBox id="tx_sapf_RARMK" width="80px" runat="server" MaxLength="200"></asp:TextBox>
+    </td>
+  </tr>
+</table>
+<asp:Label ID="lb_ErrorMessage" runat="server" Text="" EnableViewState="false" Visible="false" CssClass="ErrorMessage"></asp:Label>

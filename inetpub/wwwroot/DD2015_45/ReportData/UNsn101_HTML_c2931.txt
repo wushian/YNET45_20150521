@@ -1,0 +1,116 @@
+<asp:Literal ID="li_AccMsg" runat="server"></asp:Literal>
+<input id="hh_GridGkey" type="hidden" name="hh_GridGkey" runat="server" />
+<input id="hh_GridCtrl" type="hidden" name="hh_GridCtrl" runat="server" />
+<input id="hh_ActKey" type="hidden" name="hh_ActGuidKey" runat="server" />
+<input id="hh_mkey" type="hidden" name="hh_mkey" runat="server" />
+<table>
+  <tr>
+    <td>
+      <asp:LinkButton ID="bt_CAN" runat="server" CausesValidation="False" CommandName="CANCEL" AccessKey="C" CssClass="LinkButton80" Text="C上一步" Width="80px" OnClick="bt_CAN_Click"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_SAV" runat="server" CausesValidation="False" CommandName="SAVE" AccessKey="S" CssClass="LinkButton80" Text="S完成" Width="80px" OnClick="bt_SAV_Click"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_02" runat="server" CausesValidation="False" CommandName="NEW" AccessKey="N" CssClass="LinkButton80" Text="N新增" Width="80px" OnClick="bt_02_Click" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_03" runat="server" CausesValidation="False" CommandName="INSERT" AccessKey="I" CssClass="LinkButton80" Text="I插入" Width="80px" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_04" runat="server" CausesValidation="False" CommandName="MODIFY" AccessKey="M" CssClass="LinkButton80" Text="M修改" Width="80px" OnClick="bt_04_Click" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_05" runat="server" CausesValidation="False" CommandName="DELETE" AccessKey="X" CssClass="LinkButton80" Text="X刪除" Width="80px" OnClick="bt_05_Click" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_06" runat="server" CausesValidation="False" CommandName="COPY" AccessKey="O" CssClass="LinkButton80" Text="O複製" Width="80px" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_07" runat="server" CausesValidation="False" CommandName="PRINT" AccessKey="P" CssClass="LinkButton80" Text="P列印" Width="80px"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_08" runat="server" CausesValidation="False" CommandName="SERCH" AccessKey="F" CssClass="LinkButton80" Text="F查詢" Width="80px"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_09" runat="server" CausesValidation="False" CommandName="TRANS" AccessKey="T" CssClass="LinkButton80" Text="T轉單" Width="80px"></asp:LinkButton>
+    <td>
+      <asp:LinkButton ID="bt_10" runat="server" CausesValidation="False" CommandName="EXCEL" AccessKey="E" CssClass="LinkButton80" Text="Excel" Width="80px"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_11" runat="server" CausesValidation="False" CommandName="MODALL" AccessKey="B" CssClass="LinkButton80" Text="L整批修改" Width="80px" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_QUT" runat="server" CausesValidation="False" CommandName="QUIT" AccessKey="Q" CssClass="LinkButton80" Text="Q離開" Width="80px" OnClick="bt_QUT_Click"></asp:LinkButton>
+    </td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td > 
+      <asp:Label id="lb_sn101_mkind" runat="server" Text="材料分類" ></asp:Label>
+      <asp:TextBox id="tx_sn101_mkind" width="80px" runat="server" MaxLength="2"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_sn101_mkname" runat="server" Text="分類名稱" ></asp:Label>
+      <asp:TextBox id="tx_sn101_mkname" width="80px" runat="server" MaxLength="30"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_sn101_punit" runat="server" Text="計價單位" ></asp:Label>
+      <asp:dropdownlist id="dr_sn101_punit" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_sn101_punit" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_sn101_qunit" runat="server" Text="計量單位" ></asp:Label>
+      <asp:dropdownlist id="dr_sn101_qunit" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_sn101_qunit" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_sn101_utexchr" runat="server" Text="換算率" ></asp:Label>
+      <asp:TextBox id="tx_sn101_utexchr" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:checkbox id="ck_sn101_msize" width="100px"  runat="server" TEXT="訂購SIZE"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_sn101_mstype" runat="server" Text="尺碼換算" ></asp:Label>
+      <asp:dropdownlist id="dr_sn101_mstype" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_sn101_mstype" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_sn101_process" runat="server" Text="製程" ></asp:Label>
+      <asp:dropdownlist id="dr_sn101_process" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_sn101_process" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_sn101_mloss" runat="server" Text="Loss率%" ></asp:Label>
+      <asp:TextBox id="tx_sn101_mloss" width="80px" runat="server" MaxLength="10"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_sn101_mchk" runat="server" Text="檢驗" ></asp:Label>
+      <asp:dropdownlist id="dr_sn101_mchk" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_sn101_mchk" width="0px" Visible="false"  runat="server"/>
+    </td>
+  </tr>
+  <tr>
+    <td > 
+      <asp:Label id="lb_sn101_ctype" runat="server" Text="計算方式" ></asp:Label>
+      <asp:dropdownlist id="dr_sn101_ctype" width="80px"  runat="server"/>
+      <asp:TextBox      id="tx_sn101_ctype" width="0px" Visible="false"  runat="server"/>
+    </td>
+    <td > 
+      <asp:checkbox id="ck_sn101_mflag" width="100px"  runat="server" TEXT="加工標記"/>
+    </td>
+    <td > 
+      <asp:Label id="lb_sn101_ss101gkey1" runat="server" Text="建檔人" ></asp:Label>
+      <asp:TextBox id="tx_sn101_ss101gkey1" width="80px" runat="server" MaxLength="40"></asp:TextBox>
+    </td>
+    <td > 
+      <asp:Label id="lb_sn101_mdate" runat="server" Text="建檔日期" ></asp:Label>
+      <asp:TextBox id="tx_sn101_mdate" width="80px" runat="server" MaxLength="1"></asp:TextBox>
+    </td>
+  </tr>
+</table>
+<asp:Label ID="lb_ErrorMessage" runat="server" Text="" EnableViewState="false" Visible="false" CssClass="ErrorMessage"></asp:Label>

@@ -1,0 +1,42 @@
+CREATE TABLE dbo.bcvw(
+  gkey VARCHAR(40) NOT NULL, /* gkey */
+  BCNUM  VARCHAR(20)  NOT NULL DEFAULT '' ,/*會員編號 */
+  BCENF  NVARCHAR(40)  NOT NULL DEFAULT '' ,/*會員　姓 */
+  BCENL  NVARCHAR(40)  NOT NULL DEFAULT '' ,/*會員　名 */
+  BCBIR  DATETIME NULL DEFAULT  ,/*生　　日 */
+  BCCLA  VARCHAR(20)  NOT NULL DEFAULT '' ,/*會員等級 */
+  BCNAT  VARCHAR(20)  NOT NULL DEFAULT '' ,/*國　　籍 */
+  BCMAL  NVARCHAR(100)  NOT NULL DEFAULT '' ,/*E-Mail */
+  BCGSM  NVARCHAR(20)  NULL DEFAULT '' ,/*手機號碼 */
+  BCSEX  VARCHAR(10)  NOT NULL DEFAULT '' ,/*會員性別 */
+  BCSIZ  VARCHAR(10)  NOT NULL DEFAULT '' ,/*膚　　質 */
+  BCMNY  VARCHAR(10)  NOT NULL DEFAULT '' ,/*幣　　別 */
+  BCMAR  VARCHAR(10)  NOT NULL DEFAULT '' ,/*婚姻狀況 */
+  BCTL1  NVARCHAR(30)  NULL DEFAULT '' ,/*連絡電話 */
+  BCZIP  VARCHAR(10)  NULL DEFAULT '' ,/*區域類別 */
+  BCADR  NVARCHAR(50)  NULL DEFAULT '' ,/*連絡地址 */
+  BCPRN  VARCHAR(10)  NULL DEFAULT '' ,/*收到訊息 */
+  BCDA3  DATETIME NULL DEFAULT  ,/*停用日期 */
+  BCCD1  DATETIME NULL DEFAULT  ,/*升等日期 */
+  BCCD2  DATETIME NULL DEFAULT  ,/*升等起日 */
+  BCCD3  DATETIME NULL DEFAULT  ,/*升等訖日 */
+  BCCMK  NVARCHAR(120)  NULL DEFAULT '' ,/*升等備註 */
+  BCRMK  NVARCHAR(70)  NULL DEFAULT '' ,/*備　　註 */
+  BCNAM  NVARCHAR(40)  NOT NULL DEFAULT '' ,/*會員姓名 */
+  BCONU  NVARCHAR(20)  NULL DEFAULT '' ,/*發卡編號 */
+  BCCNU  VARCHAR(8)  NOT NULL DEFAULT '' ,/*入會地點 */
+  BCDA1  DATETIME NOT NULL DEFAULT  ,/*入會日期 */
+  BCINT  NVARCHAR(40)  NULL DEFAULT '' ,/*發票抬頭 */
+  BCINV  NVARCHAR(8)  NULL DEFAULT '' ,/*統一編號 */
+  mkey   VARCHAR(40)     NOT NULL, /*異動key */ 
+  trcls  VARCHAR(10) NOT NULL, /*異動旗標 */ 
+  trcrd  DATETIME    NOT NULL, /*建檔日期 */ 
+  trmod  DATETIME    NOT NULL, /*更正日期 */ 
+  trusr  NVARCHAR(40) NOT NULL  /*更正人員 */ 
+  ) ON [PRIMARY] 
+
+ALTER TABLE [dbo].[bcvw] WITH NOCHECK ADD 
+  CONSTRAINT [PK_bcvw] PRIMARY KEY  NONCLUSTERED 
+  (
+    [gkey]
+  )  ON [PRIMARY] 

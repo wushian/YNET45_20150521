@@ -1,0 +1,414 @@
+<%@ Page Title="" Language="C#" MasterPageFile="~/SiteMM.Master" AutoEventWireup="true" CodeBehind="fm_temp_mdd.aspx.cs" Inherits="DD2015_45.Forms.rix.fm_temp_mdd" %>
+<%@ Register Assembly="Infragistics45.Web.v14.2, Version=14.2.20142.2146, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.ListControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v14.2, Version=14.2.20142.2146, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.LayoutControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v14.2, Version=14.2.20142.2146, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v14.2, Version=14.2.20142.2146, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.WebUI.WebDataInput.v14.2, Version=14.2.20142.2146, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.WebDataInput" TagPrefix="igtxt" %>
+<%@ Register Assembly="Infragistics45.WebUI.WebHtmlEditor.v14.2, Version=14.2.20142.2146, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.WebHtmlEditor" TagPrefix="ighedit" %>
+    
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+  <style type="text/css">
+    .hide
+    {
+      visibility: hidden;
+    }
+    
+    .tdtop
+    {
+      vertical-align: top;
+    }
+    
+    .txRightWdg
+    {
+      text-align: right !important;
+    }
+  </style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+  <asp:UpdatePanel ID="UpdatePanelForm" UpdateMode="Conditional" runat="server">
+    <ContentTemplate>
+      <asp:Literal ID="li_AccMsg" runat="server"></asp:Literal>
+      <input id="hh_GridGkey" type="hidden" name="hh_GridGkey" runat="server" />
+      <input id="hh_GridCtrl" type="hidden" name="hh_GridCtrl" runat="server" />
+      <input id="hh_ActKey" type="hidden" name="hh_ActGuidKey" runat="server" />
+      <input id="hh_mkey" type="hidden" name="hh_mkey" runat="server" />
+      <input id="hh_fun_name" type="hidden" name="hh_fun_name" runat="server" />
+      <input id="hh_fun_mkey" type="hidden" name="hh_fun_mkey" runat="server" />
+      <input id="hh_fun_mkey_old" type="hidden" name="hh_fun_mkey_old" runat="server" />
+      <input id="di_Window_Command" type="hidden" name="di_Window_Command" runat="server" />
+      <input id="hh_dtable1_OldNum_Field" type="hidden" name="hh_dtable1_OldNum_Field" runat="server" />
+      <asp:Button ID="btnAction" runat="server" UseSubmitBehavior="False" Visible="false" />
+      <asp:Button ID="btnPost" runat="server" UseSubmitBehavior="False" Visible="false" />
+      <asp:Panel ID="PanBtns" runat="server" Width="1000px">
+        <table>
+          <tr>
+            <td>
+               <igtxt:WebImageButton ID="bt_CAN" AccessKey="C" runat="server" UseBrowserDefaults="False"
+                 Height="90%" Text="C取消" ImageDirectory="../../images/" OnClick="bt_CAN_Click">
+                 <Appearance>
+                   <Image Url="form_cancel.png"></Image>
+                   <ButtonStyle Font-Names="verdana" Font-Size="12pt" />
+                 </Appearance>
+               </igtxt:WebImageButton>
+             </td>
+             <td>
+              <igtxt:WebImageButton ID="bt_SAV" AccessKey="S" runat="server" UseBrowserDefaults="False"
+                Height="90%" Text="S存檔" ImageDirectory="../../images/" OnClick="bt_SAV_Click">
+                <Appearance>
+                  <Image Url="form_save.png"></Image>
+                  <ButtonStyle Font-Names="verdana" Font-Size="12pt" />
+                </Appearance>
+              </igtxt:WebImageButton>
+            </td>
+            <td>
+              <igtxt:WebImageButton ID="bt_02" AccessKey="N" runat="server" UseBrowserDefaults="False"
+                Height="90%" Text="N新增" ImageDirectory="../../images/" OnClick="bt_02_Click">
+                <Appearance>
+                  <Image Url="form_new.png"></Image>
+                  <ButtonStyle Font-Names="verdana" Font-Size="12pt" />
+                </Appearance>
+              </igtxt:WebImageButton>
+            </td>
+            <td>
+              <igtxt:WebImageButton ID="bt_03" AccessKey="I" runat="server" UseBrowserDefaults="False"
+                Height="90%" Text="I插入" ImageDirectory="../../images/">
+                <Appearance>
+                  <Image Url="form_new.png"></Image>
+                  <ButtonStyle Font-Names="verdana" Font-Size="12pt" />
+                </Appearance>
+              </igtxt:WebImageButton>
+            </td>
+            <td>
+              <igtxt:WebImageButton ID="bt_04" AccessKey="M" runat="server" UseBrowserDefaults="False"
+                Height="90%" Text="M更正" ImageDirectory="../../images/" OnClick="bt_04_Click">
+                <Appearance>
+                  <Image Url="form_edit.png"></Image>
+                  <ButtonStyle Font-Names="verdana" Font-Size="12pt" />
+                </Appearance>
+              </igtxt:WebImageButton>
+            </td>
+            <td>
+              <igtxt:WebImageButton ID="bt_05" AccessKey="X" runat="server" AutoSubmit="false" UseBrowserDefaults="False"
+                Height="90%" Text="X刪除" ImageDirectory="../../images/" OnClick="bt_05_Click">
+                <Appearance>
+                  <Image Url="form_delete.png"></Image>
+                  <ButtonStyle Font-Names="verdana" Font-Size="12pt" />
+                </Appearance>
+              </igtxt:WebImageButton>
+            </td>
+            <td>
+              <igtxt:WebImageButton ID="bt_06" AccessKey="O" runat="server" UseBrowserDefaults="False"
+                Height="90%" Text="O複製" ImageDirectory="../../images/">
+                <Appearance>
+                  <Image Url="form_copy.png"></Image>
+                  <ButtonStyle Font-Names="verdana" Font-Size="12pt" />
+                </Appearance>
+              </igtxt:WebImageButton>
+            </td>
+            <td>
+              <igtxt:WebImageButton ID="bt_07" AccessKey="P" runat="server" UseBrowserDefaults="False"
+                Height="90%" Text="P列印" ImageDirectory="../../images/">
+                <Appearance>
+                  <Image Url="form_print.png"></Image>
+                  <ButtonStyle Font-Names="verdana" Font-Size="12pt" />
+                </Appearance>
+              </igtxt:WebImageButton>
+            </td>
+            <td>
+              <igtxt:WebImageButton ID="bt_08" AccessKey="F" runat="server" UseBrowserDefaults="False"
+                Height="90%" Text="F查詢" ImageDirectory="../../images/" OnClick="bt_08_Click">
+                <Appearance>
+                  <Image Url="form_serch.png"></Image>
+                  <ButtonStyle Font-Names="verdana" Font-Size="12pt" />
+                </Appearance>
+              </igtxt:WebImageButton>
+            </td>
+            <td>
+              <igtxt:WebImageButton ID="bt_09" AccessKey="T" runat="server" UseBrowserDefaults="False"
+                Height="90%" Text="T轉單" ImageDirectory="../../images/">
+                <Appearance>
+                  <Image Url="form_copy.png"></Image>
+                  <ButtonStyle Font-Names="verdana" Font-Size="12pt" />
+                </Appearance>
+              </igtxt:WebImageButton>
+            </td>
+            <td>
+              <igtxt:WebImageButton ID="bt_10" AccessKey="E" runat="server" UseBrowserDefaults="False"
+                Height="90%" Text="Excel" ImageDirectory="../../images/">
+                <Appearance>
+                  <Image Url="form_excel.png"></Image>
+                  <ButtonStyle Font-Names="verdana" Font-Size="12pt" />
+                </Appearance>
+              </igtxt:WebImageButton>
+            </td>
+            <td>
+              <igtxt:WebImageButton ID="bt_11" runat="server" UseBrowserDefaults="False"
+                Height="90%" Text="功能" ImageDirectory="../../images/">
+                <Appearance>
+                  <Image Url="form_edit.png"></Image>
+                  <ButtonStyle Font-Names="verdana" Font-Size="12pt" />
+                </Appearance>
+              </igtxt:WebImageButton>
+            </td>
+            <td>
+              <igtxt:WebImageButton ID="bt_QUT" AccessKey="Q" runat="server" UseBrowserDefaults="False"
+                Height="90%" Text="Q離開" ImageDirectory="../../images/" OnClick="bt_QUT_Click">
+                <Appearance>
+                  <Image Url="form_quit.png"></Image>
+                  <ButtonStyle Font-Names="verdana" Font-Size="12pt" />
+                </Appearance>
+              </igtxt:WebImageButton>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <td>
+              <asp:Label ID="lb_ErrorMessage" runat="server" Text="" EnableViewState="false" Visible="false" CssClass="ErrorMessage"></asp:Label>
+            </td>
+          </tr>
+        </table>
+      </asp:Panel>
+      <ig:WebTab ID="WebTab_form" runat="server" Width="1200px" StyleSetName="Claymation" StyleSetPath="~/ig_res" TabItemSize="100px" SelectedIndex="1">
+        <Tabs>
+          <ig:ContentTabItem runat="server" Text="查詢">
+            <Template>
+              <asp:Panel ID="PanSer" runat="server" Width="1000px">
+                <table>
+                  <tr>
+                    <td>
+                      <ig:WebTab ID="WebTab_SER" runat="server" Width="1100px" StyleSetName="Pear" StyleSetPath="~/ig_res" TabItemSize="70px">
+                        <Tabs>
+                          <ig:ContentTabItem runat="server" Text="一般">
+                            <Template>
+                              <asp:Panel ID="PanSerComm" runat="server" Width="1000px">
+                                <table>
+                                  <tr>
+                                    <td>&nbsp;
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>
+                                      <table>
+                                        <tr>
+                                          <td>
+                                            <asp:Label ID="lb_mtable_BDDTS_s1" runat="server" Text="開始日期"></asp:Label>
+                                          </td>
+                                          <td>
+                                            <ig:WebDatePicker ID="tx_mtable_BDDTS_s1" Width="100px" CssClass="Office2010Blue" runat="server"></ig:WebDatePicker>
+                                          </td>
+                                          <td>
+                                            <asp:Label ID="lb_mtable_BDDTS_s2" runat="server" Text="～"></asp:Label>
+                                          </td>
+                                          <td>
+                                            <ig:WebDatePicker ID="tx_mtable_BDDTS_s2" Width="100px" CssClass="Office2010Blue" runat="server"></ig:WebDatePicker>
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>
+                                      <asp:Label ID="lb_mtable_BDPTN" runat="server" Text="商品編號"></asp:Label>
+                                      <asp:TextBox ID="tx_mtable_BDPTN_s" Width="80px" runat="server" MaxLength="30"></asp:TextBox>
+                                      <asp:TextBox ID="tx_bpud_BPTNA_s" Width="80px" runat="server" MaxLength="30" ReadOnly="true"></asp:TextBox>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>&nbsp;</td>
+                                  </tr>
+                                </table>
+                              </asp:Panel>
+                            </Template>
+                          </ig:ContentTabItem>
+                          <ig:ContentTabItem runat="server" Text="進階">
+                            <Template>
+                              <asp:Panel ID="PanSerAdv" runat="server" Width="1000px">
+                                <table>
+                                  <tr>
+                                    <td></td>
+                                  </tr>
+                                </table>
+                              </asp:Panel>
+                            </Template>
+                          </ig:ContentTabItem>
+                        </Tabs>
+                      </ig:WebTab>
+                  </tr>
+                </table>
+              </asp:Panel>
+              <asp:Panel ID="PanGridA" runat="server" Width="1000px">
+                <ig:WebDataGrid ID="WebDataGrid_mtable" runat="server"
+                  EnableAjax="false" EnableViewState="True" EnableDataViewState="True"
+                  Width="1100px" AutoGenerateColumns="False" DataKeyFields="mtable_gkey" OnRowSelectionChanged="WebDataGrid_mtable_RowSelectionChanged">
+                  <Columns>
+                    <ig:BoundDataField DataFieldName="mtable_BDCCN" Key="mtable_BDCCN" Width="100px">
+                      <Header Text="mtable_BDCCN">
+                      </Header>
+                    </ig:BoundDataField>
+                    <ig:BoundDataField DataFieldName="mtable_BDDTS" Key="mtable_BDDTS" Width="100px">
+                      <Header Text="mtable_BDDTS">
+                      </Header>
+                    </ig:BoundDataField>
+                    <ig:BoundDataField DataFieldName="mtable_BDPTN" Key="mtable_BDPTN" Width="120px">
+                      <Header Text="mtable_BDPTN">
+                      </Header>
+                    </ig:BoundDataField>
+                    <ig:BoundDataField DataFieldName="bpud_BPTNA" Key="bpud_BPTNA" Width="300px">
+                      <Header Text="bpud_BPTNA">
+                      </Header>
+                    </ig:BoundDataField>
+                    <ig:BoundDataField DataFieldName="mtable_BDNUM" Key="mtable_BDNUM" Width="100px">
+                      <Header Text="mtable_BDNUM">
+                      </Header>
+                    </ig:BoundDataField>
+                    <ig:BoundDataField DataFieldName="bdlr_BDNAM" Key="bdlr_BDNAM" Width="200px">"
+                      <Header Text="bdlr_BDNAM">
+                      </Header>
+                    </ig:BoundDataField>
+                    <ig:BoundDataField DataFieldName="mtable_gkey" Key="mtable_gkey" Hidden="true" HtmlEncode="true">
+                      <Header Text="mtable_gkey">
+                      </Header>
+                    </ig:BoundDataField>
+                    <ig:BoundDataField DataFieldName="mtable_mkey" Key="mtable_mkey" Hidden="true" HtmlEncode="true">
+                      <Header Text="mtable_mkey">
+                      </Header>
+                    </ig:BoundDataField>
+                  </Columns>
+                  <Behaviors>
+                    <ig:Selection CellClickAction="Row" CellSelectType="None" RowSelectType="Single">
+                      <AutoPostBackFlags RowSelectionChanged="True" />
+                    </ig:Selection>
+                    <ig:RowSelectors>
+                    </ig:RowSelectors>
+                    <ig:Sorting SortingMode="Multi">
+                    </ig:Sorting>
+                    <ig:Paging PagerMode="NumericFirstLast">
+                    </ig:Paging>
+                  </Behaviors>
+                </ig:WebDataGrid>
+              </asp:Panel>
+            </Template>
+          </ig:ContentTabItem>
+          <ig:ContentTabItem runat="server" Text="編輯">
+            <Template>
+              <table>
+                <tr>
+                <td class="tdtop">
+                    <asp:Panel ID="PanEdtLeft" runat="server" Width="250px" BorderStyle="Inset">
+                      <ig:WebDataGrid ID="WebDataGrid_mtable_ba" runat="server"
+                        EnableAjax="False" EnableDataViewState="True"
+                        Width="240px" AutoGenerateColumns="False" DataKeyFields="mtable_gkey" OnRowSelectionChanged="WebDataGrid_mtable_ba_RowSelectionChanged">
+                        <Columns>
+                          <ig:BoundDataField DataFieldName="mtable_BDCCN" Key="mtable_BDCCN" Width="100px">
+                            <Header Text="mtable_BDCCN">
+                            </Header>
+                          </ig:BoundDataField>
+                          <ig:BoundDataField DataFieldName="mtable_BDDTS" Key="mtable_BDDTS" Width="100px">
+                            <Header Text="mtable_BDDTS">
+                            </Header>
+                          </ig:BoundDataField>
+                          <ig:BoundDataField DataFieldName="mtable_gkey" Key="mtable_gkey" Hidden="true" HtmlEncode="true">
+                            <Header Text="mtable_gkey">
+                            </Header>
+                          </ig:BoundDataField>
+                          <ig:BoundDataField DataFieldName="mtable_mkey" Key="mtable_mkey" Hidden="true" HtmlEncode="true">
+                            <Header Text="mtable_mkey">
+                            </Header>
+                          </ig:BoundDataField>
+                        </Columns>
+                        <Behaviors>
+                          <ig:Selection CellClickAction="Row" CellSelectType="None" RowSelectType="Single">
+                            <AutoPostBackFlags RowSelectionChanged="True" />
+                          </ig:Selection>
+                          <ig:RowSelectors>
+                          </ig:RowSelectors>
+                          <ig:Sorting>
+                          </ig:Sorting>
+                          <ig:Paging>
+                          </ig:Paging>
+                        </Behaviors>
+                      </ig:WebDataGrid>
+                    </asp:Panel>
+                  </td>
+                  <td>
+                    <asp:Panel ID="PanEdtRightTop" runat="server" Width="800px" BorderStyle="Inset">
+                      <table>
+                        <tr>
+                          <td>&nbsp;
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <asp:Label ID="lb_mtable_BDCCN" runat="server" Text="合約編號"></asp:Label>
+                            <asp:TextBox ID="tx_mtable_BDCCN" Width="120px" runat="server" MaxLength="30"></asp:TextBox>
+                          </td>
+                          <td>
+                            <table>
+                              <tr>
+                                <td>
+                                  <asp:Label ID="lb_mtable_BDDTS" runat="server" Text="開始日期"></asp:Label>
+                                </td>
+                                <td>
+                                  <ig:WebDatePicker ID="tx_mtable_BDDTS" Width="120px" runat="server" DisplayModeFormat="d" Font-Size="Medium"></ig:WebDatePicker>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                          <td>
+                            <table>
+                              <tr>
+                                <td>
+                                  <asp:Label ID="lb_mtable_BDDTE" runat="server" Text="結束日期"></asp:Label>
+                                </td>
+                                <td>
+                                  <ig:WebDatePicker ID="tx_mtable_BDDTE" Width="120px" runat="server" DisplayModeFormat="d" Font-Size="Medium"></ig:WebDatePicker>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">
+                            <asp:Label ID="lb_mtable_BDNUM" runat="server" Text="出版社號"></asp:Label>
+                            <asp:TextBox ID="tx_mtable_BDNUM" Width="120px" runat="server" MaxLength="10"></asp:TextBox>
+                            <asp:TextBox ID="tx_bdlr_BDNAM" Width="360px" runat="server" MaxLength="40" Enabled="false" TabIndex="-1"></asp:TextBox>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">
+                            <asp:Label ID="Label1" runat="server" Text="商品編號"></asp:Label>
+                            <asp:TextBox ID="tx_mtable_BDPTN" Width="120px" runat="server" MaxLength="30"></asp:TextBox>
+                            <asp:TextBox ID="tx_bpud_BPTNA" Width="360px" runat="server" MaxLength="30" Enabled="false" TabIndex="-1"></asp:TextBox>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <asp:Label ID="lb_mtable_BDQTY" runat="server" Text="預付本數"></asp:Label>
+                            <ig:WebNumericEditor ID="tx_mtable_BDQTY" Width="120px" runat="server" MinDecimalPlaces="2" StyleSetName="Appletini" StyleSetPath="../../../ig_res"></ig:WebNumericEditor>
+                          </td>
+                         <td>
+                            <asp:Label ID="lb_mtable_BDDE1" runat="server" Text="定價金額"></asp:Label>
+                            <ig:WebNumericEditor ID="tx_mtable_BDDE1" Width="120px" runat="server" MinDecimalPlaces="2" StyleSetName="Appletini" StyleSetPath="../../../ig_res"></ig:WebNumericEditor>
+                          </td>
+                          <td>
+                            <asp:Label ID="lb_mtable_BDRAT" runat="server" Text="預付％數"></asp:Label>
+                            <ig:WebNumericEditor ID="tx_mtable_BDRAT" Width="120px" runat="server" MinDecimalPlaces="2" StyleSetName="Appletini" StyleSetPath="../../../ig_res"></ig:WebNumericEditor>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <asp:Label ID="lb_mtable_BDTXP" runat="server" Text="計稅方式"></asp:Label>
+                            <asp:DropDownList ID="dr_mtable_BDTXP" Width="120px" runat="server" />
+                            <asp:TextBox ID="tx_mtable_BDTXP" Width="0px" Visible="false" runat="server" />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="4">
+                            <asp:Label ID="lb_mtable_BDRMK" runat="server" Text="備　　註"></asp:Label>
+                            <asp:TextBox ID="tx_mtable_BDRMK" Width="500px" runat="server" MaxLength="100"></asp:TextBox>
+                          </td>
+                        </tr>
+                      </table>
+                    </asp:Panel> 
+                    <br /> 

@@ -1,0 +1,627 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Infragistics45.WebUI.Misc.v14.2</name>
+    </assembly>
+    <members>
+        <member name="T:Infragistics.WebUI.Misc.Util.ClientStateXmlParser">
+            <summary>
+            Summary description for ClientStateXmlParser.
+            </summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.Util.ClientStateXmlParser.ProcessXmlData(System.Web.UI.WebControls.WebControl,System.Xml.XmlNode,System.Object)">
+            <summary></summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.Util.ClientStateXmlParser.ProcessXmlData(System.Web.UI.WebControls.WebControl,System.Xml.XmlNode,System.Object,System.Boolean)">
+            <summary></summary>
+        </member>
+        <member name="T:Infragistics.WebUI.Misc.TextAlignment">
+            <summary>
+            The TextAlignment Enumeration describes the different horizontal alignment values that can be used to display text.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.Misc.TextAlignment.Left">
+            <summary>
+            The Text is Left-Aligned, appearing closest to the left-most edge.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.Misc.TextAlignment.Center">
+            <summary>
+            The Text is centered between the left and right edge of the container.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.Misc.TextAlignment.Right">
+            <summary>
+            The text is Right-Aligned, appearing closest to the right-most edge.
+            </summary>
+        </member>
+        <member name="T:Infragistics.WebUI.Misc.ExpandEffect">
+            <summary>
+            The ExpandEffect values can be used to describe how the Panel will expand and
+            collapse. When set to None, the panel content will simply appear or disappear. All
+            other values describe special effects.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.Misc.ExpandEffect.None">
+            <summary>
+            The content will simply appear or disappear. No special effect will be used.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.Misc.ExpandEffect.Slide">
+            <summary>
+            The content will roll-up, or unroll based on whether it is collapsing or expanding. On supported browsers (Currently only Internet Exploerer), the content will also slowly fade to and from transparent while also rolling up or down.
+            </summary>
+        </member>
+        <member name="T:Infragistics.WebUI.Misc.Display">
+            <summary>
+            The value applied to the display attribute of style object of the WebAsyncRefreshPanel.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.Misc.Display.NotSet">
+            <summary>
+            The value for display of the DIV HTML element which represents the panel is not set.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.Misc.Display.Block">
+            <summary>
+            Panel is rendered as a block element.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.Misc.Display.Inline">
+            <summary>
+            Panel is rendered as an inline element.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.Misc.Display.None">
+            <summary>
+            Panel is invisible on client. Though it is present in html on the client and keeps all functionality related to linked asynchronous hidden postback.
+            </summary>
+        </member>
+        <member name="T:Infragistics.WebUI.Misc.OverflowType">
+            <summary>
+            The type of overflow child controls in WebAsyncRefreshPanel.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.Misc.OverflowType.NotSet">
+            <summary>
+            The overflow attribute is not set to the DIV HTML element.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.Misc.OverflowType.Visible">
+            <summary>
+            The child controls are visible: no automatic scrollbars.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.Misc.OverflowType.Scroll">
+            <summary>
+            The scrollbars are always displayed.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.Misc.OverflowType.Hidden">
+            <summary>
+            The scrollbars are never displayed.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.Misc.OverflowType.Auto">
+            <summary>
+            The scrollbars are displayed automatically if they are needed.
+            </summary>
+        </member>
+        <member name="T:Infragistics.WebUI.Misc.MiscRenderBase">
+            <summary>
+            Provides base functionality for rendering a control in the Misc namespace.
+            </summary>
+        </member>
+        <member name="F:Infragistics.WebUI.Misc.MiscRenderBase.StyleElementFormatString">
+            <summary></summary>
+        </member>
+        <member name="F:Infragistics.WebUI.Misc.MiscRenderBase.owner">
+            <summary></summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.MiscRenderBase.#ctor(System.Web.UI.WebControls.WebControl,System.Boolean)">
+            <summary>
+            Creates a new instance of the Renderer.  This constructor will throw an ArgumentException if owner is null.
+            </summary>
+            <param name="owner">A valid instance of a GroupBox control.</param>
+            <param name="isDesignMode">A flag indicating whether this renderer will be used for Design-Time functionality</param>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.MiscRenderBase.#ctor(System.Web.UI.WebControls.WebControl)">
+            <summary>
+            Creates a new instance of the Renderer, to be used for the Runtime rendering.  If you need the Renderer to provide DesignTime data, use the overloaded constuctor - specifiying "true" for the isDesignMode parameter.
+            </summary>
+            <param name="owner">A valid instance of a GroupBox control.  This ctor will throw an ArgumentException if owner is null.</param>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.MiscRenderBase.PrepareStyleDefaults">
+            <summary>
+            PrepareStyleDefaults is called from Control.OnPreRender().  It is your last chance to modify any of the styles, or CssStyleClass objects, before they are written to the page.
+            </summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.MiscRenderBase.RegisterAllCssClasses">
+            <summary>
+            Registers all Css classes needed by the owner control, with the page.  
+            </summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.MiscRenderBase.RegisterGeneralJavaScript">
+            <summary>
+            Registers any JavaScript files needed.
+            </summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.MiscRenderBase.GetAllClassesAndRegisterGenerics">
+            <summary>
+            Returns the Style element that contains all CSS classes needed for the owner control.  This method will also register any "Generic" css classes (classes containing default style information), needed for every control of the owners type.
+            </summary>
+            <returns>The style tag which will be added to the Page which contains the owner control.</returns>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.MiscRenderBase.GetWebSafeUniqueID">
+            <summary></summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.MiscRenderBase.WriteCssClassesAndRegisterGenerics(System.IO.TextWriter)">
+            <summary>
+            This method will write all required css classes to support the owner control.  It also registers any Generic classes, so that they only have to be rendered one time.  This cuts down on the size of the HTML output.
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.MiscRenderBase.GetResolvedClassNameString(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="regionKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.MiscRenderBase.CreateCssRegionMappings">
+            <summary></summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.MiscRenderBase.CreateDefaultCssRegionMappings">
+            <summary></summary>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.MiscRenderBase.IsDesignMode">
+            <summary>
+            Indicates whether this renderer will be used to provide DesignTime html.
+            </summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Shared.LocalizedCategoryAttribute.GetLocalizedString(System.String)">
+            <summary>
+            Returns the localized category name.
+            </summary>
+            <param name="value">Name of the category to retreive.</param>
+            <returns>The localized string value.</returns>
+        </member>
+        <member name="T:Infragistics.WebUI.Misc.WebPageStyler">
+            <summary>
+            Drag this control onto your Web Form designer to administer
+            Application Styling at the Page-level.
+            </summary>
+            <remarks>
+            <p class="body">You can use the WebPageStyler control to inform the
+            Application Styling Framework(tm) at the page-level about your
+            selections for <see cref="P:Infragistics.WebUI.Misc.WebPageStyler.EnableAppStyling"/>, <see cref="P:Infragistics.WebUI.Misc.WebPageStyler.StyleSetName"/>
+            and <see cref="P:Infragistics.WebUI.Misc.WebPageStyler.StyleSetPath"/>. These selections will override
+            those made in the "web.config" file.</p>
+            <p class="body">This control only applies to the Page-level, and
+            should not be used in user controls or content templates.</p>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.WebPageStyler.#ctor">
+            <summary>
+            Creates a default instance of the WebPageStyler control.
+            </summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.WebPageStyler.OnInit(System.EventArgs)">
+            <summary>
+            Called back during the Init event in the ASP.NET page lifecycle.
+            </summary>
+            <param name="e">Event arguments passed by ASP.NET, if any.</param>
+            <remarks>
+            <p class="body">Inheritors must call the base class implementation of
+            this method before adding their own functionality.</p>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.WebPageStyler.Infragistics#WebUI#Shared#IProvideAppStyling#DesignRefresh(System.Boolean,System.String,System.String)">
+            <summary>
+            Called by Application Styling Framework(tm) to refresh the controls on the Page after a change.
+            </summary>
+            <param name="enableAppStyling">The EnableAppStyling setting for the AppStylingManager</param>
+            <param name="styleSetName">The StyleSet setting for the AppStylingManager</param>
+            <param name="styleSetPath">The StyleSetPath setting for the AppStylingManager</param>
+            <remarks>
+            	<p class="body">Application developers do not need to use this method.
+            It has been implemented only to fulfill the requirements of the
+            IProvideAppStyling interface.</p>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.WebPageStyler.Render(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            Render this control to the output parameter specified.
+            </summary>
+            <param name="output"> The HTML writer to write out to </param>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.WebPageStyler.WebAgent">
+            <summary>
+            Holds a reference to the Application Styling proxy object.
+            </summary>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.WebPageStyler.StyleSetName">
+            <summary>
+            Name of the Application Styling Framework(tm) style set defining the default themed appearance for controls on this Page that can support Application Styling.
+            </summary>
+            <value>
+            	<p class="body">The name of the Application Styling Framework(tm) (ASF)
+            style set which has been designed to give this control a consistent
+            appearance with other controls in your application.</p>
+            	<p class="body">This property may return the empty string ("") to
+            imply that the default style set (named "Default") should be used.
+            </p>
+            </value>
+            <remarks>
+            	<p class="body">This property allows application developers to override
+            the Application Styling style set that gets applied at the page-level,
+            when their Web form contains a WebPageStyler control. This style set selection
+            will override any style set name set in the application configuration
+            (i.e., the "web.config" file) using the <em>styleSetName</em> attribute.
+            </p>
+            	<p class="body">This style set name can be overridden by individual
+            controls at the control-level.</p>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.WebPageStyler.EnableAppStyling">
+            <summary>
+            Enables support for the Application Styling Framework(tm) to all controls on the current Page that can support Application Styling.
+            </summary>
+            <value>
+            	<em>True</em> indicates Application Styling is enabled by default for all
+            controls on the Page, <em>False</em> indicates Application Styling is disabled
+            for all controls on the Page, and <em>NotSet</em> indicates support for 
+            Application Styling should default to application-level settings.
+            </value>
+            <remarks>
+            	<p class="body">Turn on support for Application Styling of Infragistics ASP.NET
+            controls on this Page when using the Application Styling Framework(tm) (ASF) by
+            setting the EnableAppStyling property to True.</p>
+            	<p class="body">Turn off support for Application Styling of Infragistics ASP.NET
+            controls on this Page (even though it may have been enabled in the "web.config"
+            file) by setting the EnableAppStyling property to False.</p>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.WebPageStyler.StyleSetPath">
+            <summary>
+            Path containing the Application Styling Framework(tm) style set files for controls on this Page that support Application Styling.
+            </summary>
+            <remarks>
+            	<p class="body">Setting this property at the page-level establishes
+            a Page-level default that overrides any setting made at the application
+            configuration level (i.e., in the "web.config" file) through the
+            <em>styleSetPath</em> attribute.</p>
+            	<p class="body">The style set path specified by this property can still
+            be overridden at the control-level.</p>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.WebPageStyler.Infragistics#WebUI#Shared#IProvideAppStyling#StyleSheetFileName">
+            <summary>
+            File name and path to the CSS stylesheet for this WebPageStyler control.
+            </summary>
+            <remarks>
+            <p class="body">This property was included for legacy support only,
+            and is not relevant to Application Styling.</p>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.WebPageStyler.Infragistics#WebUI#Shared#IProvideAppStyling#ParsedStyles">
+            <summary>
+            Contains the ParsedStyleCollection consisting of CSS class definitions read from external sources.
+            </summary>
+            <value>The ParsedStyleCollection after external CSS class
+            definitions have been parsed, or null (Nothing in Visual Basic .NET)
+            if parsing hasn't been performed yet.</value>
+            <remarks>
+            	<p class="body">Application developers do not need to use this
+            property. It has been implemented only to fulfill the requirements
+            of the IProvideAppStyling interface.</p>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.WebPageStyler.Infragistics#WebUI#Shared#IProvideAppStyling#StylePrefix">
+            <summary>
+            Gets a string prefix value that is used within the CSS file to prefix each style class name.
+            </summary>
+            <value>Always returns the empty string.</value>
+            <remarks>
+            	<p class="body">Application developers do not need to use this
+            property. It has been implemented only to fulfill the requirements
+            of the IProvideAppStyling interface.</p>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.WebPageStyler.Infragistics#WebUI#Shared#IProvideAppStyling#ImageDirectory">
+            <summary>
+            Directory location where images have been stored (not used).
+            </summary>
+            <value>Always returns null (Nothing in Visual Basic .NET).</value>
+            <remarks>
+            <p class="body">Application developers do not need to use this property.
+            It has been implemented only to fulfill the requirements of the
+            IProvideAppStyling interface.</p>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.WebPageStyler.About">
+            <summary>
+            Displays the About box with information about this control, such as the version and build number.
+            </summary>
+        </member>
+        <member name="T:Infragistics.WebUI.Misc.DefaultConstants">
+            <summary>
+            This Class is for Infragistics Internal Use Only.
+            The DefaultConstants class is used to provide default values for the Control.
+            </summary>
+        </member>
+        <member name="T:Infragistics.WebUI.Misc.WebGroupBox">
+            <summary>
+            The GroupBox is a Web version of the Windows Forms GroupBox control.  It provides a container for grouping controls visually.
+            </summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.WebGroupBox.#ctor">
+            <summary>
+            Default Constructor.  Creates a new instance of the GroupBox control.
+            </summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.WebGroupBox.OnInit(System.EventArgs)">
+            <summary></summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.WebGroupBox.CreateControlStyle">
+            <summary>
+            Creates the Style object that will be used to control the GroupBox's appearance.
+            </summary>
+            <returns>An instance of an Infragistics.WebUI.Shared.Style class</returns>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.WebGroupBox.Render(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            Writes the HTML representation of this control, to the HtmlTextWriter provided.
+            </summary>
+            <param name="writer">An instance of an HtmlTextWriter</param>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.WebGroupBox.OnPreRender(System.EventArgs)">
+            <summary>
+            This method is the last thing to be called, before the control is actually rendered.  
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.WebGroupBox.ShouldSerializeBrowserTarget">
+            <summary></summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.WebGroupBox.ResetBrowserTarget">
+            <summary></summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.WebGroupBox.Infragistics#WebUI#Shared#IProvideAppStyling#DesignRefresh(System.Boolean,System.String,System.String)">
+            <summary>
+            Called by the Application Styling Framework(tm) to refresh the WebGroupBox control after a change at design-time.
+            </summary>
+            <param name="enableAppStyling">The EnableAppStyling setting for the AppStylingManager</param>
+            <param name="styleSetName">The StyleSet setting for the AppStylingManager</param>
+            <param name="styleSetPath">The StyleSetPath setting for the AppStylingManager</param>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.WebGroupBox.SaveViewState">
+            <summary></summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.WebGroupBox.LoadViewState(System.Object)">
+            <summary></summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.WebGroupBox.TrackViewState">
+            <summary></summary>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.WebGroupBox.Text">
+            <summary>
+            Gets or sets the Text which will be displayed for this control.  The text will appear vertically centered with respect to the Top border.  The horizontal alignment is controlled through the TextAlignment property.
+            </summary>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.WebGroupBox.TitleAlignment">
+            <summary>
+            Controls the horizontal alignment of the Text.
+            </summary>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.WebGroupBox.BrowserTarget">
+            <summary></summary>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.WebGroupBox.ImageDirectory">
+            <summary>
+            The directory where images are located.
+            </summary>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.WebGroupBox.WebAgent">
+            <summary>
+            Holds a reference to the app style proxy object.
+            </summary>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.WebGroupBox.StyleSetName">
+            <summary>
+            Name of the Application Styling Framework(tm) style set defining the themed appearance for this WebGroupBox control.
+            </summary>
+            <value>
+            	<p class="body">The name of the Application Styling Framework(tm) (ASF)
+            style set which has been designed to give this WebGroupBox control a
+            consistent appearance with other controls in your application.</p>
+            	<p class="body">This property may return the empty string ("") to
+            imply that the default style set (named "Default") should be used.</p>
+            </value>
+            <remarks>
+            	<p class="body">Web sites can configure a single, consistent,
+            application-wide style set through the <em>styleSetName</em>
+            attribute in their "web.config" file. Alternately, they can
+            define the style set to apply Application Styling to all
+            controls on a Page by placing a <strong>WebPageStyler</strong>
+            control on that Page and setting it's StyleSetName property.</p>
+            	<p class="body">At the control level this property allows an
+            application developer to customize the style set applied to a
+            single instance of a control.</p>
+            	<p class="body">Normally, graphics designers will furnish you
+            with a style set containing one or more style sheet files (one
+            for each type of control) and image files. The name of the style
+            set (with the exception of the "Default" style set) must appear
+            in each Cascading Style Sheet (CSS) class name defined by this
+            control's style sheet file. For example, two WebTree controls
+            that each use a different style set, "Aqua" and "Onyx", would
+            expect their CSS class names for the ASF <em>Node</em> role to
+            be "igtr_AquaNode" and "igtr_OnyxNode", respectively. This
+            allows the uniqueness of CSS class names necessary to distinguish
+            multiple style sets for the same type of control, without there
+            being any naming collisions.</p>
+            </remarks>
+            <seealso cref="P:Infragistics.WebUI.Misc.WebGroupBox.StyleSetPath"/>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.WebGroupBox.Infragistics#WebUI#Shared#IProvideAppStyling#StyleSheetFileName">
+            <summary>
+            File name and path to the CSS stylesheet for this <b>WebControl</b>.
+            </summary>
+            <remarks>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.WebGroupBox.Infragistics#WebUI#Shared#IProvideAppStyling#ParsedStyles">
+            <summary>
+            Contains the <b>ParsedStyleCollection</b> consisting of CSS class definitions read from external sources.
+            </summary>
+            <value>The <b>ParsedStyleCollection</b> after external CSS class
+            definitions have been parsed, or null (Nothing in Visual Basic .NET)
+            if parsing hasn't been performed yet.</value>
+            <remarks>
+            	<p class="body"></p>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.WebGroupBox.EnableAppStyling">
+            <summary>
+            Enables support on WebGroupBox for the Application Styling Framework(tm).
+            </summary>
+            <value>
+            <em>True</em> indicates Application Styling is enabled, <em>False</em>
+            indicates Application Styling is disabled, and <em>NotSet</em> indicates
+            support for Application Styling should default to page- or application-level
+            settings.
+            </value>
+            <remarks>
+            <p class="body">Turn on support for Application Styling of WebGroupBox
+            when using the Application Styling Framework(tm) (ASF) by setting the 
+            EnableAppStyling property to True.</p>
+            <p class="body">When EnableAppStyling has it's default value of NotSet,
+            this control will defer the determination of whether to use Application
+            Styling to settings you make at the page- or application-level.  Place
+            the <strong>WebPageStyler</strong> control on the same Web form as this control
+            to configure ASF support for all controls on that Page.  ASF support can
+            also be turned on application-wide with the <em>enableAppStyling</em>
+            attribute in your "web.config" file.</p>
+            <p class="body">Turn off support for the ASF in WebGroupBox (even though
+            it may have been enabled at a higher level) by setting the EnableAppStyling
+            property to False.</p>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.WebGroupBox.StyleSetPath">
+            <summary>
+            Path containing the Application Styling Framework(tm) style set files for this type of control.
+            </summary>
+            <remarks>
+            	<p class="body">Web sites can configure the directory path containing
+            their style set files application-wide by using the <em>styleSetPath</em>
+            attribute of their "web.config" file. It is also possible to configure
+            the style set path applicable to all controls on a Page that are subject
+            to Application Styling by placing a <strong>WebPageStyler</strong> control
+            on that Page and setting it's StyleSetPath property.</p>
+            	<p class="body">At the control level this property allows an
+            application developer to customize the location of the style set
+            being applied to a single instance of a control.</p>
+            	<p class="note">Be aware that customizing the style set path at the control
+            level will not allow you to copy a style set's files to this new location,
+            changing a few style property values in them, and then use it successfully
+            with separate instances of the control referencing the original style set
+            of the same name. This is because there would be naming collisions in the
+            Cascading Style Sheet (CSS) class names, which will produce an undefined
+            appearance. You must ensure the CSS class names defined by style sheets
+            in the new style set path are unique from those CSS class names being
+            used by other style sheets that may continue to be referenced. The
+            recommended guidance in this scenario is to create a new style set
+            having a new style set name, that contains your modifications.</p>
+            </remarks>
+            <seealso cref="P:Infragistics.WebUI.Misc.WebGroupBox.StyleSetName"/>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.WebGroupBox.Infragistics#WebUI#Shared#IProvideAppStyling#StylePrefix">
+            <summary>
+            Returns a string prefix value that is used within the CSS file to prefix each style class name.  Can be overridden to change the prefix used for this control.
+            </summary>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.WebGroupBox.PresetMaskResourcePath">
+            <summary>
+            Supports the Infragistics Preset architecture.  For Infragistics Internal Use.
+            </summary>
+            <returns>The resource path of the xml file, used as the Preset Mask (Filter).</returns>
+        </member>
+        <member name="T:Infragistics.WebUI.Misc.GroupBoxRenderBase">
+            <summary>
+            Provides a base implementation of a Renderer.  The renderer is responsible for turning a Control into HTML.
+            </summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.GroupBoxRenderBase.#ctor(Infragistics.WebUI.Misc.WebGroupBox,System.Boolean)">
+            <summary>
+            Creates a new instance of the Renderer.  This constructor will throw an ArgumentException if owner is null.
+            </summary>
+            <param name="owner">A valid instance of a GroupBox control.</param>
+            <param name="isDesignMode">A flag indicating whether this renderer will be used for Design-Time functionality</param>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.GroupBoxRenderBase.#ctor(Infragistics.WebUI.Misc.WebGroupBox)">
+            <summary>
+            Creates a new instance of the Renderer, to be used for the Runtime rendering.  If you need the Renderer to provide DesignTime data, use the overloaded constuctor - specifiying "true" for the isDesignMode parameter.
+            </summary>
+            <param name="owner">A valid instance of a GroupBox control.  This ctor will throw an ArgumentException if owner is null.</param>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.GroupBoxRenderBase.RenderBeginTag(System.Web.UI.HtmlTextWriter,System.String)">
+            <summary>
+            Writes the BeginTag for the GroupBox being rendered, to the specified writer.
+            </summary>
+            <param name="writer">A valid instance of an HtmlTextWriter.</param>
+            <param name="tagName">The tag which will be used as the outer most element for this control.</param>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.GroupBoxRenderBase.CreateCssRegionMappings">
+            <summary>
+            For Infragistics Internal Use.
+            </summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.GroupBoxRenderBase.CreateDefaultCssRegionMappings">
+            <summary>
+            For Infragistics Internal Use.
+            </summary>
+        </member>
+        <member name="P:Infragistics.WebUI.Misc.GroupBoxRenderBase.OwnerGroupBox">
+            <summary>
+            Returns the GroupBox which was passed into the constructor (the control which is being rendered)
+            </summary>
+        </member>
+        <member name="T:Infragistics.WebUI.Misc.RenderDownLevelGroupBox">
+            <summary>
+            This renderer is responsible for rendering the control in a cross browser compatible way, which is supported by all browsers.
+            </summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.RenderDownLevelGroupBox.VisitObjects(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            Goes through the control, rendering out each logical region.
+            </summary>
+            <param name="writer">An instance of an HtmlTextWriter</param>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.RenderDownLevelGroupBox.PrepareStyleDefaults">
+            <summary>
+            For Infragistics Internal Use.
+            </summary>
+        </member>
+        <member name="T:Infragistics.WebUI.Misc.RenderUpLevelGroupBox">
+            <summary>
+            This renderer is responsible for creating the most feature rich possible representation of the control.  Features provided by this renderer are not available on some older browsers.
+            </summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.RenderUpLevelGroupBox.VisitObjects(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            Walks through the control, renders out each logical region.
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.RenderUpLevelGroupBox.PrepareStyleDefaults">
+            <summary>
+            For Infragistics Internal Use.
+            </summary>
+        </member>
+        <member name="M:Infragistics.WebUI.Misc.RenderUpLevelGroupBox.GetResolvedClassNameString(System.String)">
+            <summary>
+            For Infragistics Internal Use.
+            </summary>
+        </member>
+    </members>
+</doc>

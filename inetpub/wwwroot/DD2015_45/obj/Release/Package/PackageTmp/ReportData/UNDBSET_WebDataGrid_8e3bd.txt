@@ -1,0 +1,536 @@
+<asp:GridView ID="gr_GridView_DBSET" runat="server" AutoGenerateColumns="False" DataKeyNames="DBSET_gkey" EnableModelValidation="True" AllowPaging="false" OnRowDataBound="gr_GridView_DBSET_RowDataBound">
+  <Columns>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%# DD2012.PublicVariable.st_choose %></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:ImageButton CommandName="Select" ImageUrl='<%# hh_GridGkey.Value==DataBinder.Eval(Container.DataItem,"DBSET_gkey").ToString() ? "~\images\GridCheck.gif":"~\images\GridUnCheck.gif" %>' runat="server" ID="Imagebutton1" />
+        <input id="tx_DBSET_gkey02" type="hidden" name="tx_DBSET_gkey02" value='<%# DataBinder.Eval(Container.DataItem,"DBSET_gkey").ToString() %>' runat="server" />
+        <input id="tx_DBSET_mkey02" type="hidden" name="tx_DBSET_mkey02" value='<%# DataBinder.Eval(Container.DataItem,"DBSET_mkey").ToString() %>' runat="server" />
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_DBSET_DBFLD.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_DBSET_DBFLD02" runat="server" MaxLength="20" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"DBSET_DBFLD").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_DBSET_DBTNA.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_DBSET_DBTNA02" runat="server" MaxLength="20" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"DBSET_DBTNA").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_DBSET_DBTYP.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox visible="false"  runat="server" ID="tx_DBSET_DBTYP02"/>
+        <asp:dropdownlist Width="70px"  runat="server" ID="dr_DBSET_DBTYP02"/>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_DBSET_DBLEN.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_DBSET_DBLEN02" runat="server" MaxLength="10" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"DBSET_DBLEN").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_DBSET_DBENA.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_DBSET_DBENA02" runat="server" MaxLength="20" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"DBSET_DBENA").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_DBSET_DBCNA.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_DBSET_DBCNA02" runat="server" MaxLength="20" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"DBSET_DBCNA").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_DBSET_DBJIA.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_DBSET_DBJIA02" runat="server" MaxLength="1" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"DBSET_DBJIA").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_DBSET_DBJIN.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_DBSET_DBJIN02" runat="server" MaxLength="20" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"DBSET_DBJIN").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_DBSET_DBJIF.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_DBSET_DBJIF02" runat="server" MaxLength="100" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"DBSET_DBJIF").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_DBSET_DBJIK.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_DBSET_DBJIK02" runat="server" MaxLength="250" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"DBSET_DBJIK").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_DBSET_DBROW.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_DBSET_DBROW02" runat="server" MaxLength="10" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"DBSET_DBROW").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_DBSET_DBCOL.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_DBSET_DBCOL02" runat="server" MaxLength="10" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"DBSET_DBCOL").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_DBSET_DBUCO.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox visible="false"  runat="server" ID="tx_DBSET_DBUCO02"/>
+        <asp:dropdownlist Width="70px"  runat="server" ID="dr_DBSET_DBUCO02"/>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_DBSET_DBPRY.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox visible="false"  runat="server" ID="tx_DBSET_DBPRY02"/>
+        <asp:dropdownlist Width="70px"  runat="server" ID="dr_DBSET_DBPRY02"/>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_DBSET_DBINS.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox visible="false"  runat="server" ID="tx_DBSET_DBINS02"/>
+        <asp:dropdownlist Width="70px"  runat="server" ID="dr_DBSET_DBINS02"/>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_DBSET_DBMOD.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox visible="false"  runat="server" ID="tx_DBSET_DBMOD02"/>
+        <asp:dropdownlist Width="70px"  runat="server" ID="dr_DBSET_DBMOD02"/>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_DBSET_DBEMP.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox visible="false"  runat="server" ID="tx_DBSET_DBEMP02"/>
+        <asp:dropdownlist Width="70px"  runat="server" ID="dr_DBSET_DBEMP02"/>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_DBSET_DBSER.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox visible="false"  runat="server" ID="tx_DBSET_DBSER02"/>
+        <asp:dropdownlist Width="70px"  runat="server" ID="dr_DBSET_DBSER02"/>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_DBSET_DBSOR.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox visible="false"  runat="server" ID="tx_DBSET_DBSOR02"/>
+        <asp:dropdownlist Width="70px"  runat="server" ID="dr_DBSET_DBSOR02"/>
+      </ItemTemplate>
+    </asp:TemplateField>
+  </Columns>
+</asp:GridView>
+<asp:Literal ID="li_Msg" runat="server"></asp:Literal>
+
+
+protected void gr_GridView_DBSET_RowDataBound(object sender, GridViewRowEventArgs e)
+{
+  string st_datavalue = ""; 
+  if (e.Row.RowIndex >= 0) 
+  {
+    DataRowView rowView = (DataRowView)e.Row.DataItem;
+    //欄位名稱
+    if (e.Row.FindControl("tx_DBSET_DBFLD02") != null)
+    {
+      TextBox tx_DBSET_DBFLD02 = e.Row.FindControl("tx_DBSET_DBFLD02") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["DBSET_DBFLD"]).Trim();
+      tx_DBSET_DBFLD02.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_DBSET_DBFLD02, true);} else {clsGV.TextBox_Set(ref tx_DBSET_DBFLD02, false);}
+    }
+    //繁體名稱
+    if (e.Row.FindControl("tx_DBSET_DBTNA02") != null)
+    {
+      TextBox tx_DBSET_DBTNA02 = e.Row.FindControl("tx_DBSET_DBTNA02") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["DBSET_DBTNA"]).Trim();
+      tx_DBSET_DBTNA02.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_DBSET_DBTNA02, true);} else {clsGV.TextBox_Set(ref tx_DBSET_DBTNA02, false);}
+    }
+    //資料型態
+    if (e.Row.FindControl("dr_DBSET_DBTYP02") != null)
+    {
+      DropDownList dr_DBSET_DBTYP02 = e.Row.FindControl("dr_DBSET_DBTYP02") as DropDownList;
+      TextBox tx_DBSET_DBTYP02 = e.Row.FindControl("tx_DBSET_DBTYP02") as TextBox;
+      dr_DBSET_DBTYP02 = sFN.DropDownListFromTable(ref dr_DBSET_DBTYP02,"", "", "", "", "");
+      st_datavalue = DAC.GetStringValue(rowView["DBSET_DBTYP"]).Trim();
+      dr_DBSET_DBTYP02 = sFN.SetDropDownList(ref dr_DBSET_DBTYP02, st_datavalue);
+      if (hh_GridCtrl.Value == "modall") {clsGV.Drpdown_Set(ref dr_DBSET_DBTYP02, ref tx_DBSET_DBTYP02, true);} else {clsGV.Drpdown_Set(ref dr_DBSET_DBTYP02, ref tx_DBSET_DBTYP02, false);}
+    }
+    //資料長度
+    if (e.Row.FindControl("tx_DBSET_DBLEN02") != null)
+    {
+      TextBox tx_DBSET_DBLEN02 = e.Row.FindControl("tx_DBSET_DBLEN02") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["DBSET_DBLEN"]).Trim();
+      tx_DBSET_DBLEN02.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_DBSET_DBLEN02, true);} else {clsGV.TextBox_Set(ref tx_DBSET_DBLEN02, false);}
+    }
+    //英文名稱
+    if (e.Row.FindControl("tx_DBSET_DBENA02") != null)
+    {
+      TextBox tx_DBSET_DBENA02 = e.Row.FindControl("tx_DBSET_DBENA02") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["DBSET_DBENA"]).Trim();
+      tx_DBSET_DBENA02.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_DBSET_DBENA02, true);} else {clsGV.TextBox_Set(ref tx_DBSET_DBENA02, false);}
+    }
+    //簡體名稱
+    if (e.Row.FindControl("tx_DBSET_DBCNA02") != null)
+    {
+      TextBox tx_DBSET_DBCNA02 = e.Row.FindControl("tx_DBSET_DBCNA02") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["DBSET_DBCNA"]).Trim();
+      tx_DBSET_DBCNA02.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_DBSET_DBCNA02, true);} else {clsGV.TextBox_Set(ref tx_DBSET_DBCNA02, false);}
+    }
+    //JoinAlias
+    if (e.Row.FindControl("tx_DBSET_DBJIA02") != null)
+    {
+      TextBox tx_DBSET_DBJIA02 = e.Row.FindControl("tx_DBSET_DBJIA02") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["DBSET_DBJIA"]).Trim();
+      tx_DBSET_DBJIA02.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_DBSET_DBJIA02, true);} else {clsGV.TextBox_Set(ref tx_DBSET_DBJIA02, false);}
+    }
+    //JoinTable
+    if (e.Row.FindControl("tx_DBSET_DBJIN02") != null)
+    {
+      TextBox tx_DBSET_DBJIN02 = e.Row.FindControl("tx_DBSET_DBJIN02") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["DBSET_DBJIN"]).Trim();
+      tx_DBSET_DBJIN02.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_DBSET_DBJIN02, true);} else {clsGV.TextBox_Set(ref tx_DBSET_DBJIN02, false);}
+    }
+    //ret field
+    if (e.Row.FindControl("tx_DBSET_DBJIF02") != null)
+    {
+      TextBox tx_DBSET_DBJIF02 = e.Row.FindControl("tx_DBSET_DBJIF02") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["DBSET_DBJIF"]).Trim();
+      tx_DBSET_DBJIF02.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_DBSET_DBJIF02, true);} else {clsGV.TextBox_Set(ref tx_DBSET_DBJIF02, false);}
+    }
+    //Join Key
+    if (e.Row.FindControl("tx_DBSET_DBJIK02") != null)
+    {
+      TextBox tx_DBSET_DBJIK02 = e.Row.FindControl("tx_DBSET_DBJIK02") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["DBSET_DBJIK"]).Trim();
+      tx_DBSET_DBJIK02.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_DBSET_DBJIK02, true);} else {clsGV.TextBox_Set(ref tx_DBSET_DBJIK02, false);}
+    }
+    //ROW 位置
+    if (e.Row.FindControl("tx_DBSET_DBROW02") != null)
+    {
+      TextBox tx_DBSET_DBROW02 = e.Row.FindControl("tx_DBSET_DBROW02") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["DBSET_DBROW"]).Trim();
+      tx_DBSET_DBROW02.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_DBSET_DBROW02, true);} else {clsGV.TextBox_Set(ref tx_DBSET_DBROW02, false);}
+    }
+    //COL 位置
+    if (e.Row.FindControl("tx_DBSET_DBCOL02") != null)
+    {
+      TextBox tx_DBSET_DBCOL02 = e.Row.FindControl("tx_DBSET_DBCOL02") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["DBSET_DBCOL"]).Trim();
+      tx_DBSET_DBCOL02.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_DBSET_DBCOL02, true);} else {clsGV.TextBox_Set(ref tx_DBSET_DBCOL02, false);}
+    }
+    //使用元件
+    if (e.Row.FindControl("dr_DBSET_DBUCO02") != null)
+    {
+      DropDownList dr_DBSET_DBUCO02 = e.Row.FindControl("dr_DBSET_DBUCO02") as DropDownList;
+      TextBox tx_DBSET_DBUCO02 = e.Row.FindControl("tx_DBSET_DBUCO02") as TextBox;
+      dr_DBSET_DBUCO02 = sFN.DropDownListFromTable(ref dr_DBSET_DBUCO02,"", "", "", "", "");
+      st_datavalue = DAC.GetStringValue(rowView["DBSET_DBUCO"]).Trim();
+      dr_DBSET_DBUCO02 = sFN.SetDropDownList(ref dr_DBSET_DBUCO02, st_datavalue);
+      if (hh_GridCtrl.Value == "modall") {clsGV.Drpdown_Set(ref dr_DBSET_DBUCO02, ref tx_DBSET_DBUCO02, true);} else {clsGV.Drpdown_Set(ref dr_DBSET_DBUCO02, ref tx_DBSET_DBUCO02, false);}
+    }
+    //Pri  Key
+    if (e.Row.FindControl("dr_DBSET_DBPRY02") != null)
+    {
+      DropDownList dr_DBSET_DBPRY02 = e.Row.FindControl("dr_DBSET_DBPRY02") as DropDownList;
+      TextBox tx_DBSET_DBPRY02 = e.Row.FindControl("tx_DBSET_DBPRY02") as TextBox;
+      dr_DBSET_DBPRY02 = sFN.DropDownListFromTable(ref dr_DBSET_DBPRY02,"", "", "", "", "");
+      st_datavalue = DAC.GetStringValue(rowView["DBSET_DBPRY"]).Trim();
+      dr_DBSET_DBPRY02 = sFN.SetDropDownList(ref dr_DBSET_DBPRY02, st_datavalue);
+      if (hh_GridCtrl.Value == "modall") {clsGV.Drpdown_Set(ref dr_DBSET_DBPRY02, ref tx_DBSET_DBPRY02, true);} else {clsGV.Drpdown_Set(ref dr_DBSET_DBPRY02, ref tx_DBSET_DBPRY02, false);}
+    }
+    //是否新增
+    if (e.Row.FindControl("dr_DBSET_DBINS02") != null)
+    {
+      DropDownList dr_DBSET_DBINS02 = e.Row.FindControl("dr_DBSET_DBINS02") as DropDownList;
+      TextBox tx_DBSET_DBINS02 = e.Row.FindControl("tx_DBSET_DBINS02") as TextBox;
+      dr_DBSET_DBINS02 = sFN.DropDownListFromTable(ref dr_DBSET_DBINS02,"", "", "", "", "");
+      st_datavalue = DAC.GetStringValue(rowView["DBSET_DBINS"]).Trim();
+      dr_DBSET_DBINS02 = sFN.SetDropDownList(ref dr_DBSET_DBINS02, st_datavalue);
+      if (hh_GridCtrl.Value == "modall") {clsGV.Drpdown_Set(ref dr_DBSET_DBINS02, ref tx_DBSET_DBINS02, true);} else {clsGV.Drpdown_Set(ref dr_DBSET_DBINS02, ref tx_DBSET_DBINS02, false);}
+    }
+    //是否更正
+    if (e.Row.FindControl("dr_DBSET_DBMOD02") != null)
+    {
+      DropDownList dr_DBSET_DBMOD02 = e.Row.FindControl("dr_DBSET_DBMOD02") as DropDownList;
+      TextBox tx_DBSET_DBMOD02 = e.Row.FindControl("tx_DBSET_DBMOD02") as TextBox;
+      dr_DBSET_DBMOD02 = sFN.DropDownListFromTable(ref dr_DBSET_DBMOD02,"", "", "", "", "");
+      st_datavalue = DAC.GetStringValue(rowView["DBSET_DBMOD"]).Trim();
+      dr_DBSET_DBMOD02 = sFN.SetDropDownList(ref dr_DBSET_DBMOD02, st_datavalue);
+      if (hh_GridCtrl.Value == "modall") {clsGV.Drpdown_Set(ref dr_DBSET_DBMOD02, ref tx_DBSET_DBMOD02, true);} else {clsGV.Drpdown_Set(ref dr_DBSET_DBMOD02, ref tx_DBSET_DBMOD02, false);}
+    }
+    //是否空白
+    if (e.Row.FindControl("dr_DBSET_DBEMP02") != null)
+    {
+      DropDownList dr_DBSET_DBEMP02 = e.Row.FindControl("dr_DBSET_DBEMP02") as DropDownList;
+      TextBox tx_DBSET_DBEMP02 = e.Row.FindControl("tx_DBSET_DBEMP02") as TextBox;
+      dr_DBSET_DBEMP02 = sFN.DropDownListFromTable(ref dr_DBSET_DBEMP02,"", "", "", "", "");
+      st_datavalue = DAC.GetStringValue(rowView["DBSET_DBEMP"]).Trim();
+      dr_DBSET_DBEMP02 = sFN.SetDropDownList(ref dr_DBSET_DBEMP02, st_datavalue);
+      if (hh_GridCtrl.Value == "modall") {clsGV.Drpdown_Set(ref dr_DBSET_DBEMP02, ref tx_DBSET_DBEMP02, true);} else {clsGV.Drpdown_Set(ref dr_DBSET_DBEMP02, ref tx_DBSET_DBEMP02, false);}
+    }
+    //查詢鍵值
+    if (e.Row.FindControl("dr_DBSET_DBSER02") != null)
+    {
+      DropDownList dr_DBSET_DBSER02 = e.Row.FindControl("dr_DBSET_DBSER02") as DropDownList;
+      TextBox tx_DBSET_DBSER02 = e.Row.FindControl("tx_DBSET_DBSER02") as TextBox;
+      dr_DBSET_DBSER02 = sFN.DropDownListFromTable(ref dr_DBSET_DBSER02,"", "", "", "", "");
+      st_datavalue = DAC.GetStringValue(rowView["DBSET_DBSER"]).Trim();
+      dr_DBSET_DBSER02 = sFN.SetDropDownList(ref dr_DBSET_DBSER02, st_datavalue);
+      if (hh_GridCtrl.Value == "modall") {clsGV.Drpdown_Set(ref dr_DBSET_DBSER02, ref tx_DBSET_DBSER02, true);} else {clsGV.Drpdown_Set(ref dr_DBSET_DBSER02, ref tx_DBSET_DBSER02, false);}
+    }
+    //排序鍵值
+    if (e.Row.FindControl("dr_DBSET_DBSOR02") != null)
+    {
+      DropDownList dr_DBSET_DBSOR02 = e.Row.FindControl("dr_DBSET_DBSOR02") as DropDownList;
+      TextBox tx_DBSET_DBSOR02 = e.Row.FindControl("tx_DBSET_DBSOR02") as TextBox;
+      dr_DBSET_DBSOR02 = sFN.DropDownListFromTable(ref dr_DBSET_DBSOR02,"", "", "", "", "");
+      st_datavalue = DAC.GetStringValue(rowView["DBSET_DBSOR"]).Trim();
+      dr_DBSET_DBSOR02 = sFN.SetDropDownList(ref dr_DBSET_DBSOR02, st_datavalue);
+      if (hh_GridCtrl.Value == "modall") {clsGV.Drpdown_Set(ref dr_DBSET_DBSOR02, ref tx_DBSET_DBSOR02, true);} else {clsGV.Drpdown_Set(ref dr_DBSET_DBSOR02, ref tx_DBSET_DBSOR02, false);}
+    }
+  }
+}
+
+
+protected bool UpdateDataAll(string st_ActKey, ref string st_errmsg)
+{
+  bool bl_updateok = false;
+  bool bl_Mod = false;
+  //
+  string st_ctrl = "", st_ctrlname = "";
+  string st_DBSET_gkey="", st_DBSET_mkey="",st_DBSET_DBFLD="",st_DBSET_DBTNA="",st_DBSET_DBTYP="",st_DBSET_DBLEN="",st_DBSET_DBENA="",st_DBSET_DBCNA="",st_DBSET_DBJIA="",st_DBSET_DBJIN="",st_DBSET_DBJIF="",st_DBSET_DBJIK="",st_DBSET_DBROW="",st_DBSET_DBCOL="",st_DBSET_DBUCO="",st_DBSET_DBPRY="",st_DBSET_DBINS="",st_DBSET_DBMOD="",st_DBSET_DBEMP="",st_DBSET_DBSER="",st_DBSET_DBSOR="";
+  DataRow mod_row;
+  DataRow[] sel_rows;
+  //
+  st_ctrl = st_ContentPlaceHolder +"gr_GridView_DBSET$ctl"; 
+  CmdQueryS.CommandText = " and a.gkey='"+hh_qkey.Value+"'";
+  DataTable tb_DBSET = new DataTable();
+  DAC_DBSET DBSETDao = new DAC_DBSET(conn);
+  string st_addselect="";
+  string st_addjoin="";
+  string st_addunion="";
+  DbDataAdapter da_ADP =DBSETDao.GetDataAdapter(ApVer, "UNDBSET", "DBSET", st_addselect, false, st_addjoin, CmdQueryS, st_addunion, "");
+  da_ADP.Fill(tb_DBSET);
+  //
+  OleDbTransaction thistran;
+  conn.Open();
+  thistran = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+  da_ADP.UpdateCommand.Transaction = thistran;
+  da_ADP.DeleteCommand.Transaction = thistran;
+  da_ADP.InsertCommand.Transaction = thistran;
+  try
+  {
+    for (int in_g = 0; in_g <= gr_GridView_DBSET.Rows.Count + 4; in_g++)
+    {
+      //gkey
+      st_ctrlname = st_ctrl +DAC.GetGridViewRowId(in_g)+"$tx_DBSET_gkey02";
+      if (FindControl(st_ctrlname) != null)
+      {
+        //gkey
+        st_ctrlname = st_ctrl +DAC.GetGridViewRowId(in_g)+"$tx_DBSET_gkey02";
+        st_DBSET_gkey = ((HtmlInputHidden)FindControl(st_ctrlname)).Value.Trim();
+        //mkey
+        st_ctrlname = st_ctrl +DAC.GetGridViewRowId(in_g)+"$tx_DBSET_mkey02";
+        st_DBSET_mkey = ((HtmlInputHidden)FindControl(st_ctrlname)).Value.Trim();
+        //欄位名稱
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_DBSET_DBFLD02";
+        st_DBSET_DBFLD= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //繁體名稱
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_DBSET_DBTNA02";
+        st_DBSET_DBTNA= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //資料型態
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$dr_DBSET_DBTYP02" ;
+        st_DBSET_DBTYP = ((DropDownList)FindControl(st_ctrlname)).SelectedValue;
+        //資料長度
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_DBSET_DBLEN02";
+        st_DBSET_DBLEN= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //英文名稱
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_DBSET_DBENA02";
+        st_DBSET_DBENA= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //簡體名稱
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_DBSET_DBCNA02";
+        st_DBSET_DBCNA= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //JoinAlias
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_DBSET_DBJIA02";
+        st_DBSET_DBJIA= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //JoinTable
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_DBSET_DBJIN02";
+        st_DBSET_DBJIN= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //ret field
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_DBSET_DBJIF02";
+        st_DBSET_DBJIF= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //Join Key
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_DBSET_DBJIK02";
+        st_DBSET_DBJIK= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //ROW 位置
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_DBSET_DBROW02";
+        st_DBSET_DBROW= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //COL 位置
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_DBSET_DBCOL02";
+        st_DBSET_DBCOL= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //使用元件
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$dr_DBSET_DBUCO02" ;
+        st_DBSET_DBUCO = ((DropDownList)FindControl(st_ctrlname)).SelectedValue;
+        //Pri  Key
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$dr_DBSET_DBPRY02" ;
+        st_DBSET_DBPRY = ((DropDownList)FindControl(st_ctrlname)).SelectedValue;
+        //是否新增
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$dr_DBSET_DBINS02" ;
+        st_DBSET_DBINS = ((DropDownList)FindControl(st_ctrlname)).SelectedValue;
+        //是否更正
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$dr_DBSET_DBMOD02" ;
+        st_DBSET_DBMOD = ((DropDownList)FindControl(st_ctrlname)).SelectedValue;
+        //是否空白
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$dr_DBSET_DBEMP02" ;
+        st_DBSET_DBEMP = ((DropDownList)FindControl(st_ctrlname)).SelectedValue;
+        //查詢鍵值
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$dr_DBSET_DBSER02" ;
+        st_DBSET_DBSER = ((DropDownList)FindControl(st_ctrlname)).SelectedValue;
+        //排序鍵值
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$dr_DBSET_DBSOR02" ;
+        st_DBSET_DBSOR = ((DropDownList)FindControl(st_ctrlname)).SelectedValue;
+        //
+        bl_Mod = true;
+      }
+      else
+      {
+        bl_Mod = false;
+      }
+      //
+      if (bl_Mod) 
+      {
+        sel_rows = tb_DBSET.Select("DBSET_gkey='"+st_DBSET_gkey+"'");
+        if (sel_rows.Length == 1) 
+        {
+          mod_row = sel_rows[0];
+          if (
+               (DAC.GetStringValue(mod_row["DBSET_DBFLD"]) != st_DBSET_DBFLD) 
+            || (DAC.GetStringValue(mod_row["DBSET_DBTNA"]) != st_DBSET_DBTNA) 
+            || (DAC.GetStringValue(mod_row["DBSET_DBTYP"]) != st_DBSET_DBTYP) 
+            || (DAC.GetStringValue(mod_row["DBSET_DBLEN"]) != st_DBSET_DBLEN) 
+            || (DAC.GetStringValue(mod_row["DBSET_DBENA"]) != st_DBSET_DBENA) 
+            || (DAC.GetStringValue(mod_row["DBSET_DBCNA"]) != st_DBSET_DBCNA) 
+            || (DAC.GetStringValue(mod_row["DBSET_DBJIA"]) != st_DBSET_DBJIA) 
+            || (DAC.GetStringValue(mod_row["DBSET_DBJIN"]) != st_DBSET_DBJIN) 
+            || (DAC.GetStringValue(mod_row["DBSET_DBJIF"]) != st_DBSET_DBJIF) 
+            || (DAC.GetStringValue(mod_row["DBSET_DBJIK"]) != st_DBSET_DBJIK) 
+            || (DAC.GetStringValue(mod_row["DBSET_DBROW"]) != st_DBSET_DBROW) 
+            || (DAC.GetStringValue(mod_row["DBSET_DBCOL"]) != st_DBSET_DBCOL) 
+            || (DAC.GetStringValue(mod_row["DBSET_DBUCO"]) != st_DBSET_DBUCO) 
+            || (DAC.GetStringValue(mod_row["DBSET_DBPRY"]) != st_DBSET_DBPRY) 
+            || (DAC.GetStringValue(mod_row["DBSET_DBINS"]) != st_DBSET_DBINS) 
+            || (DAC.GetStringValue(mod_row["DBSET_DBMOD"]) != st_DBSET_DBMOD) 
+            || (DAC.GetStringValue(mod_row["DBSET_DBEMP"]) != st_DBSET_DBEMP) 
+            || (DAC.GetStringValue(mod_row["DBSET_DBSER"]) != st_DBSET_DBSER) 
+            || (DAC.GetStringValue(mod_row["DBSET_DBSOR"]) != st_DBSET_DBSOR) 
+          )
+          {
+           DBSETDao.Insertbalog(conn, thistran, "DBSET", st_ActKey, st_DBSET_gkey);
+           DBSETDao.Insertbtlog(conn, thistran, "DBSET", DAC.GetStringValue(mod_row["DBSET_gkey"]), "M",UserGkey, DAC.GetStringValue(mod_row["DBSET_gkey"]) + " " + DAC.GetStringValue(mod_row["DBSET_gkey"]) +" " + DAC.GetStringValue(mod_row["DBSET_gkey"]));
+            mod_row.BeginEdit();
+            mod_row["DBSET_DBFLD"] = st_DBSET_DBFLD;      //欄位名稱
+            mod_row["DBSET_DBTNA"] = st_DBSET_DBTNA;      //繁體名稱
+            mod_row["DBSET_DBTYP"] = st_DBSET_DBTYP;      //資料型態
+            mod_row["DBSET_DBLEN"] = st_DBSET_DBLEN;      //資料長度
+            mod_row["DBSET_DBENA"] = st_DBSET_DBENA;      //英文名稱
+            mod_row["DBSET_DBCNA"] = st_DBSET_DBCNA;      //簡體名稱
+            mod_row["DBSET_DBJIA"] = st_DBSET_DBJIA;      //JoinAlias
+            mod_row["DBSET_DBJIN"] = st_DBSET_DBJIN;      //JoinTable
+            mod_row["DBSET_DBJIF"] = st_DBSET_DBJIF;      //ret field
+            mod_row["DBSET_DBJIK"] = st_DBSET_DBJIK;      //Join Key
+            mod_row["DBSET_DBROW"] = st_DBSET_DBROW;      //ROW 位置
+            mod_row["DBSET_DBCOL"] = st_DBSET_DBCOL;      //COL 位置
+            mod_row["DBSET_DBUCO"] = st_DBSET_DBUCO;      //使用元件
+            mod_row["DBSET_DBPRY"] = st_DBSET_DBPRY;      //Pri  Key
+            mod_row["DBSET_DBINS"] = st_DBSET_DBINS;      //是否新增
+            mod_row["DBSET_DBMOD"] = st_DBSET_DBMOD;      //是否更正
+            mod_row["DBSET_DBEMP"] = st_DBSET_DBEMP;      //是否空白
+            mod_row["DBSET_DBSER"] = st_DBSET_DBSER;      //查詢鍵值
+            mod_row["DBSET_DBSOR"] = st_DBSET_DBSOR;      //排序鍵值
+            mod_row.EndEdit();
+            st_ActKey=DAC.get_guidkey();  //
+          }
+        }  //sel_rows.Length == 1
+      }  //bl_Mod
+    }  //for
+    da_ADP.Update(tb_DBSET);
+    thistran.Commit();
+    bl_updateok=true;
+  }  //try
+
+  catch (Exception e)
+  {
+    thistran.Rollback();
+    bl_updateok = false;
+    st_errmsg += e.Message;
+  }
+  finally
+  {
+    thistran.Dispose();
+    DBSETDao.Dispose();
+    tb_DBSET.Dispose();
+    da_ADP.Dispose();
+  }
+  return bl_updateok;
+}

@@ -1,0 +1,63 @@
+<asp:Literal ID="li_AccMsg" runat="server"></asp:Literal>
+<input id="hh_GridGkey" type="hidden" name="hh_GridGkey" runat="server" />
+<input id="hh_GridCtrl" type="hidden" name="hh_GridCtrl" runat="server" />
+<input id="hh_ActKey" type="hidden" name="hh_ActGuidKey" runat="server" />
+<input id="hh_mkey" type="hidden" name="hh_mkey" runat="server" />
+<table>
+  <tr>
+    <td>
+      <asp:LinkButton ID="bt_CAN" runat="server" CausesValidation="False" CommandName="CANCEL" AccessKey="C" CssClass="LinkButton80" Text="C上一步" Width="80px" OnClick="bt_CAN_Click"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_SAV" runat="server" CausesValidation="False" CommandName="SAVE" AccessKey="S" CssClass="LinkButton80" Text="S完成" Width="80px" OnClick="bt_SAV_Click"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_02" runat="server" CausesValidation="False" CommandName="NEW" AccessKey="N" CssClass="LinkButton80" Text="N新增" Width="80px" OnClick="bt_02_Click" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_03" runat="server" CausesValidation="False" CommandName="INSERT" AccessKey="I" CssClass="LinkButton80" Text="I插入" Width="80px" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_04" runat="server" CausesValidation="False" CommandName="MODIFY" AccessKey="M" CssClass="LinkButton80" Text="M修改" Width="80px" OnClick="bt_04_Click" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_05" runat="server" CausesValidation="False" CommandName="DELETE" AccessKey="X" CssClass="LinkButton80" Text="X刪除" Width="80px" OnClick="bt_05_Click" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_06" runat="server" CausesValidation="False" CommandName="COPY" AccessKey="O" CssClass="LinkButton80" Text="O複製" Width="80px" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_07" runat="server" CausesValidation="False" CommandName="PRINT" AccessKey="P" CssClass="LinkButton80" Text="P列印" Width="80px"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_08" runat="server" CausesValidation="False" CommandName="SERCH" AccessKey="F" CssClass="LinkButton80" Text="F查詢" Width="80px"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_09" runat="server" CausesValidation="False" CommandName="TRANS" AccessKey="T" CssClass="LinkButton80" Text="T轉單" Width="80px"></asp:LinkButton>
+    <td>
+      <asp:LinkButton ID="bt_10" runat="server" CausesValidation="False" CommandName="EXCEL" AccessKey="E" CssClass="LinkButton80" Text="Excel" Width="80px"></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_11" runat="server" CausesValidation="False" CommandName="MODALL" AccessKey="B" CssClass="LinkButton80" Text="L整批修改" Width="80px" ></asp:LinkButton>
+    </td>
+    <td>
+      <asp:LinkButton ID="bt_QUT" runat="server" CausesValidation="False" CommandName="QUIT" AccessKey="Q" CssClass="LinkButton80" Text="Q離開" Width="80px" OnClick="bt_QUT_Click"></asp:LinkButton>
+    </td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td > 
+      <asp:Label id="lb_tableyyy_YT01" runat="server" Text="YT01NAME" ></asp:Label>
+      <asp:TextBox id="tx_tableyyy_YT01" width="80px" runat="server" MaxLength="20"></asp:TextBox>
+    </td>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+    <td > 
+      <ig:WebNumericEditor id="tx_tableyyy_YT0N" width="120px" runat="server" MinDecimalPlaces="2" StyleSetName="Appletini" StyleSetPath="../../../ig_res"></ig:WebNumericEditor>
+    </td>
+  </tr>
+</table>
+<asp:Label ID="lb_ErrorMessage" runat="server" Text="" EnableViewState="false" Visible="false" CssClass="ErrorMessage"></asp:Label>

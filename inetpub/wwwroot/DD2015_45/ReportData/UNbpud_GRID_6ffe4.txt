@@ -1,0 +1,648 @@
+<asp:GridView ID="gr_GridView_bpud" runat="server" AutoGenerateColumns="False" DataKeyNames="bpud_gkey" EnableModelValidation="True" AllowPaging="false" OnRowDataBound="gr_GridView_bpud_RowDataBound">
+  <Columns>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%# DD2012.PublicVariable.st_choose %></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:ImageButton CommandName="Select" ImageUrl='<%# hh_GridGkey.Value==DataBinder.Eval(Container.DataItem,"bpud_gkey").ToString() ? "~\images\GridCheck.gif":"~\images\GridUnCheck.gif" %>' runat="server" ID="Imagebutton1" />
+        <input id="tx_bpud_gkey02" type="hidden" name="tx_bpud_gkey02" value='<%# DataBinder.Eval(Container.DataItem,"bpud_gkey").ToString() %>' runat="server" />
+        <input id="tx_bpud_mkey02" type="hidden" name="tx_bpud_mkey02" value='<%# DataBinder.Eval(Container.DataItem,"bpud_mkey").ToString() %>' runat="server" />
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bpud_BPNUM.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_bpud_BPNUM02" runat="server" MaxLength="30" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"bpud_BPNUM").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bpud_BPTNA.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_bpud_BPTNA02" runat="server" MaxLength="100" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"bpud_BPTNA").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bpud_BPCNA.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_bpud_BPCNA02" runat="server" MaxLength="100" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"bpud_BPCNA").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bpud_BPENA.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_bpud_BPENA02" runat="server" MaxLength="100" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"bpud_BPENA").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bpud_BPCLA.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_bpud_BPCLA02" runat="server" MaxLength="100" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"bpud_BPCLA").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bpud_BPDP1.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox visible="false"  runat="server" ID="tx_bpud_BPDP102"/>
+        <asp:dropdownlist Width="70px"  runat="server" ID="dr_bpud_BPDP102"/>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bpud_BPDP2.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox visible="false"  runat="server" ID="tx_bpud_BPDP202"/>
+        <asp:dropdownlist Width="70px"  runat="server" ID="dr_bpud_BPDP202"/>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bpud_BPDP3.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox visible="false"  runat="server" ID="tx_bpud_BPDP302"/>
+        <asp:dropdownlist Width="70px"  runat="server" ID="dr_bpud_BPDP302"/>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bpud_BPDP4.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox visible="false"  runat="server" ID="tx_bpud_BPDP402"/>
+        <asp:dropdownlist Width="70px"  runat="server" ID="dr_bpud_BPDP402"/>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bpud_BPDX1.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox visible="false"  runat="server" ID="tx_bpud_BPDX102"/>
+        <asp:dropdownlist Width="70px"  runat="server" ID="dr_bpud_BPDX102"/>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bpud_BPDX2.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox visible="false"  runat="server" ID="tx_bpud_BPDX202"/>
+        <asp:dropdownlist Width="70px"  runat="server" ID="dr_bpud_BPDX202"/>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bpud_BPDX3.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox visible="false"  runat="server" ID="tx_bpud_BPDX302"/>
+        <asp:dropdownlist Width="70px"  runat="server" ID="dr_bpud_BPDX302"/>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bpud_BPDX4.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox visible="false"  runat="server" ID="tx_bpud_BPDX402"/>
+        <asp:dropdownlist Width="70px"  runat="server" ID="dr_bpud_BPDX402"/>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bpud_BPCUS.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_bpud_BPCUS02" runat="server" MaxLength="10" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"bpud_BPCUS").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bdlr_BPCUS.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_bdlr_BPCUS02" runat="server" MaxLength="20" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"bdlr_BPCUS").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bpud_BPOD1.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_bpud_BPOD102" runat="server" MaxLength="10" Width="80px" TEXT='<%# sFN.DateToDateString(Convert.ToDateTime(DataBinder.Eval(Container.DataItem,"bpud_BPOD1")),sys_DateFormat) %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bpud_BPCU2.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_bpud_BPCU202" runat="server" MaxLength="10" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"bpud_BPCU2").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bdlr_BPCU2.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_bdlr_BPCU202" runat="server" MaxLength="20" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"bdlr_BPCU2").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bpud_BPOD2.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_bpud_BPOD202" runat="server" MaxLength="10" Width="80px" TEXT='<%# sFN.DateToDateString(Convert.ToDateTime(DataBinder.Eval(Container.DataItem,"bpud_BPOD2")),sys_DateFormat) %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bpud_BPDE1.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_bpud_BPDE102" runat="server" MaxLength="10" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"bpud_BPDE1").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bpud_BPDE2.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_bpud_BPDE202" runat="server" MaxLength="10" Width="60px" TEXT='<%# DataBinder.Eval(Container.DataItem,"bpud_BPDE2").ToString() %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bpud_BPDT1.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_bpud_BPDT102" runat="server" MaxLength="10" Width="80px" TEXT='<%# sFN.DateToDateString(Convert.ToDateTime(DataBinder.Eval(Container.DataItem,"bpud_BPDT1")),sys_DateFormat) %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%#lb_bpud_BPETQ.Text%></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:TextBox id="tx_bpud_BPETQ02" runat="server" MaxLength="10" Width="80px" TEXT='<%# sFN.DateToDateString(Convert.ToDateTime(DataBinder.Eval(Container.DataItem,"bpud_BPETQ")),sys_DateFormat) %>'></asp:TextBox>
+      </ItemTemplate>
+    </asp:TemplateField>
+  </Columns>
+</asp:GridView>
+<asp:Literal ID="li_Msg" runat="server"></asp:Literal>
+
+
+protected void gr_GridView_bpud_RowDataBound(object sender, GridViewRowEventArgs e)
+{
+  string st_datavalue = ""; 
+  if (e.Row.RowIndex >= 0) 
+  {
+    DataRowView rowView = (DataRowView)e.Row.DataItem;
+    //商品編號
+    if (e.Row.FindControl("tx_bpud_BPNUM02") != null)
+    {
+      TextBox tx_bpud_BPNUM02 = e.Row.FindControl("tx_bpud_BPNUM02") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["bpud_BPNUM"]).Trim();
+      tx_bpud_BPNUM02.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_bpud_BPNUM02, true);} else {clsGV.TextBox_Set(ref tx_bpud_BPNUM02, false);}
+    }
+    //中文名稱
+    if (e.Row.FindControl("tx_bpud_BPTNA02") != null)
+    {
+      TextBox tx_bpud_BPTNA02 = e.Row.FindControl("tx_bpud_BPTNA02") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["bpud_BPTNA"]).Trim();
+      tx_bpud_BPTNA02.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_bpud_BPTNA02, true);} else {clsGV.TextBox_Set(ref tx_bpud_BPTNA02, false);}
+    }
+    //簡體名稱
+    if (e.Row.FindControl("tx_bpud_BPCNA02") != null)
+    {
+      TextBox tx_bpud_BPCNA02 = e.Row.FindControl("tx_bpud_BPCNA02") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["bpud_BPCNA"]).Trim();
+      tx_bpud_BPCNA02.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_bpud_BPCNA02, true);} else {clsGV.TextBox_Set(ref tx_bpud_BPCNA02, false);}
+    }
+    //英文名稱
+    if (e.Row.FindControl("tx_bpud_BPENA02") != null)
+    {
+      TextBox tx_bpud_BPENA02 = e.Row.FindControl("tx_bpud_BPENA02") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["bpud_BPENA"]).Trim();
+      tx_bpud_BPENA02.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_bpud_BPENA02, true);} else {clsGV.TextBox_Set(ref tx_bpud_BPENA02, false);}
+    }
+    //規　　格
+    if (e.Row.FindControl("tx_bpud_BPCLA02") != null)
+    {
+      TextBox tx_bpud_BPCLA02 = e.Row.FindControl("tx_bpud_BPCLA02") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["bpud_BPCLA"]).Trim();
+      tx_bpud_BPCLA02.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_bpud_BPCLA02, true);} else {clsGV.TextBox_Set(ref tx_bpud_BPCLA02, false);}
+    }
+    //分類一
+    if (e.Row.FindControl("dr_bpud_BPDP102") != null)
+    {
+      DropDownList dr_bpud_BPDP102 = e.Row.FindControl("dr_bpud_BPDP102") as DropDownList;
+      TextBox tx_bpud_BPDP102 = e.Row.FindControl("tx_bpud_BPDP102") as TextBox;
+      dr_bpud_BPDP102 = sFN.DropDownListFromTable(ref dr_bpud_BPDP102,"", "", "", "", "");
+      st_datavalue = DAC.GetStringValue(rowView["bpud_BPDP1"]).Trim();
+      dr_bpud_BPDP102 = sFN.SetDropDownList(ref dr_bpud_BPDP102, st_datavalue);
+      if (hh_GridCtrl.Value == "modall") {clsGV.Drpdown_Set(ref dr_bpud_BPDP102, ref tx_bpud_BPDP102, true);} else {clsGV.Drpdown_Set(ref dr_bpud_BPDP102, ref tx_bpud_BPDP102, false);}
+    }
+    //分類二
+    if (e.Row.FindControl("dr_bpud_BPDP202") != null)
+    {
+      DropDownList dr_bpud_BPDP202 = e.Row.FindControl("dr_bpud_BPDP202") as DropDownList;
+      TextBox tx_bpud_BPDP202 = e.Row.FindControl("tx_bpud_BPDP202") as TextBox;
+      dr_bpud_BPDP202 = sFN.DropDownListFromTable(ref dr_bpud_BPDP202,"", "", "", "", "");
+      st_datavalue = DAC.GetStringValue(rowView["bpud_BPDP2"]).Trim();
+      dr_bpud_BPDP202 = sFN.SetDropDownList(ref dr_bpud_BPDP202, st_datavalue);
+      if (hh_GridCtrl.Value == "modall") {clsGV.Drpdown_Set(ref dr_bpud_BPDP202, ref tx_bpud_BPDP202, true);} else {clsGV.Drpdown_Set(ref dr_bpud_BPDP202, ref tx_bpud_BPDP202, false);}
+    }
+    //分類三
+    if (e.Row.FindControl("dr_bpud_BPDP302") != null)
+    {
+      DropDownList dr_bpud_BPDP302 = e.Row.FindControl("dr_bpud_BPDP302") as DropDownList;
+      TextBox tx_bpud_BPDP302 = e.Row.FindControl("tx_bpud_BPDP302") as TextBox;
+      dr_bpud_BPDP302 = sFN.DropDownListFromTable(ref dr_bpud_BPDP302,"", "", "", "", "");
+      st_datavalue = DAC.GetStringValue(rowView["bpud_BPDP3"]).Trim();
+      dr_bpud_BPDP302 = sFN.SetDropDownList(ref dr_bpud_BPDP302, st_datavalue);
+      if (hh_GridCtrl.Value == "modall") {clsGV.Drpdown_Set(ref dr_bpud_BPDP302, ref tx_bpud_BPDP302, true);} else {clsGV.Drpdown_Set(ref dr_bpud_BPDP302, ref tx_bpud_BPDP302, false);}
+    }
+    //分類四
+    if (e.Row.FindControl("dr_bpud_BPDP402") != null)
+    {
+      DropDownList dr_bpud_BPDP402 = e.Row.FindControl("dr_bpud_BPDP402") as DropDownList;
+      TextBox tx_bpud_BPDP402 = e.Row.FindControl("tx_bpud_BPDP402") as TextBox;
+      dr_bpud_BPDP402 = sFN.DropDownListFromTable(ref dr_bpud_BPDP402,"", "", "", "", "");
+      st_datavalue = DAC.GetStringValue(rowView["bpud_BPDP4"]).Trim();
+      dr_bpud_BPDP402 = sFN.SetDropDownList(ref dr_bpud_BPDP402, st_datavalue);
+      if (hh_GridCtrl.Value == "modall") {clsGV.Drpdown_Set(ref dr_bpud_BPDP402, ref tx_bpud_BPDP402, true);} else {clsGV.Drpdown_Set(ref dr_bpud_BPDP402, ref tx_bpud_BPDP402, false);}
+    }
+    //多分類一
+    if (e.Row.FindControl("dr_bpud_BPDX102") != null)
+    {
+      DropDownList dr_bpud_BPDX102 = e.Row.FindControl("dr_bpud_BPDX102") as DropDownList;
+      TextBox tx_bpud_BPDX102 = e.Row.FindControl("tx_bpud_BPDX102") as TextBox;
+      dr_bpud_BPDX102 = sFN.DropDownListFromTable(ref dr_bpud_BPDX102,"", "", "", "", "");
+      st_datavalue = DAC.GetStringValue(rowView["bpud_BPDX1"]).Trim();
+      dr_bpud_BPDX102 = sFN.SetDropDownList(ref dr_bpud_BPDX102, st_datavalue);
+      if (hh_GridCtrl.Value == "modall") {clsGV.Drpdown_Set(ref dr_bpud_BPDX102, ref tx_bpud_BPDX102, true);} else {clsGV.Drpdown_Set(ref dr_bpud_BPDX102, ref tx_bpud_BPDX102, false);}
+    }
+    //多分類二
+    if (e.Row.FindControl("dr_bpud_BPDX202") != null)
+    {
+      DropDownList dr_bpud_BPDX202 = e.Row.FindControl("dr_bpud_BPDX202") as DropDownList;
+      TextBox tx_bpud_BPDX202 = e.Row.FindControl("tx_bpud_BPDX202") as TextBox;
+      dr_bpud_BPDX202 = sFN.DropDownListFromTable(ref dr_bpud_BPDX202,"", "", "", "", "");
+      st_datavalue = DAC.GetStringValue(rowView["bpud_BPDX2"]).Trim();
+      dr_bpud_BPDX202 = sFN.SetDropDownList(ref dr_bpud_BPDX202, st_datavalue);
+      if (hh_GridCtrl.Value == "modall") {clsGV.Drpdown_Set(ref dr_bpud_BPDX202, ref tx_bpud_BPDX202, true);} else {clsGV.Drpdown_Set(ref dr_bpud_BPDX202, ref tx_bpud_BPDX202, false);}
+    }
+    //多分類三
+    if (e.Row.FindControl("dr_bpud_BPDX302") != null)
+    {
+      DropDownList dr_bpud_BPDX302 = e.Row.FindControl("dr_bpud_BPDX302") as DropDownList;
+      TextBox tx_bpud_BPDX302 = e.Row.FindControl("tx_bpud_BPDX302") as TextBox;
+      dr_bpud_BPDX302 = sFN.DropDownListFromTable(ref dr_bpud_BPDX302,"", "", "", "", "");
+      st_datavalue = DAC.GetStringValue(rowView["bpud_BPDX3"]).Trim();
+      dr_bpud_BPDX302 = sFN.SetDropDownList(ref dr_bpud_BPDX302, st_datavalue);
+      if (hh_GridCtrl.Value == "modall") {clsGV.Drpdown_Set(ref dr_bpud_BPDX302, ref tx_bpud_BPDX302, true);} else {clsGV.Drpdown_Set(ref dr_bpud_BPDX302, ref tx_bpud_BPDX302, false);}
+    }
+    //多分類四
+    if (e.Row.FindControl("dr_bpud_BPDX402") != null)
+    {
+      DropDownList dr_bpud_BPDX402 = e.Row.FindControl("dr_bpud_BPDX402") as DropDownList;
+      TextBox tx_bpud_BPDX402 = e.Row.FindControl("tx_bpud_BPDX402") as TextBox;
+      dr_bpud_BPDX402 = sFN.DropDownListFromTable(ref dr_bpud_BPDX402,"", "", "", "", "");
+      st_datavalue = DAC.GetStringValue(rowView["bpud_BPDX4"]).Trim();
+      dr_bpud_BPDX402 = sFN.SetDropDownList(ref dr_bpud_BPDX402, st_datavalue);
+      if (hh_GridCtrl.Value == "modall") {clsGV.Drpdown_Set(ref dr_bpud_BPDX402, ref tx_bpud_BPDX402, true);} else {clsGV.Drpdown_Set(ref dr_bpud_BPDX402, ref tx_bpud_BPDX402, false);}
+    }
+    //供應商一
+    if (e.Row.FindControl("tx_bpud_BPCUS02") != null)
+    {
+      TextBox tx_bpud_BPCUS02 = e.Row.FindControl("tx_bpud_BPCUS02") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["bpud_BPCUS"]).Trim();
+      tx_bpud_BPCUS02.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_bpud_BPCUS02, true);} else {clsGV.TextBox_Set(ref tx_bpud_BPCUS02, false);}
+    }
+    //供應商一
+    if (e.Row.FindControl("tx_bdlr_BPCUS02") != null)
+    {
+      TextBox tx_bdlr_BPCUS02 = e.Row.FindControl("tx_bdlr_BPCUS02") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["bdlr_BPCUS"]).Trim();
+      tx_bdlr_BPCUS02.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_bdlr_BPCUS02, true);} else {clsGV.TextBox_Set(ref tx_bdlr_BPCUS02, false);}
+    }
+    //採購日一
+    if (e.Row.FindControl("tx_bpud_BPOD102") != null)
+    {
+      TextBox tx_bpud_BPOD102 = e.Row.FindControl("tx_bpud_BPOD102") as TextBox;
+      if (rowView["bpud_BPOD1"]==DBNull.Value)
+      {
+        st_datavalue="";
+      }
+      else
+      { 
+        st_datavalue=sFN.DateToDateString(  DAC.GetDateTimeValue( rowView["bpud_BPOD1"]),sys_DateFormat);
+      }
+      tx_bpud_BPOD102.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_bpud_BPOD102, true);} else {clsGV.TextBox_Set(ref tx_bpud_BPOD102, false);}
+    }
+    //供應商二
+    if (e.Row.FindControl("tx_bpud_BPCU202") != null)
+    {
+      TextBox tx_bpud_BPCU202 = e.Row.FindControl("tx_bpud_BPCU202") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["bpud_BPCU2"]).Trim();
+      tx_bpud_BPCU202.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_bpud_BPCU202, true);} else {clsGV.TextBox_Set(ref tx_bpud_BPCU202, false);}
+    }
+    //供應商二
+    if (e.Row.FindControl("tx_bdlr_BPCU202") != null)
+    {
+      TextBox tx_bdlr_BPCU202 = e.Row.FindControl("tx_bdlr_BPCU202") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["bdlr_BPCU2"]).Trim();
+      tx_bdlr_BPCU202.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_bdlr_BPCU202, true);} else {clsGV.TextBox_Set(ref tx_bdlr_BPCU202, false);}
+    }
+    //採購日二
+    if (e.Row.FindControl("tx_bpud_BPOD202") != null)
+    {
+      TextBox tx_bpud_BPOD202 = e.Row.FindControl("tx_bpud_BPOD202") as TextBox;
+      if (rowView["bpud_BPOD2"]==DBNull.Value)
+      {
+        st_datavalue="";
+      }
+      else
+      { 
+        st_datavalue=sFN.DateToDateString(  DAC.GetDateTimeValue( rowView["bpud_BPOD2"]),sys_DateFormat);
+      }
+      tx_bpud_BPOD202.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_bpud_BPOD202, true);} else {clsGV.TextBox_Set(ref tx_bpud_BPOD202, false);}
+    }
+    //售價含稅
+    if (e.Row.FindControl("tx_bpud_BPDE102") != null)
+    {
+      TextBox tx_bpud_BPDE102 = e.Row.FindControl("tx_bpud_BPDE102") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["bpud_BPDE1"]).Trim();
+      tx_bpud_BPDE102.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_bpud_BPDE102, true);} else {clsGV.TextBox_Set(ref tx_bpud_BPDE102, false);}
+    }
+    //會員含稅
+    if (e.Row.FindControl("tx_bpud_BPDE202") != null)
+    {
+      TextBox tx_bpud_BPDE202 = e.Row.FindControl("tx_bpud_BPDE202") as TextBox;
+      st_datavalue = DAC.GetStringValue(rowView["bpud_BPDE2"]).Trim();
+      tx_bpud_BPDE202.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_bpud_BPDE202, true);} else {clsGV.TextBox_Set(ref tx_bpud_BPDE202, false);}
+    }
+    //上架日期
+    if (e.Row.FindControl("tx_bpud_BPDT102") != null)
+    {
+      TextBox tx_bpud_BPDT102 = e.Row.FindControl("tx_bpud_BPDT102") as TextBox;
+      if (rowView["bpud_BPDT1"]==DBNull.Value)
+      {
+        st_datavalue="";
+      }
+      else
+      { 
+        st_datavalue=sFN.DateToDateString(  DAC.GetDateTimeValue( rowView["bpud_BPDT1"]),sys_DateFormat);
+      }
+      tx_bpud_BPDT102.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_bpud_BPDT102, true);} else {clsGV.TextBox_Set(ref tx_bpud_BPDT102, false);}
+    }
+    //下架日期
+    if (e.Row.FindControl("tx_bpud_BPETQ02") != null)
+    {
+      TextBox tx_bpud_BPETQ02 = e.Row.FindControl("tx_bpud_BPETQ02") as TextBox;
+      if (rowView["bpud_BPETQ"]==DBNull.Value)
+      {
+        st_datavalue="";
+      }
+      else
+      { 
+        st_datavalue=sFN.DateToDateString(  DAC.GetDateTimeValue( rowView["bpud_BPETQ"]),sys_DateFormat);
+      }
+      tx_bpud_BPETQ02.Text = st_datavalue;
+      if (hh_GridCtrl.Value == "modall") {clsGV.TextBox_Set(ref tx_bpud_BPETQ02, true);} else {clsGV.TextBox_Set(ref tx_bpud_BPETQ02, false);}
+    }
+  }
+}
+
+
+protected bool UpdateDataAll(string st_ActKey, ref string st_errmsg)
+{
+  bool bl_updateok = false;
+  bool bl_Mod = false;
+  //
+  string st_ctrl = "", st_ctrlname = "";
+  string st_bpud_gkey="", st_bpud_mkey="",st_bpud_BPNUM="",st_bpud_BPTNA="",st_bpud_BPCNA="",st_bpud_BPENA="",st_bpud_BPCLA="",st_bpud_BPDP1="",st_bpud_BPDP2="",st_bpud_BPDP3="",st_bpud_BPDP4="",st_bpud_BPDX1="",st_bpud_BPDX2="",st_bpud_BPDX3="",st_bpud_BPDX4="",st_bpud_BPCUS="",st_bdlr_BPCUS="",st_bpud_BPOD1="",st_bpud_BPCU2="",st_bdlr_BPCU2="",st_bpud_BPOD2="",st_bpud_BPDE1="",st_bpud_BPDE2="",st_bpud_BPDT1="",st_bpud_BPETQ="";
+  DataRow mod_row;
+  DataRow[] sel_rows;
+  //
+  st_ctrl = st_ContentPlaceHolder +"gr_GridView_bpud$ctl"; 
+  CmdQueryS.CommandText = " and a.gkey='"+hh_qkey.Value+"'";
+  DataTable tb_bpud = new DataTable();
+  DAC_bpud bpudDao = new DAC_bpud(conn);
+  string st_addselect="";
+  string st_addjoin="";
+  string st_addunion="";
+  DbDataAdapter da_ADP =bpudDao.GetDataAdapter(ApVer, "UNbpud", "bpud", st_addselect, false, st_addjoin, CmdQueryS, st_addunion, "");
+  da_ADP.Fill(tb_bpud);
+  //
+  OleDbTransaction thistran;
+  conn.Open();
+  thistran = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+  da_ADP.UpdateCommand.Transaction = thistran;
+  da_ADP.DeleteCommand.Transaction = thistran;
+  da_ADP.InsertCommand.Transaction = thistran;
+  try
+  {
+    for (int in_g = 0; in_g <= gr_GridView_bpud.Rows.Count + 4; in_g++)
+    {
+      //gkey
+      st_ctrlname = st_ctrl +DAC.GetGridViewRowId(in_g)+"$tx_bpud_gkey02";
+      if (FindControl(st_ctrlname) != null)
+      {
+        //gkey
+        st_ctrlname = st_ctrl +DAC.GetGridViewRowId(in_g)+"$tx_bpud_gkey02";
+        st_bpud_gkey = ((HtmlInputHidden)FindControl(st_ctrlname)).Value.Trim();
+        //mkey
+        st_ctrlname = st_ctrl +DAC.GetGridViewRowId(in_g)+"$tx_bpud_mkey02";
+        st_bpud_mkey = ((HtmlInputHidden)FindControl(st_ctrlname)).Value.Trim();
+        //商品編號
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_bpud_BPNUM02";
+        st_bpud_BPNUM= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //中文名稱
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_bpud_BPTNA02";
+        st_bpud_BPTNA= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //簡體名稱
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_bpud_BPCNA02";
+        st_bpud_BPCNA= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //英文名稱
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_bpud_BPENA02";
+        st_bpud_BPENA= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //規　　格
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_bpud_BPCLA02";
+        st_bpud_BPCLA= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //分類一
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$dr_bpud_BPDP102" ;
+        st_bpud_BPDP1 = ((DropDownList)FindControl(st_ctrlname)).SelectedValue;
+        //分類二
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$dr_bpud_BPDP202" ;
+        st_bpud_BPDP2 = ((DropDownList)FindControl(st_ctrlname)).SelectedValue;
+        //分類三
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$dr_bpud_BPDP302" ;
+        st_bpud_BPDP3 = ((DropDownList)FindControl(st_ctrlname)).SelectedValue;
+        //分類四
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$dr_bpud_BPDP402" ;
+        st_bpud_BPDP4 = ((DropDownList)FindControl(st_ctrlname)).SelectedValue;
+        //多分類一
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$dr_bpud_BPDX102" ;
+        st_bpud_BPDX1 = ((DropDownList)FindControl(st_ctrlname)).SelectedValue;
+        //多分類二
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$dr_bpud_BPDX202" ;
+        st_bpud_BPDX2 = ((DropDownList)FindControl(st_ctrlname)).SelectedValue;
+        //多分類三
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$dr_bpud_BPDX302" ;
+        st_bpud_BPDX3 = ((DropDownList)FindControl(st_ctrlname)).SelectedValue;
+        //多分類四
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$dr_bpud_BPDX402" ;
+        st_bpud_BPDX4 = ((DropDownList)FindControl(st_ctrlname)).SelectedValue;
+        //供應商一
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_bpud_BPCUS02";
+        st_bpud_BPCUS= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //供應商一
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_bdlr_BPCUS02";
+        st_bdlr_BPCUS= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //採購日一
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_bpud_BPOD102";
+        st_bpud_BPOD1= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //供應商二
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_bpud_BPCU202";
+        st_bpud_BPCU2= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //供應商二
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_bdlr_BPCU202";
+        st_bdlr_BPCU2= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //採購日二
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_bpud_BPOD202";
+        st_bpud_BPOD2= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //售價含稅
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_bpud_BPDE102";
+        st_bpud_BPDE1= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //會員含稅
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_bpud_BPDE202";
+        st_bpud_BPDE2= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //上架日期
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_bpud_BPDT102";
+        st_bpud_BPDT1= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //下架日期
+        st_ctrlname = st_ctrl + DAC.GetGridViewRowId(in_g) + "$tx_bpud_BPETQ02";
+        st_bpud_BPETQ= ((TextBox)FindControl(st_ctrlname)).Text.Trim();
+        //
+        bl_Mod = true;
+      }
+      else
+      {
+        bl_Mod = false;
+      }
+      //
+      if (bl_Mod) 
+      {
+        sel_rows = tb_bpud.Select("bpud_gkey='"+st_bpud_gkey+"'");
+        if (sel_rows.Length == 1) 
+        {
+          mod_row = sel_rows[0];
+          if (
+               (DAC.GetStringValue(mod_row["bpud_BPNUM"]) != st_bpud_BPNUM) 
+            || (DAC.GetStringValue(mod_row["bpud_BPTNA"]) != st_bpud_BPTNA) 
+            || (DAC.GetStringValue(mod_row["bpud_BPCNA"]) != st_bpud_BPCNA) 
+            || (DAC.GetStringValue(mod_row["bpud_BPENA"]) != st_bpud_BPENA) 
+            || (DAC.GetStringValue(mod_row["bpud_BPCLA"]) != st_bpud_BPCLA) 
+            || (DAC.GetStringValue(mod_row["bpud_BPDP1"]) != st_bpud_BPDP1) 
+            || (DAC.GetStringValue(mod_row["bpud_BPDP2"]) != st_bpud_BPDP2) 
+            || (DAC.GetStringValue(mod_row["bpud_BPDP3"]) != st_bpud_BPDP3) 
+            || (DAC.GetStringValue(mod_row["bpud_BPDP4"]) != st_bpud_BPDP4) 
+            || (DAC.GetStringValue(mod_row["bpud_BPDX1"]) != st_bpud_BPDX1) 
+            || (DAC.GetStringValue(mod_row["bpud_BPDX2"]) != st_bpud_BPDX2) 
+            || (DAC.GetStringValue(mod_row["bpud_BPDX3"]) != st_bpud_BPDX3) 
+            || (DAC.GetStringValue(mod_row["bpud_BPDX4"]) != st_bpud_BPDX4) 
+            || (DAC.GetStringValue(mod_row["bpud_BPCUS"]) != st_bpud_BPCUS) 
+            || (DAC.GetStringValue(mod_row["bdlr_BPCUS"]) != st_bdlr_BPCUS) 
+            || (DAC.GetStringValue(mod_row["bpud_BPOD1"]) != st_bpud_BPOD1) 
+            || (DAC.GetStringValue(mod_row["bpud_BPCU2"]) != st_bpud_BPCU2) 
+            || (DAC.GetStringValue(mod_row["bdlr_BPCU2"]) != st_bdlr_BPCU2) 
+            || (DAC.GetStringValue(mod_row["bpud_BPOD2"]) != st_bpud_BPOD2) 
+            || (DAC.GetStringValue(mod_row["bpud_BPDE1"]) != st_bpud_BPDE1) 
+            || (DAC.GetStringValue(mod_row["bpud_BPDE2"]) != st_bpud_BPDE2) 
+            || (DAC.GetStringValue(mod_row["bpud_BPDT1"]) != st_bpud_BPDT1) 
+            || (DAC.GetStringValue(mod_row["bpud_BPETQ"]) != st_bpud_BPETQ) 
+          )
+          {
+           bpudDao.Insertbalog(conn, thistran, "bpud", st_ActKey, st_bpud_gkey);
+           bpudDao.Insertbtlog(conn, thistran, "bpud", DAC.GetStringValue(mod_row["bpud_gkey"]), "M",UserGkey, DAC.GetStringValue(mod_row["bpud_gkey"]) + " " + DAC.GetStringValue(mod_row["bpud_gkey"]) +" " + DAC.GetStringValue(mod_row["bpud_gkey"]));
+            mod_row.BeginEdit();
+            mod_row["bpud_BPNUM"] = st_bpud_BPNUM;      //商品編號
+            mod_row["bpud_BPTNA"] = st_bpud_BPTNA;      //中文名稱
+            mod_row["bpud_BPCNA"] = st_bpud_BPCNA;      //簡體名稱
+            mod_row["bpud_BPENA"] = st_bpud_BPENA;      //英文名稱
+            mod_row["bpud_BPCLA"] = st_bpud_BPCLA;      //規　　格
+            mod_row["bpud_BPDP1"] = st_bpud_BPDP1;      //分類一
+            mod_row["bpud_BPDP2"] = st_bpud_BPDP2;      //分類二
+            mod_row["bpud_BPDP3"] = st_bpud_BPDP3;      //分類三
+            mod_row["bpud_BPDP4"] = st_bpud_BPDP4;      //分類四
+            mod_row["bpud_BPDX1"] = st_bpud_BPDX1;      //多分類一
+            mod_row["bpud_BPDX2"] = st_bpud_BPDX2;      //多分類二
+            mod_row["bpud_BPDX3"] = st_bpud_BPDX3;      //多分類三
+            mod_row["bpud_BPDX4"] = st_bpud_BPDX4;      //多分類四
+            mod_row["bpud_BPCUS"] = st_bpud_BPCUS;      //供應商一
+            mod_row["bdlr_BPCUS"] = st_bdlr_BPCUS;      //供應商一
+            mod_row["bpud_BPOD1"] = st_bpud_BPOD1;      //採購日一
+            mod_row["bpud_BPCU2"] = st_bpud_BPCU2;      //供應商二
+            mod_row["bdlr_BPCU2"] = st_bdlr_BPCU2;      //供應商二
+            mod_row["bpud_BPOD2"] = st_bpud_BPOD2;      //採購日二
+            mod_row["bpud_BPDE1"] = st_bpud_BPDE1;      //售價含稅
+            mod_row["bpud_BPDE2"] = st_bpud_BPDE2;      //會員含稅
+            mod_row["bpud_BPDT1"] = st_bpud_BPDT1;      //上架日期
+            mod_row["bpud_BPETQ"] = st_bpud_BPETQ;      //下架日期
+            mod_row.EndEdit();
+            st_ActKey=DAC.get_guidkey();  //
+          }
+        }  //sel_rows.Length == 1
+      }  //bl_Mod
+    }  //for
+    da_ADP.Update(tb_bpud);
+    thistran.Commit();
+    bl_updateok=true;
+  }  //try
+
+  catch (Exception e)
+  {
+    thistran.Rollback();
+    bl_updateok = false;
+    st_errmsg += e.Message;
+  }
+  finally
+  {
+    thistran.Dispose();
+    bpudDao.Dispose();
+    tb_bpud.Dispose();
+    da_ADP.Dispose();
+  }
+  return bl_updateok;
+}

@@ -1,0 +1,19 @@
+CREATE TABLE dbo.sn201(
+  gkey VARCHAR(40) NOT NULL, /* gkey */
+  code  CHAR(1)  NOT NULL DEFAULT '' ,/*基本色代號 */
+  cname  NVARCHAR(6)  NULL DEFAULT '' ,/*基本色名稱 */
+  ss101gkey1  NVARCHAR(40)  NULL DEFAULT '' ,/*建檔人 */
+  mdate  DATETIME NULL DEFAULT  ,/*建檔日期 */
+  mname  NVARCHAR(10)  NULL DEFAULT '' ,/*mname */
+  mkey   VARCHAR(40)     NOT NULL, /*異動key */ 
+  trcls  VARCHAR(10) NOT NULL, /*異動旗標 */ 
+  trcrd  DATETIME    NOT NULL, /*建檔日期 */ 
+  trmod  DATETIME    NOT NULL, /*更正日期 */ 
+  trusr  NVARCHAR(40) NOT NULL  /*更正人員 */ 
+  ) ON [PRIMARY] 
+
+ALTER TABLE [dbo].[sn201] WITH NOCHECK ADD 
+  CONSTRAINT [PK_sn201] PRIMARY KEY  NONCLUSTERED 
+  (
+    [gkey]
+  )  ON [PRIMARY] 

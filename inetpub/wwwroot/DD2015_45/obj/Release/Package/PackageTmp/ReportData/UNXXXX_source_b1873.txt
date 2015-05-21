@@ -1,0 +1,576 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.OleDb;
+using System.Data.Common;
+using YNet;
+
+    string st_object_func = "UNXXXX";
+    string st_ContentPlaceHolder="ctl00$ContentPlaceHolder1$";
+    //
+    string st_dd_apx = "UNXXXX";         //UNdcnews   與apx 相關
+    string st_dd_table = "";       //dcnews     與table 相關 
+    string st_ren_head = "";       //DC         與單號相關 
+    string st_ren_yymmtext = "";   //           與單號相關 
+    string st_ren_cls = "";        //ren        與單號cls相關 
+    string st_ren_cos = "";        //1          與單號cos相關 
+    int in_ren_len = 0;            //6          與單號流水號 
+    //
+    protected void Page_Load(object sender, EventArgs e)
+    {
+      li_Msg.Text = "";
+      li_AccMsg.Text = "";
+      //檢查權限&狀態
+      if (sFN.checkAccessFunc(UserGkey, st_object_func, 1, UserLoginGkey, ref li_AccMsg))
+      {
+        if (!IsPostBack)
+        {
+         
+
+          CmdQueryS.CommandText=" AND 1=1 ";
+          Session["fm_CmdQueryS"] = CmdQueryS;
+          Set_Control();
+          if (DAC.GetStringValue(Session["fm_gr_GridView__GridGkey"]) != "")
+          {
+            gr_GridView_.PageIndex=DAC.GetInt16Value(Session["fm_gr_GridView__PageIndex"]);
+            gr_GridView_.SelectedIndex=DAC.GetInt16Value(Session["fm_gr_GridView__SelectedIndex"]);
+            hh_GridGkey.Value = DAC.GetStringValue(Session["fm_gr_GridView__GridGkey"]);
+          }
+          //
+          BindNew(true);
+          SetSerMod();
+          Session["fm_gr_GridView__PageIndex"] = gr_GridView_.PageIndex;
+          Session["fm_gr_GridView__SelectedIndex"] = gr_GridView_.SelectedIndex;
+        }
+        else
+        {
+          if ((hh_GridCtrl.Value.ToString().ToLower() == "ins") || (hh_GridCtrl.Value.ToString().ToLower() == "mod"))
+          {
+            BindNew(false);
+          }
+          else
+          {
+            BindNew(true);
+          }
+        }
+      }
+    }
+
+    private void Set_Control()
+    {
+      FunctionName = sFN.SetFormTitle(st_object_func, PublicVariable.LangType);   //取Page Title
+      gr_GridView_.PageSize = int.Parse(sFN.Get_FormVariable(st_object_func, "pagesize"));  //GridView 取pagesize
+      this.Page.Title = FunctionName;
+      sFN.SetFormLables(this, PublicVariable.LangType,st_ContentPlaceHolder, ApVer,"UNXXXX","");
+    }
+
+    private void ClearText()
+    {
+     //
+      tx__01.Text ="";  //SSSSS
+
+     //
+      hh_mkey.Value = "";
+    }
+    
+    private void SetSerMod()
+    {
+      //
+      //
+      clsGV.TextBox_Set(ref tx__01, false);   //SSSSS
+      //
+      //
+      sFN.SetButtons(this, PublicVariable.LangType, st_object_func, UserGkey, st_ContentPlaceHolder , "ser");
+      sFN.SetLinkButton(this, "bt_SAV", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_save, false);
+      sFN.SetLinkButton(this, "bt_CAN", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_cancel, false);
+      sFN.SetLinkButton(this, "bt_QUT", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_quit, true);
+      //
+      gr_GridView_.Enabled = true;
+      //gr_GridView_.Columns[0].Visible=true;
+    }
+    
+    private void SetEditMod()
+    {
+      // 
+      clsGV.TextBox_Set(ref tx__01, true);  //SSSSS
+      // 
+      sFN.SetButtons(this, PublicVariable.LangType, st_object_func, UserGkey, st_ContentPlaceHolder, "mod");
+      sFN.SetLinkButton(this, "bt_SAV", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_save, true);
+      sFN.SetLinkButton(this, "bt_CAN", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_cancel, true);
+      sFN.SetLinkButton(this, "bt_QUT", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_quit, false);
+      //
+      gr_GridView_.Enabled = false;
+      //gr_GridView_.Columns[0].Visible = false;
+    }
+    
+    private void SetEditModAll()
+    {
+      // 
+      clsGV.TextBox_Set(ref tx__01, true);  //SSSSS
+      // 
+      sFN.SetButtons(this, PublicVariable.LangType, st_object_func, UserGkey, st_ContentPlaceHolder, "mod");
+      sFN.SetLinkButton(this, "bt_SAV", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_save, true);
+      sFN.SetLinkButton(this, "bt_CAN", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_cancel, true);
+      sFN.SetLinkButton(this, "bt_QUT", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_quit, false);
+      //
+      gr_GridView_.Enabled = true;
+      //gr_GridView_.Columns[0].Visible = false;
+    }
+    
+    private void BindText(DataRow CurRow)
+    {
+      //
+      //
+      tx__01.Text = DAC.GetStringValue(CurRow["_01"]);  //SSSSS
+      //
+      //
+      hh_mkey.Value = DAC.GetStringValue(CurRow["_mkey"]);
+      //
+    }
+    
+    private void BindNew(bool bl_showdata)
+    {
+      string SelDataKey = "";
+      DataRow[] SelDataRow;
+      DataRow CurRow;
+      //
+      try
+      {
+        CmdQueryS = (OleDbCommand)Session["fm_CmdQueryS"];
+      }
+      catch
+      {
+        CmdQueryS.CommandText = "";
+      }
+      //
+      DataTable tb_ = new DataTable();
+      DAC_ Dao = new DAC_(conn);
+      OleDbDataAdapter ad_DataDataAdapter;
+      string st_addselect = "";
+      string st_addjoin = "";
+      string st_addunion = "";
+      ad_DataDataAdapter = Dao.GetDataAdapter(ApVer, "UN", "", st_addselect, false, st_addjoin, CmdQueryS, st_addunion, "order by xxx ");
+      ad_DataDataAdapter.Fill(tb_);
+      //
+      if (tb_.Rows.Count > 0)
+      {
+        bt_05.OnClientClick ="return btnDEL_c()";
+        bt_04.OnClientClick = "return btnMOD_c()";
+      }
+      else
+      {
+        bt_05.OnClientClick = "return btnDEL0_c()";
+        bt_04.OnClientClick = "return btnMOD0_c()";
+      }
+      gr_GridView_.DataSource = tb_;
+      //fmsn101_GV1_SelectedIndex
+      //fmsn101_GV1_PageIndex
+      gr_GridView_ = clsGV.BindGridView(gr_GridView_, tb_, hh_GridCtrl, ref hh_GridGkey,"fm_gr_GridView_");
+      gr_GridView_.DataBind();
+      SelDataKey = "_gkey='"+hh_GridGkey.Value+"'";
+      SelDataRow = tb_.Select(SelDataKey);
+      //
+      if (bl_showdata)
+      {
+        if (SelDataRow.Length == 1)
+        {
+          CurRow = SelDataRow[0];
+          Session["fm_gr_GridView__GridGkey"]=hh_GridGkey.Value;
+          BindText(CurRow);
+        }
+        else
+        {
+          hh_GridCtrl.Value = "init";
+          ClearText();
+        }
+      }
+      tb_.Dispose();
+      Dao.Dispose();
+    }
+    
+    protected void gr_GridView__PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+      gr_GridView_.PageIndex = e.NewPageIndex;
+      Session["fm_gr_GridView__PageIndex"] = gr_GridView_.PageIndex;
+      hh_GridGkey.Value = gr_GridView_.DataKeys[gr_GridView_.SelectedIndex].Value.ToString();
+    }
+    
+    protected void gr_GridView__PageIndexChanged(object sender, EventArgs e)
+    {
+     if (gr_GridView_.Enabled)
+     {
+       hh_GridCtrl.Value = "ser";
+       BindNew(true);
+       SetSerMod();
+       Session["fm_gr_GridView__PageIndex"] = gr_GridView_.PageIndex;
+       Session["fm_gr_GridView__SelectedIndex"] = gr_GridView_.SelectedIndex;
+     }
+     else
+     {
+       li_Msg.Text = "<script> alert('" + StringTable.GetString("請先處理資料輸入") + "'); </script>";
+     }
+   }
+   
+    protected void gr_GridView__SelectedIndexChanged(object sender, EventArgs e)
+    {
+      BindNew(true);
+      Session["fm_gr_GridView__PageIndex"] = gr_GridView_.PageIndex;
+      Session["fm_gr_GridView__SelectedIndex"] = gr_GridView_.SelectedIndex;
+      hh_GridGkey.Value = gr_GridView_.DataKeys[gr_GridView_.SelectedIndex].Value.ToString();
+      SetSerMod();
+    }
+    
+    protected void bt_02_Click(object sender, EventArgs e)
+    {
+      actNEW();
+    }
+    
+    protected void actNEW()
+    {
+      if (sFN.checkAccessFunc(UserGkey, st_object_func, 2, UserLoginGkey, ref li_AccMsg))
+      {
+        hh_GridCtrl.Value = "ins";
+        Set_Control();
+        ClearText();
+        //定義guidkey
+        hh_ActKey.Value = DAC.get_guidkey();
+        BindNew(false);
+        SetEditMod();
+        li_Msg.Text = "<script> document.all('ContentPlaceHolder1_tx_xxxxxx').focus(); </script>";
+      }
+    }
+    
+    protected void bt_04_Click(object sender, EventArgs e)
+    {
+      actMOD();
+    }
+    
+    protected void actMOD()
+    {
+      if (sFN.checkAccessFunc(UserGkey, st_object_func, 4, UserLoginGkey, ref li_AccMsg))
+      {
+        hh_GridCtrl.Value ="mod";
+        Set_Control();
+        //取Act guidkey
+        hh_ActKey.Value = DAC.get_guidkey();
+        BindNew(true);
+        SetEditMod();
+      }
+    }
+    
+    protected void bt_11_Click(object sender, EventArgs e)
+    {
+      actMODALL();
+    }
+    
+    protected void actMODALL()
+    {
+      if (sFN.checkAccessFunc(UserGkey, st_object_func, 4, UserLoginGkey, ref li_AccMsg))
+      {
+        hh_GridCtrl.Value = "modall";
+        Set_Control();
+        //取Act guidkey
+        hh_ActKey.Value = DAC.get_guidkey();
+        BindNew(true);
+        SetEditModAll();
+      }
+    }
+    
+    protected void bt_QUT_Click(object sender, EventArgs e)
+    {
+      Response.Redirect("~/Master/"+ Page.Theme + "/MainForm.aspx");
+    }
+    
+    protected void bt_CAN_Click(object sender, EventArgs e)
+    {
+      actCAN();
+    }
+    
+    protected void actCAN()
+    {
+      hh_GridCtrl.Value = "ser";
+      Set_Control();
+      ClearText();
+      BindNew(true);
+      SetSerMod();
+    }
+    protected void bt_05_Click(object sender, EventArgs e)
+    {
+      actDEL();
+    }
+    
+    protected void actDEL()
+    {
+      if (sFN.checkAccessFunc(UserGkey, st_object_func, 5, UserLoginGkey, ref li_AccMsg))
+      {
+        bool bl_delok = false;
+        Set_Control();
+        hh_ActKey.Value = DAC.get_guidkey();
+        //
+        DAC_ Dao = new DAC_(conn);
+        string st_addselect = "";
+        string st_addjoin = "";
+        string st_addunion = "";
+        string st_SelDataKey = "_gkey='" + hh_GridGkey.Value + "' and _mkey='"+hh_mkey.Value+"' ";
+        DataTable tb_ = new DataTable();
+        DbDataAdapter da_ADP = Dao.GetDataAdapter(ApVer, "UN", "", st_addselect, false, st_addjoin, CmdQueryS, st_addunion, "");
+        da_ADP.Fill(tb_);
+        DataRow[] DelRow = tb_.Select(st_SelDataKey);
+        if (DelRow.Length == 1)
+        {
+          conn.Open();
+          OleDbTransaction thistran = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+          da_ADP.DeleteCommand.Transaction = thistran;
+          try
+          {
+            Dao.Insertbalog(conn, thistran,"",hh_ActKey.Value, hh_GridGkey.Value);
+            Dao.Insertbtlog(conn, thistran,"", DAC.GetStringValue(DelRow[0]["_gkey"]), "D", UserName, DAC.GetStringValue(DelRow[0]["_gkey"]));
+            DelRow[0].Delete();
+            da_ADP.Update(tb_);
+            thistran.Commit();
+            bl_delok = true;
+          }
+          catch (Exception e)
+          {
+            thistran.Rollback();
+            bl_delok = false;
+            lb_ErrorMessage.Visible = true;
+            lb_ErrorMessage.Text = e.Message;
+          }
+          finally
+          {
+            thistran.Dispose();
+            Dao.Dispose();
+            tb_.Dispose();
+            da_ADP.Dispose();
+            conn.Close();
+          }
+        }
+        else
+        {
+          bl_delok = false;
+          lb_ErrorMessage.Visible = true;
+          lb_ErrorMessage.Text = StringTable.GetString("資料已變更,請重新選取!");
+        }
+        tb_.Clear();
+        //
+        if (bl_delok)
+        {
+          gr_GridView_ = clsGV.SetGridCursor("del", gr_GridView_, -2);
+          BindNew(true);
+          SetSerMod();
+        }
+        //bl_delok
+      }
+    }
+    
+    protected void bt_SAV_Click(object sender, EventArgs e)
+    {
+      actSAV();
+    }
+    
+    protected void actSAV()
+    {
+      string st_ckerrmsg = "";
+      string st_dberrmsg = "";
+      string st_tempgkey = "";
+      bool bl_insok = false, bl_updateok = false;
+      //
+      Set_Control();
+      if (ServerEditCheck(ref st_ckerrmsg))
+      {
+        DAC_ Dao = new DAC_(conn);
+        if (hh_GridCtrl.Value.ToLower() == "modall")
+        {
+          if (UpdateDataAll(hh_ActKey.Value, ref st_dberrmsg))
+          {
+            SetSerMod();
+            hh_GridCtrl.Value = "rekey";
+            BindNew(true);
+            hh_GridCtrl.Value = "ser";
+          }
+          else
+          {
+            lb_ErrorMessage.Visible = true;
+            lb_ErrorMessage.Text = st_dberrmsg;
+          }
+        }  //
+        else
+        {
+          string st_addselect = "";
+          string st_addjoin = "";
+          string st_addunion = "";
+          string st_SelDataKey = "_gkey='"+hh_GridGkey.Value+"'";
+          if (hh_GridCtrl.Value.ToLower() == "ins")
+          {
+            //自動編號
+            //DateTime dt_idat=Convert.ToDateTime(tx_riza_RIDAT.Text);
+            //st_ren_yymmtext =sFN.strzeroi(dt_idat.Year,4)+sFN.strzeroi(dt_idat.Month,2);
+            //st_ren_cls=st_ren_yymmtext;
+            //tx_riza_RIREN.Text = rizaDao.GetRenW(conn, st_dd_apx, st_ren_cls, st_ren_cos, st_ren_head, st_ren_yymmtext, in_ren_len, false);
+            //conn.Close();
+            
+            //檢查重複
+            if (Dao.IsExists("", "_Primary_key_", Primary_key.Text, ""))
+            {
+              bl_insok = false;
+              st_dberrmsg = StringTable.GetString(Primary_key.Text + ",已存在.");
+              
+             // Dao.UpDateRenW(st_dd_apx, st_ren_cls, st_ren_cos, tx_riza_RIREN.Text);
+             // st_dberrmsg = StringTable.GetString(tx_riza_RIREN.Text + ",已重新取號.");
+             // //tx_riza_RIREN.Text = Dao.GetRenW(conn, st_dd_apx, st_ren_cls, st_ren_cos, st_ren_head, st_ren_yymmtext, in_ren_len, false);             // tx_riza_RIREN.Text ="";
+             // conn.Close();
+             
+            }
+            else
+            {
+              DataTable tb__ins = new DataTable();
+              DbDataAdapter da_ADP_ins = Dao.GetDataAdapter(ApVer, "UN", "", st_addselect, false, st_addjoin, CmdQueryS_, st_addunion, "");
+              da_ADP_ins.Fill(tb__ins);
+              conn.Open();
+              OleDbTransaction thistran = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+              da_ADP_ins.InsertCommand.Transaction = thistran;
+              try
+              {
+                DataRow ins_row = tb__ins.NewRow();
+                st_tempgkey = DAC.get_guidkey();
+                ins_row["_gkey"] = st_tempgkey;       // 
+                ins_row["_mkey"] = DAC.get_guidkey(); //
+                ins_row["_01"] =tx__01.Text.Trim();       // SSSSS
+                
+                ins_row["_trusr"] = UserGkey;  //
+                tb__ins.Rows.Add(ins_row);
+                //
+                //
+                da_ADP_ins.Update(tb__ins);
+                // Dao.UpDateRenW(conn, thistran, st_dd_apx, st_ren_cls, st_ren_cos, tx_riza_RIREN.Text.Trim());
+                Dao.Insertbalog(conn, thistran, "", hh_ActKey.Value, hh_GridGkey.Value);
+                Dao.Insertbtlog(conn, thistran, "", DAC.GetStringValue(ins_row["_gkey"]), "I", UserName, DAC.GetStringValue(ins_row["_gkey"]));
+                thistran.Commit();
+                bl_insok = true;
+              }
+              catch (Exception e)
+              {
+                thistran.Rollback();
+                bl_insok = false;
+                st_dberrmsg = e.Message;
+              }
+              finally
+              {
+                thistran.Dispose();
+                Dao.Dispose();
+                tb__ins.Dispose();
+                da_ADP_ins.Dispose();
+                conn.Close();
+              }
+            }
+            if (bl_insok)
+            {
+              hh_GridGkey.Value = st_tempgkey;
+              hh_GridCtrl.Value = "rekey";
+              BindNew(true);
+              hh_GridCtrl.Value = "ser";
+              SetSerMod();
+            }
+            else
+            {
+              lb_ErrorMessage.Text = st_dberrmsg;
+              lb_ErrorMessage.Visible = true;
+            } //bl_insok
+          }  //ins
+          else if (hh_GridCtrl.Value.ToLower() == "mod")
+          {
+            if (Dao.IsExists("", "_Primary_key_", Primary_key.Text, "gkey<>'"+hh_GridGkey.Value+"'"))
+            {
+              bl_updateok = false;
+              st_dberrmsg = StringTable.GetString(Primary_key.Text+",已存在.");
+            }
+            else
+            {
+              DataTable tb__mod = new DataTable();
+              DbDataAdapter da_ADP_mod = Dao.GetDataAdapter(ApVer, "UN", "", st_addselect, false, st_addjoin, CmdQueryS_, st_addunion, "");
+              da_ADP_mod.Fill(tb__mod);
+              st_SelDataKey = "_gkey='" + hh_GridGkey.Value + "' and _mkey='"+hh_mkey.Value+"' ";
+              DataRow[] mod_rows = tb__mod.Select(st_SelDataKey);
+              DataRow mod_row;
+              if (mod_rows.Length != 1)
+              {
+                bl_updateok = false;
+                st_dberrmsg = StringTable.GetString("資料已變更,請重新選取!");
+              }
+              else
+              {
+                conn.Open();
+                OleDbTransaction thistran = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                da_ADP_mod.UpdateCommand.Transaction = thistran;
+                try
+                {
+                  mod_row = mod_rows[0];
+                  mod_row.BeginEdit();
+                  
+                  mod_row["_01"] =tx__01.Text.Trim();       // SSSSS
+                  
+                  mod_row["_mkey"] = DAC.get_guidkey();        //
+                  mod_row["_trusr"] =UserGkey;  //
+                  mod_row.EndEdit();
+                  da_ADP_mod.Update(tb__mod);
+                  Dao.Insertbalog(conn, thistran, "", hh_ActKey.Value, hh_GridGkey.Value);
+                  Dao.Insertbtlog(conn, thistran, "", DAC.GetStringValue(mod_row["_gkey"]), "M", UserName, DAC.GetStringValue(mod_row["_gkey"]));
+                  thistran.Commit();
+                  bl_updateok = true;
+                }
+                catch (Exception e)
+                {
+                  thistran.Rollback();
+                  bl_updateok = false;
+                  st_dberrmsg = e.Message;
+                }
+                finally
+                {
+                  thistran.Dispose();
+                  Dao.Dispose();
+                  tb__mod.Dispose();
+                  da_ADP_mod.Dispose();
+                  conn.Close();
+                }
+              } //mod_rows.Length=1
+            } //IsExists
+            if (bl_updateok)
+            {
+              //hh_GridCtrl.Value = "rekey";
+              BindNew(true);
+              hh_GridCtrl.Value = "ser";
+              SetSerMod();
+            }
+            else
+            {
+              lb_ErrorMessage.Text = st_dberrmsg;
+              lb_ErrorMessage.Visible = true;
+            } //bl_updateok
+          }   //mod
+        }  //ins & mod
+        Dao.Dispose();
+      }
+      else
+      {
+        lb_ErrorMessage.Visible = true;
+        lb_ErrorMessage.Text = st_ckerrmsg;
+      }
+    }
+    
+    private bool ServerEditCheck(ref string sMsg)
+    {
+      bool ret;
+      ret = true;
+      sMsg = "";
+      clsDataCheck DataCheck = new clsDataCheck();
+      
+      DataCheck.Dispose();
+      return ret;
+    }
+    

@@ -1,0 +1,277 @@
+.ighg_Office2010BlueControl
+{
+}
+
+
+.ighg_Office2010BlueExpandButton
+{
+	padding-left:5px;
+	cursor:hand;
+}
+
+
+.ighg_Office2010BlueExpansionColumnHeader
+{
+	padding:0px !important;
+	width: 25px;
+	border-color: #DEE5EF #BCCADE #A6B8D2 #EAEEF4;
+    border-style: solid;
+    border-width: 1px;
+}
+
+
+.ighg_Office2010BlueExpansionColumn
+{
+	padding:0px !important;
+	width: 25px;
+}
+
+
+.ighg_Office2010BlueExpansionColumnFooter
+{
+	width: 25px;
+	border-color: #DEE5EF #BCCADE #A6B8D2 #EAEEF4;
+    border-style: solid;
+    border-width: 1px;
+}
+
+
+.ighg_Office2010BlueGroupArea
+{
+	background-color:#EEEEEE;
+	background-repeat:repeat-x;
+	background-image: url(images/ighg_groupareabg.png);
+	border-bottom:solid 1px #999999;
+	padding:10px;
+	color:#333333;
+}
+
+
+/* START -- GroupBy CSS Classes */
+
+TBODY > TR > TD.ighg_Office2010BlueGroupIndentCell {
+    border-right: 1px solid #C4D9F6;
+}
+
+.ighg_Office2010BlueGroupIndentHeaderCell
+{
+    padding:0px !important;
+	width: 25px;
+	border-top:1px solid #dee5ef;
+    border-right:1px solid #bccade;
+    border-bottom:1px solid #a6b8d2;
+    border-left:1px solid #eaeef4;}
+}
+
+
+.ighg_Office2010BlueGroupIndentFooterCell
+{
+}
+
+
+.ighg_Office2010BlueGroupIndentAddNewRowCell
+{
+}
+
+
+.ighg_Office2010BlueGroupedColumn
+{
+	background-repeat:repeat-x;
+	background-image: url(images/ighg_groupedcolumnbg.png);
+	padding:3px 5px 0px 10px;
+	display: inline-block;
+	height: 16px;
+}
+
+
+.ighg_Office2010BlueGroupedColumnRightEdge
+{
+	background-repeat:no-repeat;
+	background-image: url(images/ighg_groupedcolumnrightedgebg.png);
+	padding-top:3px;
+	display: inline-block;
+	width: 10px;
+	height: 16px;
+}
+
+
+.ighg_Office2010BlueGroupedColumnRightEdgeEnd
+{
+	background-repeat:no-repeat;
+	background-image: url(images/ighg_groupedcolumnrightedgeendbg.gif);
+	padding-top:3px;
+	display: inline-block;
+	width: 10px;
+	height: 16px;
+}
+
+
+.ighg_Office2010BlueGroupedBand
+{
+	background-repeat:repeat-x;
+	background-image: url(images/ighg_groupedbandbg.png);
+	border-left:solid 1px #FF9900;
+	border-bottom:solid 1px #FF9900;
+	padding:3px 0px 0px 10px;
+	display: inline-block;
+	height: 16px;
+}
+
+
+.ighg_Office2010BlueGroupedBandRightEdge
+{
+	background-repeat:repeat-x;
+	background-image: url(images/ighg_groupedbandbg.png);
+	border-right:solid 1px #FF9900;
+	border-bottom:solid 1px #FF9900;
+	padding:3px 0px 0px 0px;
+	display: inline-block;
+	width: 10px;
+	height: 16px;
+}
+
+
+.ighg_Office2010BlueColumnGroupingTopDragIndicator
+{
+	background-repeat:no-repeat;
+	background-image: url(images/ighg_topdragindicator.gif);
+	width: 5px;
+	height: 3px;
+	z-index: 100;
+}
+
+
+.ighg_Office2010BlueColumnGroupingMiddleDragIndicator
+{
+	background-repeat:repeat-y;
+	background-position:center ;
+	background-image: url(images/ighg_middledragindicator.gif);
+	width: 3px;
+}
+
+
+.ighg_Office2010BlueColumnGroupingBottomDragIndicator
+{
+	background-repeat:no-repeat;
+	background-image: url(images/ighg_bottomdragindicator.gif);
+	width: 5px;
+	height: 3px;
+	position: absolute;
+	z-index: 100;
+}
+
+
+.ighg_Office2010BlueGroupedColumnLeftEdge
+{
+	background-repeat:no-repeat;
+	background-image: url(images/ighg_groupedcolumnleftedgebg.gif);
+	padding-top:3px;
+	display: inline-block;
+	width: 9px;
+	height: 16px;
+}
+
+
+TBODY>TR.{0}>TD
+{
+}
+
+
+TBODY>TR>TD.{0}
+{
+}
+
+
+TBODY>TR.
+{
+	background-repeat:repeat-x;
+	background-image: url(images/ighg_groupedrowbg.png);
+	0: #EEEEEE;
+}
+
+/********************/
+/**  Cell Merging  **/
+/********************/
+/*Any future change please port it to WHDG*/
+
+tbody>tr>td.ighg_Office2010BlueMergedCellVisible
+{
+    color: Black;
+}
+	
+tbody>tr>td.ighg_Office2010BlueMergedCell /*tbody>tr>td.ighg_Office2010BlueMergedCellAlt*/
+{
+    color: #FFF;
+    background-color : #FFF;
+    
+    border-top-width : 0;
+    border-left: 1px dotted #a6b8d2;
+    border-right: 1px dotted #a6b8d2;
+}
+
+tbody>tr>td.ighg_Office2010BlueMergedCellTop /*tbody>tr>td.ighg_Office2010BlueMergedCellAltTop*/
+{
+    color: Black;
+    border-top: 1px solid #d0d7e5;
+}
+
+tbody>tr>td.ighg_Office2010BlueMergedCell.igg_Office2010BlueSelectedCell /*tbody>tr>td.ighg_Office2010BlueMergedCellAlt.igg_Office2010BlueSelectedCell*/
+{
+    color: Black;
+    background-image: none;
+    background-color: #afc3dd;
+    
+    border-top: 1px solid #8397b4;
+    border-left: 1px dotted #8397b4;
+    border-right: 1px dotted #8397b4;
+}
+     
+tbody>tr>td.ighg_Office2010BlueMergedCellTop.igg_Office2010BlueSelectedCell /*tbody>tr>td.ighg_Office2010BlueMergedCellAltTop.igg_Office2010BlueSelectedCell*/
+{
+    color: Black;
+}
+
+tbody>tr>td.ighg_Office2010BlueMergedCellExpanded
+{
+    color: Black;
+}
+
+tbody > tr.igg_Office2010BlueUpdatedRow td.ighg_Office2010BlueMergedCell
+{
+    color: #666666;
+    font-style: italic;
+}
+
+tbody > tr.igg_Office2010BlueUpdatedRow td.ighg_Office2010BlueMergedCellTop.igg_Office2010BlueSelectedCell
+{
+    color: black;
+    font-style: italic;
+}
+
+tbody > tr.igg_Office2010BlueUpdatedRow td.ighg_Office2010BlueMergedCellTop
+{
+    color: #666666;
+    font-style: italic;
+}
+
+tbody > tr.igg_Office2010BlueUpdatedRow td.ighg_Office2010BlueMergedCellTop.igg_Office2010BlueSelectedCell
+{
+    color: black;
+    font-style: italic;
+}
+
+tbody > tr.igg_Office2010BlueUpdatedRow td.ighg_Office2010BlueMergedCellBottom.igg_Office2010BlueSelectedCell
+{
+    color: black;
+    font-style: italic;
+}
+
+tbody>tr>td.ighg_Office2010BlueMergedCellVisible
+{
+    color: black;
+}
+
+tbody>tr>td.igg_Office2010BlueActiveCell
+{
+    color: #000;
+}

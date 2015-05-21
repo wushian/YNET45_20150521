@@ -1,0 +1,110 @@
+<asp:GridView ID="gr_GridView_sn201" runat="server" AutoGenerateColumns="False" DataKeyNames="sn201_gkey" EnableModelValidation="True" AllowPaging="false" OnRowDataBound="gr_GridView_sn201_RowDataBound">
+  <Columns>
+    <asp:TemplateField>
+      <HeaderTemplate>
+        <b><%# DD2012.PublicVariable.st_choose %></b>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <asp:ImageButton CommandName="Select" ImageUrl='<%# hh_GridGkey.Value==DataBinder.Eval(Container.DataItem,"sn201_gkey").ToString() ? "~\images\GridCheck.gif":"~\images\GridUnCheck.gif" %>' runat="server" ID="Imagebutton1" />
+        <input id="tx_sn201_gkey02" type="hidden" name="tx_sn201_gkey02" value='<%# DataBinder.Eval(Container.DataItem,"sn201_gkey").ToString() %>' runat="server" />
+        <input id="tx_sn201_mkey02" type="hidden" name="tx_sn201_mkey02" value='<%# DataBinder.Eval(Container.DataItem,"sn201_mkey").ToString() %>' runat="server" />
+      </ItemTemplate>
+    </asp:TemplateField>
+  </Columns>
+</asp:GridView>
+<asp:Literal ID="li_Msg" runat="server"></asp:Literal>
+
+
+protected void gr_GridView_sn201_RowDataBound(object sender, GridViewRowEventArgs e)
+{
+  string st_datavalue = ""; 
+  if (e.Row.RowIndex >= 0) 
+  {
+    DataRowView rowView = (DataRowView)e.Row.DataItem;
+  }
+}
+
+
+protected bool UpdateDataAll(string st_ActKey, ref string st_errmsg)
+{
+  bool bl_updateok = false;
+  bool bl_Mod = false;
+  //
+  string st_ctrl = "", st_ctrlname = "";
+  string st_sn201_gkey="", st_sn201_mkey="",;
+  DataRow mod_row;
+  DataRow[] sel_rows;
+  //
+  st_ctrl = st_ContentPlaceHolder +"gr_GridView_sn201$ctl"; 
+  CmdQueryS.CommandText = " and a.gkey='"+hh_qkey.Value+"'";
+  DataTable tb_sn201 = new DataTable();
+  DAC_sn201 sn201Dao = new DAC_sn201(conn);
+  string st_addselect="";
+  string st_addjoin="";
+  string st_addunion="";
+  DbDataAdapter da_ADP =sn201Dao.GetDataAdapter(ApVer, "UNsn201", "sn201", st_addselect, false, st_addjoin, CmdQueryS, st_addunion, "");
+  da_ADP.Fill(tb_sn201);
+  //
+  OleDbTransaction thistran;
+  conn.Open();
+  thistran = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+  da_ADP.UpdateCommand.Transaction = thistran;
+  da_ADP.DeleteCommand.Transaction = thistran;
+  da_ADP.InsertCommand.Transaction = thistran;
+  try
+  {
+    for (int in_g = 0; in_g <= gr_GridView_sn201.Rows.Count + 4; in_g++)
+    {
+      //gkey
+      st_ctrlname = st_ctrl +DAC.GetGridViewRowId(in_g)+"$tx_sn201_gkey02";
+      if (FindControl(st_ctrlname) != null)
+      {
+        //gkey
+        st_ctrlname = st_ctrl +DAC.GetGridViewRowId(in_g)+"$tx_sn201_gkey02";
+        st_sn201_gkey = ((HtmlInputHidden)FindControl(st_ctrlname)).Value.Trim();
+        //mkey
+        st_ctrlname = st_ctrl +DAC.GetGridViewRowId(in_g)+"$tx_sn201_mkey02";
+        st_sn201_mkey = ((HtmlInputHidden)FindControl(st_ctrlname)).Value.Trim();
+        //
+        bl_Mod = true;
+      }
+      else
+      {
+        bl_Mod = false;
+      }
+      //
+      if (bl_Mod) 
+      {
+        sel_rows = tb_sn201.Select("sn201_gkey='"+st_sn201_gkey+"'");
+        if (sel_rows.Length == 1) 
+        {
+          mod_row = sel_rows[0];
+          if (
+          )
+          {
+            mod_row.EndEdit();
+            st_ActKey=DAC.get_guidkey();  //
+          }
+        }  //sel_rows.Length == 1
+      }  //bl_Mod
+    }  //for
+    da_ADP.Update(tb_sn201);
+    thistran.Commit();
+    bl_updateok=true;
+  }  //try
+
+  catch (Exception e)
+  {
+    thistran.Rollback();
+    bl_updateok = false;
+    st_errmsg += e.Message;
+  }
+  finally
+  {
+    thistran.Dispose();
+    sn201Dao.Dispose();
+    tb_sn201.Dispose();
+    da_ADP.Dispose();
+  }
+  return bl_updateok;
+}

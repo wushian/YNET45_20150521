@@ -1,0 +1,737 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.OleDb;
+using System.Data.Common;
+using YNet;
+
+    string st_object_func = "UNsapf";
+    string st_ContentPlaceHolder="ctl00$ContentPlaceHolder1$";
+    //
+    string st_dd_apx = "UNsapf";         //UNdcnews   與apx 相關
+    string st_dd_table = "sapf";       //dcnews     與table 相關 
+    string st_ren_head = "";       //DC         與單號相關 
+    string st_ren_yymmtext = "";   //           與單號相關 
+    string st_ren_cls = "";        //ren        與單號cls相關 
+    string st_ren_cos = "";        //1          與單號cos相關 
+    int in_ren_len = 0;            //6          與單號流水號 
+    //
+    protected void Page_Load(object sender, EventArgs e)
+    {
+      li_Msg.Text = "";
+      li_AccMsg.Text = "";
+      //檢查權限&狀態
+      if (sFN.checkAccessFunc(UserGkey, st_object_func, 1, UserLoginGkey, ref li_AccMsg))
+      {
+        if (!IsPostBack)
+        {
+         
+        dr_sapf_RACLS= sFN.DropDownListFromTable(ref dr_sapf_RACLS, "PDAC1APCLS", "key", "name", "", "order_key");
+        dr_sapf_RACS1= sFN.DropDownListFromTable(ref dr_sapf_RACS1, "PDAC1APCS1", "key", "name", "", "order_key");
+        dr_sapf_RACS2= sFN.DropDownListFromTable(ref dr_sapf_RACS2, "PDAC1APCS2", "key", "name", "", "order_key");
+        dr_sapf_RACS3= sFN.DropDownListFromTable(ref dr_sapf_RACS3, "PDAC1APCS3", "key", "name", "", "order_key");
+        dr_sapf_RACS4= sFN.DropDownListFromTable(ref dr_sapf_RACS4, "PDAC1APCS4", "key", "name", "", "order_key");
+        dr_sapf_RAMNY= sFN.DropDownListFromTable(ref dr_sapf_RAMNY, "PDGAMNY", "key", "name", "", "order_key");
+        dr_sapf_RACOS= sFN.DropDownListFromTable(ref dr_sapf_RACOS, "PDAC1APCOS", "key", "name", "", "order_key");
+
+          CmdQueryS.CommandText=" AND 1=1 ";
+          Session["fmsapf_CmdQueryS"] = CmdQueryS;
+          Set_Control();
+          if (DAC.GetStringValue(Session["fmsapf_gr_GridView_sapf_GridGkey"]) != "")
+          {
+            gr_GridView_sapf.PageIndex=DAC.GetInt16Value(Session["fmsapf_gr_GridView_sapf_PageIndex"]);
+            gr_GridView_sapf.SelectedIndex=DAC.GetInt16Value(Session["fmsapf_gr_GridView_sapf_SelectedIndex"]);
+            hh_GridGkey.Value = DAC.GetStringValue(Session["fmsapf_gr_GridView_sapf_GridGkey"]);
+          }
+          //
+          BindNew(true);
+          SetSerMod();
+          Session["fmsapf_gr_GridView_sapf_PageIndex"] = gr_GridView_sapf.PageIndex;
+          Session["fmsapf_gr_GridView_sapf_SelectedIndex"] = gr_GridView_sapf.SelectedIndex;
+        }
+        else
+        {
+          if ((hh_GridCtrl.Value.ToString().ToLower() == "ins") || (hh_GridCtrl.Value.ToString().ToLower() == "mod"))
+          {
+            BindNew(false);
+          }
+          else
+          {
+            BindNew(true);
+          }
+        }
+      }
+    }
+
+    private void Set_Control()
+    {
+      FunctionName = sFN.SetFormTitle(st_object_func, PublicVariable.LangType);   //取Page Title
+      gr_GridView_sapf.PageSize = int.Parse(sFN.Get_FormVariable(st_object_func, "pagesize"));  //GridView 取pagesize
+      this.Page.Title = FunctionName;
+      sFN.SetFormLables(this, PublicVariable.LangType,st_ContentPlaceHolder, ApVer,"UNsapf","sapf");
+    }
+
+    private void ClearText()
+    {
+     //
+      tx_sapf_RAREN.Text ="";  //應付單號
+      dr_sapf_RACLS.SelectedIndex = -1;  //異動類別
+      tx_sapf_RAMEN.Text ="";  //開單人員
+      tx_es101_RAMEN.Text ="";  //開單人名
+      tx_sapf_RANUM.Text ="";  //廠商編號
+      tx_bdlr_RANUM.Text ="";  //廠商名稱
+      tx_sapf_RACIN.Text ="";  //統一編號
+      dr_sapf_RACS1.SelectedIndex = -1;  //憑證類別
+      dr_sapf_RACS2.SelectedIndex = -1;  //稅率類別
+      tx_sapf_RAINV.Text ="";  //發票號碼
+      dr_sapf_RACS3.SelectedIndex = -1;  //進項類別
+      dr_sapf_RACS4.SelectedIndex = -1;  //進貨科目
+      dr_sapf_RAMNY.SelectedIndex = -1;  //幣　　別
+      tx_sapf_RAPTN.Text ="";  //商品編號
+      tx_bpud_RAPTN.Text ="";  //商品名稱
+      dr_sapf_RACOS.SelectedIndex = -1;  //單據類別
+      tx_sapf_RARE1.Text ="";  //進貨單號
+      tx_sapf_RARE2.Text ="";  //銷貨單號
+      tx_sapf_RARMK.Text ="";  //備　　註
+      tx_sapf_RARE3.Text ="";  //連接單號
+      tx_sapf_RARE4.Text ="";  //連接單號
+      tx_sapf_RAM01.Text ="";  //已沖金額
+      tx_RACLSN.Text ="";  //異動類別名
+      tx_sapf_RACMP.Text ="";  //公司編號
+
+     //
+      hh_mkey.Value = "";
+    }
+    
+    private void SetSerMod()
+    {
+      //
+      clsGV.SetTextBoxEditAlert(ref lb_sapf_RANUM, ref tx_sapf_RANUM, false);  //廠商編號
+      //
+      clsGV.TextBox_Set(ref tx_sapf_RAREN, false);   //應付單號
+      clsGV.Drpdown_Set(ref dr_sapf_RACLS, ref tx_sapf_RACLS, false);   //異動類別
+      clsGV.TextBox_Set(ref tx_sapf_RAMEN, false);   //開單人員
+      clsGV.TextBox_Set(ref tx_es101_RAMEN, false);   //開單人名
+      clsGV.TextBox_Set(ref tx_sapf_RANUM, false);   //廠商編號
+      clsGV.TextBox_Set(ref tx_bdlr_RANUM, false);   //廠商名稱
+      clsGV.TextBox_Set(ref tx_sapf_RACIN, false);   //統一編號
+      clsGV.Drpdown_Set(ref dr_sapf_RACS1, ref tx_sapf_RACS1, false);   //憑證類別
+      clsGV.Drpdown_Set(ref dr_sapf_RACS2, ref tx_sapf_RACS2, false);   //稅率類別
+      clsGV.TextBox_Set(ref tx_sapf_RAINV, false);   //發票號碼
+      clsGV.Drpdown_Set(ref dr_sapf_RACS3, ref tx_sapf_RACS3, false);   //進項類別
+      clsGV.Drpdown_Set(ref dr_sapf_RACS4, ref tx_sapf_RACS4, false);   //進貨科目
+      clsGV.Drpdown_Set(ref dr_sapf_RAMNY, ref tx_sapf_RAMNY, false);   //幣　　別
+      clsGV.TextBox_Set(ref tx_sapf_RAPTN, false);   //商品編號
+      clsGV.TextBox_Set(ref tx_bpud_RAPTN, false);   //商品名稱
+      clsGV.Drpdown_Set(ref dr_sapf_RACOS, ref tx_sapf_RACOS, false);   //單據類別
+      clsGV.TextBox_Set(ref tx_sapf_RARE1, false);   //進貨單號
+      clsGV.TextBox_Set(ref tx_sapf_RARE2, false);   //銷貨單號
+      clsGV.TextBox_Set(ref tx_sapf_RARMK, false);   //備　　註
+      clsGV.TextBox_Set(ref tx_sapf_RARE3, false);   //連接單號
+      clsGV.TextBox_Set(ref tx_sapf_RARE4, false);   //連接單號
+      clsGV.TextBox_Set(ref tx_sapf_RAM01, false);   //已沖金額
+      clsGV.TextBox_Set(ref tx_RACLSN, false);   //異動類別名
+      clsGV.TextBox_Set(ref tx_sapf_RACMP, false);   //公司編號
+      //
+      clsGV.SetControlShowAlert(ref lb_sapf_RANUM, ref tx_sapf_RANUM, true);  // 廠商編號
+      //
+      sFN.SetButtons(this, PublicVariable.LangType, st_object_func, UserGkey, st_ContentPlaceHolder , "ser");
+      sFN.SetLinkButton(this, "bt_SAV", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_save, false);
+      sFN.SetLinkButton(this, "bt_CAN", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_cancel, false);
+      sFN.SetLinkButton(this, "bt_QUT", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_quit, true);
+      //
+      gr_GridView_sapf.Enabled = true;
+      //gr_GridView_sapf.Columns[0].Visible=true;
+    }
+    
+    private void SetEditMod()
+    {
+      // 
+      clsGV.TextBox_Set(ref tx_sapf_RAREN, true);  //應付單號
+      clsGV.Drpdown_Set(ref dr_sapf_RACLS, ref tx_sapf_RACLS, true);   //異動類別
+      clsGV.TextBox_Set(ref tx_sapf_RAMEN, true);  //開單人員
+      clsGV.TextBox_Set(ref tx_es101_RAMEN, true);  //開單人名
+      clsGV.TextBox_Set(ref tx_sapf_RANUM, true);  //廠商編號
+      clsGV.TextBox_Set(ref tx_bdlr_RANUM, true);  //廠商名稱
+      clsGV.TextBox_Set(ref tx_sapf_RACIN, true);  //統一編號
+      clsGV.Drpdown_Set(ref dr_sapf_RACS1, ref tx_sapf_RACS1, true);   //憑證類別
+      clsGV.Drpdown_Set(ref dr_sapf_RACS2, ref tx_sapf_RACS2, true);   //稅率類別
+      clsGV.TextBox_Set(ref tx_sapf_RAINV, true);  //發票號碼
+      clsGV.Drpdown_Set(ref dr_sapf_RACS3, ref tx_sapf_RACS3, true);   //進項類別
+      clsGV.Drpdown_Set(ref dr_sapf_RACS4, ref tx_sapf_RACS4, true);   //進貨科目
+      clsGV.Drpdown_Set(ref dr_sapf_RAMNY, ref tx_sapf_RAMNY, true);   //幣　　別
+      clsGV.TextBox_Set(ref tx_sapf_RAPTN, true);  //商品編號
+      clsGV.TextBox_Set(ref tx_bpud_RAPTN, true);  //商品名稱
+      clsGV.Drpdown_Set(ref dr_sapf_RACOS, ref tx_sapf_RACOS, true);   //單據類別
+      clsGV.TextBox_Set(ref tx_sapf_RARE1, true);  //進貨單號
+      clsGV.TextBox_Set(ref tx_sapf_RARE2, true);  //銷貨單號
+      clsGV.TextBox_Set(ref tx_sapf_RARMK, true);  //備　　註
+      clsGV.TextBox_Set(ref tx_sapf_RARE3, true);  //連接單號
+      clsGV.TextBox_Set(ref tx_sapf_RARE4, true);  //連接單號
+      clsGV.TextBox_Set(ref tx_sapf_RAM01, true);  //已沖金額
+      clsGV.TextBox_Set(ref tx_RACLSN, true);  //異動類別名
+      clsGV.TextBox_Set(ref tx_sapf_RACMP, true);  //公司編號
+      // 
+      clsGV.SetTextBoxEditAlert(ref lb_sapf_RANUM, ref tx_sapf_RANUM, true);  // 廠商編號
+      sFN.SetButtons(this, PublicVariable.LangType, st_object_func, UserGkey, st_ContentPlaceHolder, "mod");
+      sFN.SetLinkButton(this, "bt_SAV", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_save, true);
+      sFN.SetLinkButton(this, "bt_CAN", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_cancel, true);
+      sFN.SetLinkButton(this, "bt_QUT", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_quit, false);
+      //
+      gr_GridView_sapf.Enabled = false;
+      //gr_GridView_sapf.Columns[0].Visible = false;
+    }
+    
+    private void SetEditModAll()
+    {
+      // 
+      clsGV.TextBox_Set(ref tx_sapf_RAREN, true);  //應付單號
+      clsGV.Drpdown_Set(ref dr_sapf_RACLS, ref tx_sapf_RACLS, true);   //異動類別
+      clsGV.TextBox_Set(ref tx_sapf_RAMEN, true);  //開單人員
+      clsGV.TextBox_Set(ref tx_es101_RAMEN, true);  //開單人名
+      clsGV.TextBox_Set(ref tx_sapf_RANUM, true);  //廠商編號
+      clsGV.TextBox_Set(ref tx_bdlr_RANUM, true);  //廠商名稱
+      clsGV.TextBox_Set(ref tx_sapf_RACIN, true);  //統一編號
+      clsGV.Drpdown_Set(ref dr_sapf_RACS1, ref tx_sapf_RACS1, true);   //憑證類別
+      clsGV.Drpdown_Set(ref dr_sapf_RACS2, ref tx_sapf_RACS2, true);   //稅率類別
+      clsGV.TextBox_Set(ref tx_sapf_RAINV, true);  //發票號碼
+      clsGV.Drpdown_Set(ref dr_sapf_RACS3, ref tx_sapf_RACS3, true);   //進項類別
+      clsGV.Drpdown_Set(ref dr_sapf_RACS4, ref tx_sapf_RACS4, true);   //進貨科目
+      clsGV.Drpdown_Set(ref dr_sapf_RAMNY, ref tx_sapf_RAMNY, true);   //幣　　別
+      clsGV.TextBox_Set(ref tx_sapf_RAPTN, true);  //商品編號
+      clsGV.TextBox_Set(ref tx_bpud_RAPTN, true);  //商品名稱
+      clsGV.Drpdown_Set(ref dr_sapf_RACOS, ref tx_sapf_RACOS, true);   //單據類別
+      clsGV.TextBox_Set(ref tx_sapf_RARE1, true);  //進貨單號
+      clsGV.TextBox_Set(ref tx_sapf_RARE2, true);  //銷貨單號
+      clsGV.TextBox_Set(ref tx_sapf_RARMK, true);  //備　　註
+      clsGV.TextBox_Set(ref tx_sapf_RARE3, true);  //連接單號
+      clsGV.TextBox_Set(ref tx_sapf_RARE4, true);  //連接單號
+      clsGV.TextBox_Set(ref tx_sapf_RAM01, true);  //已沖金額
+      clsGV.TextBox_Set(ref tx_RACLSN, true);  //異動類別名
+      clsGV.TextBox_Set(ref tx_sapf_RACMP, true);  //公司編號
+      // 
+      clsGV.SetTextBoxEditAlert(ref lb_sapf_RANUM, ref tx_sapf_RANUM, true);  // 廠商編號
+      sFN.SetButtons(this, PublicVariable.LangType, st_object_func, UserGkey, st_ContentPlaceHolder, "mod");
+      sFN.SetLinkButton(this, "bt_SAV", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_save, true);
+      sFN.SetLinkButton(this, "bt_CAN", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_cancel, true);
+      sFN.SetLinkButton(this, "bt_QUT", PublicVariable.LangType, st_ContentPlaceHolder, PublicVariable.st_quit, false);
+      //
+      gr_GridView_sapf.Enabled = true;
+      //gr_GridView_sapf.Columns[0].Visible = false;
+    }
+    
+    private void BindText(DataRow CurRow)
+    {
+      //
+      //
+      tx_sapf_RAREN.Text = DAC.GetStringValue(CurRow["sapf_RAREN"]);  //應付單號
+      dr_sapf_RACLS = sFN.SetDropDownList(ref dr_sapf_RACLS, DAC.GetStringValue(CurRow["sapf_RACLS"]));  //異動類別
+      tx_sapf_RAMEN.Text = DAC.GetStringValue(CurRow["sapf_RAMEN"]);  //開單人員
+      tx_es101_RAMEN.Text = DAC.GetStringValue(CurRow["es101_RAMEN"]);  //開單人名
+      tx_sapf_RANUM.Text = DAC.GetStringValue(CurRow["sapf_RANUM"]);  //廠商編號
+      tx_bdlr_RANUM.Text = DAC.GetStringValue(CurRow["bdlr_RANUM"]);  //廠商名稱
+      tx_sapf_RACIN.Text = DAC.GetStringValue(CurRow["sapf_RACIN"]);  //統一編號
+      dr_sapf_RACS1 = sFN.SetDropDownList(ref dr_sapf_RACS1, DAC.GetStringValue(CurRow["sapf_RACS1"]));  //憑證類別
+      dr_sapf_RACS2 = sFN.SetDropDownList(ref dr_sapf_RACS2, DAC.GetStringValue(CurRow["sapf_RACS2"]));  //稅率類別
+      tx_sapf_RAINV.Text = DAC.GetStringValue(CurRow["sapf_RAINV"]);  //發票號碼
+      dr_sapf_RACS3 = sFN.SetDropDownList(ref dr_sapf_RACS3, DAC.GetStringValue(CurRow["sapf_RACS3"]));  //進項類別
+      dr_sapf_RACS4 = sFN.SetDropDownList(ref dr_sapf_RACS4, DAC.GetStringValue(CurRow["sapf_RACS4"]));  //進貨科目
+      dr_sapf_RAMNY = sFN.SetDropDownList(ref dr_sapf_RAMNY, DAC.GetStringValue(CurRow["sapf_RAMNY"]));  //幣　　別
+      tx_sapf_RAPTN.Text = DAC.GetStringValue(CurRow["sapf_RAPTN"]);  //商品編號
+      tx_bpud_RAPTN.Text = DAC.GetStringValue(CurRow["bpud_RAPTN"]);  //商品名稱
+      dr_sapf_RACOS = sFN.SetDropDownList(ref dr_sapf_RACOS, DAC.GetStringValue(CurRow["sapf_RACOS"]));  //單據類別
+      tx_sapf_RARE1.Text = DAC.GetStringValue(CurRow["sapf_RARE1"]);  //進貨單號
+      tx_sapf_RARE2.Text = DAC.GetStringValue(CurRow["sapf_RARE2"]);  //銷貨單號
+      tx_sapf_RARMK.Text = DAC.GetStringValue(CurRow["sapf_RARMK"]);  //備　　註
+      tx_sapf_RARE3.Text = DAC.GetStringValue(CurRow["sapf_RARE3"]);  //連接單號
+      tx_sapf_RARE4.Text = DAC.GetStringValue(CurRow["sapf_RARE4"]);  //連接單號
+      tx_sapf_RAM01.Text = DAC.GetStringValue(CurRow["sapf_RAM01"]);  //已沖金額
+      tx_RACLSN.Text = DAC.GetStringValue(CurRow["RACLSN"]);  //異動類別名
+      tx_sapf_RACMP.Text = DAC.GetStringValue(CurRow["sapf_RACMP"]);  //公司編號
+      //
+      //
+      hh_mkey.Value = DAC.GetStringValue(CurRow["sapf_mkey"]);
+      //
+    }
+    
+    private void BindNew(bool bl_showdata)
+    {
+      string SelDataKey = "";
+      DataRow[] SelDataRow;
+      DataRow CurRow;
+      //
+      try
+      {
+        CmdQueryS = (OleDbCommand)Session["fmsapf_CmdQueryS"];
+      }
+      catch
+      {
+        CmdQueryS.CommandText = "";
+      }
+      //
+      DataTable tb_sapf = new DataTable();
+      DAC_sapf sapfDao = new DAC_sapf(conn);
+      OleDbDataAdapter ad_DataDataAdapter;
+      string st_addselect = "";
+      string st_addjoin = "";
+      string st_addunion = "";
+      ad_DataDataAdapter = sapfDao.GetDataAdapter(ApVer, "UNsapf", "sapf", st_addselect, false, st_addjoin, CmdQueryS, st_addunion, "order by xxx ");
+      ad_DataDataAdapter.Fill(tb_sapf);
+      //
+      if (tb_sapf.Rows.Count > 0)
+      {
+        bt_05.OnClientClick ="return btnDEL_c()";
+        bt_04.OnClientClick = "return btnMOD_c()";
+      }
+      else
+      {
+        bt_05.OnClientClick = "return btnDEL0_c()";
+        bt_04.OnClientClick = "return btnMOD0_c()";
+      }
+      gr_GridView_sapf.DataSource = tb_sapf;
+      //fmsn101_GV1_SelectedIndex
+      //fmsn101_GV1_PageIndex
+      gr_GridView_sapf = clsGV.BindGridView(gr_GridView_sapf, tb_sapf, hh_GridCtrl, ref hh_GridGkey,"fmsapf_gr_GridView_sapf");
+      gr_GridView_sapf.DataBind();
+      SelDataKey = "sapf_gkey='"+hh_GridGkey.Value+"'";
+      SelDataRow = tb_sapf.Select(SelDataKey);
+      //
+      if (bl_showdata)
+      {
+        if (SelDataRow.Length == 1)
+        {
+          CurRow = SelDataRow[0];
+          Session["fmsapf_gr_GridView_sapf_GridGkey"]=hh_GridGkey.Value;
+          BindText(CurRow);
+        }
+        else
+        {
+          hh_GridCtrl.Value = "init";
+          ClearText();
+        }
+      }
+      tb_sapf.Dispose();
+      sapfDao.Dispose();
+    }
+    
+    protected void gr_GridView_sapf_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+      gr_GridView_sapf.PageIndex = e.NewPageIndex;
+      Session["fmsapf_gr_GridView_sapf_PageIndex"] = gr_GridView_sapf.PageIndex;
+      hh_GridGkey.Value = gr_GridView_sapf.DataKeys[gr_GridView_sapf.SelectedIndex].Value.ToString();
+    }
+    
+    protected void gr_GridView_sapf_PageIndexChanged(object sender, EventArgs e)
+    {
+     if (gr_GridView_sapf.Enabled)
+     {
+       hh_GridCtrl.Value = "ser";
+       BindNew(true);
+       SetSerMod();
+       Session["fmsapf_gr_GridView_sapf_PageIndex"] = gr_GridView_sapf.PageIndex;
+       Session["fmsapf_gr_GridView_sapf_SelectedIndex"] = gr_GridView_sapf.SelectedIndex;
+     }
+     else
+     {
+       li_Msg.Text = "<script> alert('" + StringTable.GetString("請先處理資料輸入") + "'); </script>";
+     }
+   }
+   
+    protected void gr_GridView_sapf_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      BindNew(true);
+      Session["fmsapf_gr_GridView_sapf_PageIndex"] = gr_GridView_sapf.PageIndex;
+      Session["fmsapf_gr_GridView_sapf_SelectedIndex"] = gr_GridView_sapf.SelectedIndex;
+      hh_GridGkey.Value = gr_GridView_sapf.DataKeys[gr_GridView_sapf.SelectedIndex].Value.ToString();
+      SetSerMod();
+    }
+    
+    protected void bt_02_Click(object sender, EventArgs e)
+    {
+      actNEW();
+    }
+    
+    protected void actNEW()
+    {
+      if (sFN.checkAccessFunc(UserGkey, st_object_func, 2, UserLoginGkey, ref li_AccMsg))
+      {
+        hh_GridCtrl.Value = "ins";
+        Set_Control();
+        ClearText();
+        //定義guidkey
+        hh_ActKey.Value = DAC.get_guidkey();
+        BindNew(false);
+        SetEditMod();
+        li_Msg.Text = "<script> document.all('ContentPlaceHolder1_tx_xxxxxx').focus(); </script>";
+      }
+    }
+    
+    protected void bt_04_Click(object sender, EventArgs e)
+    {
+      actMOD();
+    }
+    
+    protected void actMOD()
+    {
+      if (sFN.checkAccessFunc(UserGkey, st_object_func, 4, UserLoginGkey, ref li_AccMsg))
+      {
+        hh_GridCtrl.Value ="mod";
+        Set_Control();
+        //取Act guidkey
+        hh_ActKey.Value = DAC.get_guidkey();
+        BindNew(true);
+        SetEditMod();
+      }
+    }
+    
+    protected void bt_11_Click(object sender, EventArgs e)
+    {
+      actMODALL();
+    }
+    
+    protected void actMODALL()
+    {
+      if (sFN.checkAccessFunc(UserGkey, st_object_func, 4, UserLoginGkey, ref li_AccMsg))
+      {
+        hh_GridCtrl.Value = "modall";
+        Set_Control();
+        //取Act guidkey
+        hh_ActKey.Value = DAC.get_guidkey();
+        BindNew(true);
+        SetEditModAll();
+      }
+    }
+    
+    protected void bt_QUT_Click(object sender, EventArgs e)
+    {
+      Response.Redirect("~/Master/"+ Page.Theme + "/MainForm.aspx");
+    }
+    
+    protected void bt_CAN_Click(object sender, EventArgs e)
+    {
+      actCAN();
+    }
+    
+    protected void actCAN()
+    {
+      hh_GridCtrl.Value = "ser";
+      Set_Control();
+      ClearText();
+      BindNew(true);
+      SetSerMod();
+    }
+    protected void bt_05_Click(object sender, EventArgs e)
+    {
+      actDEL();
+    }
+    
+    protected void actDEL()
+    {
+      if (sFN.checkAccessFunc(UserGkey, st_object_func, 5, UserLoginGkey, ref li_AccMsg))
+      {
+        bool bl_delok = false;
+        Set_Control();
+        hh_ActKey.Value = DAC.get_guidkey();
+        //
+        DAC_sapf sapfDao = new DAC_sapf(conn);
+        string st_addselect = "";
+        string st_addjoin = "";
+        string st_addunion = "";
+        string st_SelDataKey = "sapf_gkey='" + hh_GridGkey.Value + "' and sapf_mkey='"+hh_mkey.Value+"' ";
+        DataTable tb_sapf = new DataTable();
+        DbDataAdapter da_ADP = sapfDao.GetDataAdapter(ApVer, "UNsapf", "sapf", st_addselect, false, st_addjoin, CmdQueryS, st_addunion, "");
+        da_ADP.Fill(tb_sapf);
+        DataRow[] DelRow = tb_sapf.Select(st_SelDataKey);
+        if (DelRow.Length == 1)
+        {
+          conn.Open();
+          OleDbTransaction thistran = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+          da_ADP.DeleteCommand.Transaction = thistran;
+          try
+          {
+            sapfDao.Insertbalog(conn, thistran,"sapf",hh_ActKey.Value, hh_GridGkey.Value);
+            sapfDao.Insertbtlog(conn, thistran,"sapf", DAC.GetStringValue(DelRow[0]["sapf_gkey"]), "D", UserName, DAC.GetStringValue(DelRow[0]["sapf_gkey"]));
+            DelRow[0].Delete();
+            da_ADP.Update(tb_sapf);
+            thistran.Commit();
+            bl_delok = true;
+          }
+          catch (Exception e)
+          {
+            thistran.Rollback();
+            bl_delok = false;
+            lb_ErrorMessage.Visible = true;
+            lb_ErrorMessage.Text = e.Message;
+          }
+          finally
+          {
+            thistran.Dispose();
+            sapfDao.Dispose();
+            tb_sapf.Dispose();
+            da_ADP.Dispose();
+            conn.Close();
+          }
+        }
+        else
+        {
+          bl_delok = false;
+          lb_ErrorMessage.Visible = true;
+          lb_ErrorMessage.Text = StringTable.GetString("資料已變更,請重新選取!");
+        }
+        tb_sapf.Clear();
+        //
+        if (bl_delok)
+        {
+          gr_GridView_sapf = clsGV.SetGridCursor("del", gr_GridView_sapf, -2);
+          BindNew(true);
+          SetSerMod();
+        }
+        //bl_delok
+      }
+    }
+    
+    protected void bt_SAV_Click(object sender, EventArgs e)
+    {
+      actSAV();
+    }
+    
+    protected void actSAV()
+    {
+      string st_ckerrmsg = "";
+      string st_dberrmsg = "";
+      string st_tempgkey = "";
+      bool bl_insok = false, bl_updateok = false;
+      //
+      Set_Control();
+      if (ServerEditCheck(ref st_ckerrmsg))
+      {
+        DAC_sapf sapfDao = new DAC_sapf(conn);
+        if (hh_GridCtrl.Value.ToLower() == "modall")
+        {
+          if (UpdateDataAll(hh_ActKey.Value, ref st_dberrmsg))
+          {
+            SetSerMod();
+            hh_GridCtrl.Value = "rekey";
+            BindNew(true);
+            hh_GridCtrl.Value = "ser";
+          }
+          else
+          {
+            lb_ErrorMessage.Visible = true;
+            lb_ErrorMessage.Text = st_dberrmsg;
+          }
+        }  //
+        else
+        {
+          string st_addselect = "";
+          string st_addjoin = "";
+          string st_addunion = "";
+          string st_SelDataKey = "sapf_gkey='"+hh_GridGkey.Value+"'";
+          if (hh_GridCtrl.Value.ToLower() == "ins")
+          {
+            //自動編號
+            //DateTime dt_idat=Convert.ToDateTime(tx_riza_RIDAT.Text);
+            //st_ren_yymmtext =sFN.strzeroi(dt_idat.Year,4)+sFN.strzeroi(dt_idat.Month,2);
+            //st_ren_cls=st_ren_yymmtext;
+            //tx_riza_RIREN.Text = rizaDao.GetRenW(conn, st_dd_apx, st_ren_cls, st_ren_cos, st_ren_head, st_ren_yymmtext, in_ren_len, false);
+            //conn.Close();
+            
+            //檢查重複
+            if (sapfDao.IsExists("sapf", "_Primary_key_", Primary_key.Text, ""))
+            {
+              bl_insok = false;
+              st_dberrmsg = StringTable.GetString(Primary_key.Text + ",已存在.");
+              
+             // sapfDao.UpDateRenW(st_dd_apx, st_ren_cls, st_ren_cos, tx_riza_RIREN.Text);
+             // st_dberrmsg = StringTable.GetString(tx_riza_RIREN.Text + ",已重新取號.");
+             // //tx_riza_RIREN.Text = sapfDao.GetRenW(conn, st_dd_apx, st_ren_cls, st_ren_cos, st_ren_head, st_ren_yymmtext, in_ren_len, false);             // tx_riza_RIREN.Text ="";
+             // conn.Close();
+             
+            }
+            else
+            {
+              DataTable tb_sapf_ins = new DataTable();
+              DbDataAdapter da_ADP_ins = sapfDao.GetDataAdapter(ApVer, "UNsapf", "sapf", st_addselect, false, st_addjoin, CmdQueryS_sapf, st_addunion, "");
+              da_ADP_ins.Fill(tb_sapf_ins);
+              conn.Open();
+              OleDbTransaction thistran = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+              da_ADP_ins.InsertCommand.Transaction = thistran;
+              try
+              {
+                DataRow ins_row = tb_sapf_ins.NewRow();
+                st_tempgkey = DAC.get_guidkey();
+                ins_row["sapf_gkey"] = st_tempgkey;       // 
+                ins_row["sapf_mkey"] = DAC.get_guidkey(); //
+                ins_row["sapf_RAREN"] =tx_sapf_RAREN.Text.Trim();       // 應付單號
+                ins_row["sapf_RACLS"] =dr_sapf_RACLS.SelectedValue;       // 異動類別
+                ins_row["sapf_RAMEN"] =tx_sapf_RAMEN.Text.Trim();       // 開單人員
+                ins_row["sapf_RANUM"] =tx_sapf_RANUM.Text.Trim();       // 廠商編號
+                ins_row["sapf_RACIN"] =tx_sapf_RACIN.Text.Trim();       // 統一編號
+                ins_row["sapf_RACS1"] =dr_sapf_RACS1.SelectedValue;       // 憑證類別
+                ins_row["sapf_RACS2"] =dr_sapf_RACS2.SelectedValue;       // 稅率類別
+                ins_row["sapf_RAINV"] =tx_sapf_RAINV.Text.Trim();       // 發票號碼
+                ins_row["sapf_RACS3"] =dr_sapf_RACS3.SelectedValue;       // 進項類別
+                ins_row["sapf_RACS4"] =dr_sapf_RACS4.SelectedValue;       // 進貨科目
+                ins_row["sapf_RAMNY"] =dr_sapf_RAMNY.SelectedValue;       // 幣　　別
+                ins_row["sapf_RAPTN"] =tx_sapf_RAPTN.Text.Trim();       // 商品編號
+                ins_row["sapf_RACOS"] =dr_sapf_RACOS.SelectedValue;       // 單據類別
+                ins_row["sapf_RARE1"] =tx_sapf_RARE1.Text.Trim();       // 進貨單號
+                ins_row["sapf_RARE2"] =tx_sapf_RARE2.Text.Trim();       // 銷貨單號
+                ins_row["sapf_RARMK"] =tx_sapf_RARMK.Text.Trim();       // 備　　註
+                
+                ins_row["sapf_trusr"] = UserGkey;  //
+                tb_sapf_ins.Rows.Add(ins_row);
+                //
+                //
+                da_ADP_ins.Update(tb_sapf_ins);
+                // sapfDao.UpDateRenW(conn, thistran, st_dd_apx, st_ren_cls, st_ren_cos, tx_riza_RIREN.Text.Trim());
+                sapfDao.Insertbalog(conn, thistran, "sapf", hh_ActKey.Value, hh_GridGkey.Value);
+                sapfDao.Insertbtlog(conn, thistran, "sapf", DAC.GetStringValue(ins_row["sapf_gkey"]), "I", UserName, DAC.GetStringValue(ins_row["sapf_gkey"]));
+                thistran.Commit();
+                bl_insok = true;
+              }
+              catch (Exception e)
+              {
+                thistran.Rollback();
+                bl_insok = false;
+                st_dberrmsg = e.Message;
+              }
+              finally
+              {
+                thistran.Dispose();
+                sapfDao.Dispose();
+                tb_sapf_ins.Dispose();
+                da_ADP_ins.Dispose();
+                conn.Close();
+              }
+            }
+            if (bl_insok)
+            {
+              hh_GridGkey.Value = st_tempgkey;
+              hh_GridCtrl.Value = "rekey";
+              BindNew(true);
+              hh_GridCtrl.Value = "ser";
+              SetSerMod();
+            }
+            else
+            {
+              lb_ErrorMessage.Text = st_dberrmsg;
+              lb_ErrorMessage.Visible = true;
+            } //bl_insok
+          }  //ins
+          else if (hh_GridCtrl.Value.ToLower() == "mod")
+          {
+            if (sapfDao.IsExists("sapf", "_Primary_key_", Primary_key.Text, "gkey<>'"+hh_GridGkey.Value+"'"))
+            {
+              bl_updateok = false;
+              st_dberrmsg = StringTable.GetString(Primary_key.Text+",已存在.");
+            }
+            else
+            {
+              DataTable tb_sapf_mod = new DataTable();
+              DbDataAdapter da_ADP_mod = sapfDao.GetDataAdapter(ApVer, "UNsapf", "sapf", st_addselect, false, st_addjoin, CmdQueryS_sapf, st_addunion, "");
+              da_ADP_mod.Fill(tb_sapf_mod);
+              st_SelDataKey = "sapf_gkey='" + hh_GridGkey.Value + "' and sapf_mkey='"+hh_mkey.Value+"' ";
+              DataRow[] mod_rows = tb_sapf_mod.Select(st_SelDataKey);
+              DataRow mod_row;
+              if (mod_rows.Length != 1)
+              {
+                bl_updateok = false;
+                st_dberrmsg = StringTable.GetString("資料已變更,請重新選取!");
+              }
+              else
+              {
+                conn.Open();
+                OleDbTransaction thistran = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                da_ADP_mod.UpdateCommand.Transaction = thistran;
+                try
+                {
+                  mod_row = mod_rows[0];
+                  mod_row.BeginEdit();
+                  
+                  mod_row["sapf_RACLS"] =dr_sapf_RACLS.SelectedValue;       // 異動類別
+                  mod_row["sapf_RAMEN"] =tx_sapf_RAMEN.Text.Trim();       // 開單人員
+                  mod_row["sapf_RANUM"] =tx_sapf_RANUM.Text.Trim();       // 廠商編號
+                  mod_row["sapf_RACIN"] =tx_sapf_RACIN.Text.Trim();       // 統一編號
+                  mod_row["sapf_RACS1"] =dr_sapf_RACS1.SelectedValue;       // 憑證類別
+                  mod_row["sapf_RACS2"] =dr_sapf_RACS2.SelectedValue;       // 稅率類別
+                  mod_row["sapf_RAINV"] =tx_sapf_RAINV.Text.Trim();       // 發票號碼
+                  mod_row["sapf_RACS3"] =dr_sapf_RACS3.SelectedValue;       // 進項類別
+                  mod_row["sapf_RACS4"] =dr_sapf_RACS4.SelectedValue;       // 進貨科目
+                  mod_row["sapf_RAMNY"] =dr_sapf_RAMNY.SelectedValue;       // 幣　　別
+                  mod_row["sapf_RAPTN"] =tx_sapf_RAPTN.Text.Trim();       // 商品編號
+                  mod_row["sapf_RACOS"] =dr_sapf_RACOS.SelectedValue;       // 單據類別
+                  mod_row["sapf_RARE1"] =tx_sapf_RARE1.Text.Trim();       // 進貨單號
+                  mod_row["sapf_RARE2"] =tx_sapf_RARE2.Text.Trim();       // 銷貨單號
+                  mod_row["sapf_RARMK"] =tx_sapf_RARMK.Text.Trim();       // 備　　註
+                  
+                  mod_row["sapf_mkey"] = DAC.get_guidkey();        //
+                  mod_row["sapf_trusr"] =UserGkey;  //
+                  mod_row.EndEdit();
+                  da_ADP_mod.Update(tb_sapf_mod);
+                  sapfDao.Insertbalog(conn, thistran, "sapf", hh_ActKey.Value, hh_GridGkey.Value);
+                  sapfDao.Insertbtlog(conn, thistran, "sapf", DAC.GetStringValue(mod_row["sapf_gkey"]), "M", UserName, DAC.GetStringValue(mod_row["sapf_gkey"]));
+                  thistran.Commit();
+                  bl_updateok = true;
+                }
+                catch (Exception e)
+                {
+                  thistran.Rollback();
+                  bl_updateok = false;
+                  st_dberrmsg = e.Message;
+                }
+                finally
+                {
+                  thistran.Dispose();
+                  sapfDao.Dispose();
+                  tb_sapf_mod.Dispose();
+                  da_ADP_mod.Dispose();
+                  conn.Close();
+                }
+              } //mod_rows.Length=1
+            } //IsExists
+            if (bl_updateok)
+            {
+              //hh_GridCtrl.Value = "rekey";
+              BindNew(true);
+              hh_GridCtrl.Value = "ser";
+              SetSerMod();
+            }
+            else
+            {
+              lb_ErrorMessage.Text = st_dberrmsg;
+              lb_ErrorMessage.Visible = true;
+            } //bl_updateok
+          }   //mod
+        }  //ins & mod
+        sapfDao.Dispose();
+      }
+      else
+      {
+        lb_ErrorMessage.Visible = true;
+        lb_ErrorMessage.Text = st_ckerrmsg;
+      }
+    }
+    
+    private bool ServerEditCheck(ref string sMsg)
+    {
+      bool ret;
+      ret = true;
+      sMsg = "";
+      clsDataCheck DataCheck = new clsDataCheck();
+      
+      ret = DataCheck.cIsStrEmptyChk(ret, tx_sapf_RAREN.Text, lb_sapf_RAREN.Text, ref sMsg);  //應付單號
+      ret = DataCheck.cIsStrEmptyChk(ret, tx_sapf_RAMEN.Text, lb_sapf_RAMEN.Text, ref sMsg);  //開單人員
+      ret = DataCheck.cIsStrEmptyChk(ret, tx_sapf_RANUM.Text, lb_sapf_RANUM.Text, ref sMsg);  //廠商編號
+      ret = DataCheck.cIsStrEmptyChk(ret, tx_sapf_RAPTN.Text, lb_sapf_RAPTN.Text, ref sMsg);  //商品編號
+      ret = DataCheck.cIsStrDecimalChk(ret, tx_sapf_RAM01.Text, lb_sapf_RAM01.Text, ref sMsg); //已沖金額
+      ret = DataCheck.cIsStrEmptyChk(ret, tx_sapf_RACMP.Text, lb_sapf_RACMP.Text, ref sMsg);  //公司編號
+      DataCheck.Dispose();
+      return ret;
+    }
+    
