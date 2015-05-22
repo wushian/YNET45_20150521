@@ -3647,6 +3647,8 @@
     <Content Include="ReportData\UNtableyyy_WebDataGrid_6b661.txt" />
     <Content Include="ReportData\UNtableyyy_WebDataGrid_a5b4b.txt" />
     <Content Include="ReportData\UNXXXX_source_b1873.txt" />
+    <Content Include="Report\CRMDB.mdb" />
+    <Content Include="Report\DBSETP01.mdb" />
     <Content Include="reset.css" />
     <Content Include="Scripts\form_button.js" />
     <Content Include="App_Browsers\Others.browser" />
@@ -3673,6 +3675,7 @@
     <Content Include="ReportData\bk_ddimport_e56a9.xlsx" />
     <Content Include="ReportData\bk_ddimport_ebe66.xlsx" />
     <Content Include="ReportData\bk_ddimport_f1cb9.xlsx" />
+    <Content Include="Report\DBSETP01.rpt" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -4006,7 +4009,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Report\" />
+    <Folder Include="DOC\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="ADODB">
@@ -4018,6 +4021,9 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

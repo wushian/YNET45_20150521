@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <sitemanifest>
-  <IisApp path="R:\YNET45_20150521\YNET45_20150521\inetpub\wwwroot\DD2015_45\obj\Release\Package\PackageTmp" managedRuntimeVersion="v4.0" />
-  <setAcl path="R:\YNET45_20150521\YNET45_20150521\inetpub\wwwroot\DD2015_45\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
-  <setAcl path="R:\YNET45_20150521\YNET45_20150521\inetpub\wwwroot\DD2015_45\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+  <IisApp path="D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\obj\Release\Package\PackageTmp" managedRuntimeVersion="v4.0" />
+  <setAcl path="D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
 </sitemanifest>

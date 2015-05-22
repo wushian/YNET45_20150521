@@ -27,7 +27,7 @@ namespace DD2015_45
       base.OnLoad(e);
 
       // 引用 JQuery 及其他需要使用的 JS 檔案
-      Page.ClientScript.RegisterClientScriptInclude("JQuery", ResolveClientUrl("~/Scripts/jquery-1.4.1.min.js"));
+      Page.ClientScript.RegisterClientScriptInclude("JQuery", ResolveClientUrl("~/Scripts/jquery-1.7.1.min.js"));
       Page.ClientScript.RegisterClientScriptInclude("Utility", ResolveClientUrl("~/Utility/Utility.js"));
     }
 

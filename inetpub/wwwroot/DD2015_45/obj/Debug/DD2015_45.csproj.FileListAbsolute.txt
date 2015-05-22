@@ -26,3 +26,46 @@ R:\YNET45_20150521\YNET45_20150521\inetpub\wwwroot\DD2015_45\obj\Debug\Interop.A
 R:\YNET45_20150521\YNET45_20150521\inetpub\wwwroot\DD2015_45\obj\Debug\DD2015_45.csproj.ResolveComReference.cache
 R:\YNET45_20150521\YNET45_20150521\inetpub\wwwroot\DD2015_45\obj\Debug\DD2015_45.dll
 R:\YNET45_20150521\YNET45_20150521\inetpub\wwwroot\DD2015_45\obj\Debug\DD2015_45.pdb
+R:\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\DD2015_45.dll.config
+R:\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\DD2015_45.dll
+R:\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\DD2015_45.pdb
+R:\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\CrystalDecisions.CrystalReports.Engine.dll
+R:\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\CrystalDecisions.Shared.dll
+R:\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\Infragistics45.Web.v14.2.dll
+R:\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\Infragistics45.WebUI.Shared.v14.2.dll
+R:\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\Infragistics45.WebUI.WebDataInput.v14.2.dll
+R:\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\Infragistics45.WebUI.WebHtmlEditor.v14.2.dll
+R:\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\Microsoft.CSharp.dll
+R:\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\YNetLib_45.dll
+R:\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\YNetLib_45.pdb
+R:\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\Infragistics45.Web.v14.2.xml
+R:\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\Infragistics45.WebUI.Shared.v14.2.xml
+R:\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\Infragistics45.WebUI.WebDataInput.v14.2.xml
+R:\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\Infragistics45.WebUI.WebHtmlEditor.v14.2.xml
+R:\YNET45_20150521\inetpub\wwwroot\DD2015_45\obj\Debug\DD2015_45.csprojResolveAssemblyReference.cache
+R:\YNET45_20150521\inetpub\wwwroot\DD2015_45\obj\Debug\Interop.ADODB.dll
+R:\YNET45_20150521\inetpub\wwwroot\DD2015_45\obj\Debug\DD2015_45.csproj.ResolveComReference.cache
+R:\YNET45_20150521\inetpub\wwwroot\DD2015_45\obj\Debug\DD2015_45.dll
+R:\YNET45_20150521\inetpub\wwwroot\DD2015_45\obj\Debug\DD2015_45.pdb
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\DD2015_45.dll.config
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\DD2015_45.dll
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\DD2015_45.pdb
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\CrystalDecisions.CrystalReports.Engine.dll
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\CrystalDecisions.Shared.dll
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\Infragistics45.Web.v14.2.dll
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\Infragistics45.WebUI.Shared.v14.2.dll
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\Infragistics45.WebUI.WebDataInput.v14.2.dll
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\Infragistics45.WebUI.WebHtmlEditor.v14.2.dll
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\Microsoft.CSharp.dll
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\YNetLib_45.dll
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\YNetLib_45.pdb
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\Infragistics45.Web.v14.2.xml
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\Infragistics45.WebUI.Shared.v14.2.xml
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\Infragistics45.WebUI.WebDataInput.v14.2.xml
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\bin\Infragistics45.WebUI.WebHtmlEditor.v14.2.xml
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\obj\Debug\DD2015_45.csprojResolveAssemblyReference.cache
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\obj\Debug\Interop.ADODB.dll
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\obj\Debug\DD2015_45.csproj.ResolveComReference.cache
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\obj\Debug\DD2015_45.dll
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\obj\Debug\DD2015_45.pdb
+D:\Git_rep\! MyImportantProject\YNET45_20150521\inetpub\wwwroot\DD2015_45\obj\Debug\DD2015_45.dll.licenses

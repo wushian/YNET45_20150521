@@ -44,9 +44,9 @@ namespace DD2015_45
       string st_es101no = "", st_es101cname = "", st_es101ename = "", st_dberrmsg = "", st_logingkey = "";
       st_es101gkey = loginDao.get_es101gkey(txtId.Text, txtPassword.Text, ref st_es101no, ref st_es101cname, ref st_es101ename);
       //if ((st_es101gkey != "") || ((txtId.Text == "Admin") && (txtPassword.Text == "setup")))
-       if ((st_es101gkey != "") || ((txtId.Text == "1") && (txtPassword.Text == "1")))
+       if ((st_es101gkey != "") || ((txtId.Text == "Admin") && (txtPassword.Text == "setup")))
       {
-        if (txtId.Text == "1")
+          if (txtId.Text == "Admin")
         {
           Session[PublicVariable.UserId] = txtId.Text;
           Session[PublicVariable.UserNo] = txtId.Text;
